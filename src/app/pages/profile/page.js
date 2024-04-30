@@ -36,7 +36,6 @@ export default function Profile() {
     <option selected>Choose</option>
     <option value="language">English</option>
     <option value="language">Tagalog</option>
-    
   </select>
 </form>
 
