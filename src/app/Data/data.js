@@ -1,5 +1,6 @@
 const data = [
   {
+    id: 1,
     number: "500",
     icon: (
       <svg
@@ -20,6 +21,7 @@ const data = [
     label: "Researchers",
   },
   {
+    id: 2,
     number: "23,001",
     icon: (
       <svg
@@ -40,6 +42,7 @@ const data = [
     label: "Paper Published",
   },
   {
+    id: 3,
     number: "5,131",
     icon: (
       <svg
@@ -60,6 +63,7 @@ const data = [
     label: "Projects",
   },
   {
+    id: 4,
     number: "210",
     icon: (
       <svg
@@ -80,6 +84,7 @@ const data = [
     label: "IP Assets",
   },
   {
+    id: 5,
     number: "8",
     icon: (
       <svg

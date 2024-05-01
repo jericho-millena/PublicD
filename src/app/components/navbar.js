@@ -3,7 +3,7 @@ import React from "react";
 export default function Navbar() {
   return (
     <div>
-      <nav className="border-gray-200 bg-red-600 dark:bg-red-600 dark:border-red-600">
+      <nav className="border-gray-200 bg-red-700">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a
             href="#"
