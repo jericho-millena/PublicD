@@ -2,7 +2,8 @@ import React from "react";
 import InfoList from "./components/infolist";
 import Searchbar from "./components/searchbar";
 import BarGraph from "./components/bargraph";
-import { data, data2 } from "../app/Data/data";
+import ActiveShapePieChart from "./components/ActiveShapePieChart";
+import { data, data2, pieChartData } from "../app/Data/data";
 
 export default function Home() {
   return (
@@ -10,7 +11,8 @@ export default function Home() {
       <div className="container mx-auto px-4">
         <InfoList data={data} />
       </div>
-      <div>
+      <div className="px-4 lg:px-0">
+        {" "}
         <Searchbar />
       </div>
 
@@ -38,8 +40,11 @@ export default function Home() {
           <BarGraph />
         </div>
       </div>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-1 my-1">
         <InfoList data={data2} />
+      </div>
+      <div>
+        <ActiveShapePieChart data={pieChartData} />
       </div>
     </>
   );
