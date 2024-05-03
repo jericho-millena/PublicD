@@ -1,7 +1,8 @@
 import React from "react";
 import InfoList from "./components/infolist";
 import Searchbar from "./components/searchbar";
-import data from "../app/Data/data";
+import BarGraph from "./components/bargraph";
+import { data, data2 } from "../app/Data/data";
 
 export default function Home() {
   return (
@@ -33,6 +34,12 @@ export default function Home() {
             <span>Activities</span>
           </li>
         </ul>
+        <div className="flex justify-center pt-8">
+          <BarGraph />
+        </div>
+      </div>
+      <div className="container mx-auto px-4">
+        <InfoList data={data2} />
       </div>
     </>
   );
