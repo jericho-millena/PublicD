@@ -11,7 +11,7 @@ export const data = [
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6 mr-1"
+        className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 mr-1"
       >
         <path
           strokeLinecap="round"
@@ -32,7 +32,7 @@ export const data = [
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6"
+        className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
       >
         <path
           strokeLinecap="round"
@@ -53,7 +53,7 @@ export const data = [
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6"
+        className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
       >
         <path
           strokeLinecap="round"
@@ -74,7 +74,7 @@ export const data = [
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6"
+        className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
       >
         <path
           strokeLinecap="round"
@@ -95,7 +95,7 @@ export const data = [
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6"
+        className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
       >
         <path
           strokeLinecap="round"
@@ -119,7 +119,7 @@ export const data2 = [
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="w-6 h-6"
+        className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
       >
         <path
           strokeLinecap="round"
@@ -145,7 +145,7 @@ export const data2 = [
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="w-6 h-6"
+        className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
       >
         <path
           strokeLinecap="round"
@@ -166,7 +166,7 @@ export const data2 = [
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="w-6 h-6"
+        className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
       >
         <path
           strokeLinecap="round"
@@ -187,7 +187,7 @@ export const data2 = [
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="w-6 h-6"
+        className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6"
       >
         <path
           strokeLinecap="round"

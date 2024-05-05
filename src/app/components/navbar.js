@@ -15,7 +15,7 @@ export default function Navbar() {
     <Disclosure as="nav" className="bg-red-600 shadow-sm">
       <div className="max-w-7xl mx-auto px-8 lg:px-12">
         <div className="flex justify-between h-24 items-center">
-          <div className="flex items-center bg-red-800 p-2">
+          <div className="flex items-center p-2">
             <span className="mr-4">
               <img
                 src="/logon.png"
