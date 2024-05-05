@@ -1,17 +1,10 @@
 import React from "react";
 
 const InfoList = ({ data }) => {
-  let numColumns = 5;
-  if (data.length >= 5) {
-    numColumns = 5;
-  } else if (data.length >= 4) {
-    numColumns = 4;
-  }
-
   return (
     <div className="flex justify-center py-5">
       <dl
-        className={`info-list grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-${numColumns} text-left`}
+        className={`info-list grid grid-rows-2 grid-flow-col gap-4 sm:grid-rows-2 grid-flow-col gap-4 lg:grid-rows-1 grid-flow-col item-center text-left`}
       >
         {data.map((item) => (
           <div
