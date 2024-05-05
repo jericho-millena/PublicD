@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { BarChart, Bar, XAxis, Tooltip } from "recharts";
 
@@ -78,30 +78,45 @@ const data = [
 ];
 
 const BarGraph = () => {
+  const [chartWidth, setChartWidth] = useState(1400);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setChartWidth(window.innerWidth > 1300 ? 1300 : window.innerWidth - 40);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="flex justify-center pt-8">
-      <BarChart
-        width={1300}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 20,
-          left: 20,
-          bottom: 10,
-        }}
-      >
-        <XAxis
-          dataKey="name"
-          tickLine="false"
-          stroke="#9b2c2c"
-          strokeWidth={5}
-        />
-        <Tooltip />
-        <Bar dataKey="Projects" fill="#9b2c2c" barSize={27} />
-        <Bar dataKey="Research Paper" fill="#dc2626" barSize={27} />
-        <Bar dataKey="Activities" fill="#f87171" barSize={27} />
-      </BarChart>
+    <div className="pt-5">
+      <div className="chart-container">
+        <BarChart
+          width={chartWidth}
+          height={300}
+          data={data}
+          margin={{
+            top: 5,
+            right: 20,
+            left: 20,
+            bottom: 10,
+          }}
+        >
+          <XAxis
+            dataKey="name"
+            tickLine={false}
+            stroke="#9b2c2c"
+            strokeWidth={5}
+          />
+          <Tooltip />
+          <Bar dataKey="Projects" fill="#9b2c2c" barSize={27} />
+          <Bar dataKey="Research Paper" fill="#dc2626" barSize={27} />
+          <Bar dataKey="Activities" fill="#f87171" barSize={27} />
+        </BarChart>
+      </div>
     </div>
   );
 };

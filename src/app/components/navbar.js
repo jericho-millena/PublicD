@@ -1,125 +1,126 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { Disclosure } from "@headlessui/react";
+import { navbarItems } from "../Data/data";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDisclosure = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div>
-      <nav className="border-gray-200 bg-red-700">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a
-            href="#"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
-          >
-            <img src="/logon.png" className="h-8" alt="University Logo" />
-            <span className="self-center text-sm font-semibold whitespace-nowrap dark:text-white">
-              Research Management System
+    <Disclosure as="nav" className="bg-red-600 shadow-sm">
+      <div className="max-w-7xl mx-auto px-8 lg:px-12">
+        <div className="flex justify-between h-24 items-center">
+          <div className="flex items-center bg-red-800 p-2">
+            <span className="mr-4">
+              <img
+                src="/logon.png"
+                alt="Robin Vriens Logo"
+                width={55}
+                height={47}
+              />
             </span>
-          </a>
+            <div>
+              <h1 className="text-white text-lg font-semibold">
+                Research Management
+              </h1>
+              <p className="text-white text-lg font-semibold">System</p>
+            </div>
+          </div>
+          <div className="flex items-center">
+            <div className="hidden md:flex h-full">
+              {navbarItems.map(({ id, label, link }) => (
+                <a
+                  href={link}
+                  key={id}
+                  className="inline-flex items-center px-4 py-2 font-medium text-white hover:text-gray-200 hover:bg-red-800 transition-colors duration-500 rounded-md"
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+            <div className="flex items-center md:hidden">
+              <button
+                className="inline-flex items-center justify-center rounded-md text-white hover:text-gray-200 focus:outline-none focus:text-white"
+                onClick={toggleDisclosure}
+              >
+                <span className="sr-only">Open main menu</span>
+                {isOpen ? (
+                  <svg
+                    className="block h-7 w-7"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="block h-7 w-7"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`md:hidden border-t-2 border-white fixed inset-y-0 right-0 z-50 bg-red-600 w-1/2 transition-opacity transition-transform duration-00 ease-in-out ${
+          isOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
+        }`}
+      >
+        <div className="px-4 py-8 space-y-4 text-white">
           <button
-            data-collapse-toggle="navbar-solid-bg"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-solid-bg"
-            aria-expanded="false"
+            onClick={toggleDisclosure}
+            className="px-4 py-2 font-medium hover:text-gray-200"
           >
-            <span className="sr-only">Open main menu</span>
             <svg
-              className="w-5 h-5"
-              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              viewBox="0 0 17 14"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
             >
               <path
-                stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
+                d="M6 18 18 6M6 6l12 12"
               />
             </svg>
           </button>
-          <div
-            className="hidden w-full md:block md:w-auto"
-            id="navbar-solid-bg"
-          >
-            <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-              <li>
-                <a
-                  href="/"
-                  className="block py-2 px-3 md:p-0 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:bg-red-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                  aria-current="page"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pages/profile"
-                  className="block py-2 px-3 md:p-0 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:bg-red-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Profile
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pages/projects"
-                  className="block py-2 px-3 md:p-0 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:bg-red-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pages/papers"
-                  className="block py-2 px-3 md:p-0 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:bg-red-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Papers
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pages/ip"
-                  className="block py-2 px-3 md:p-0 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:bg-red-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  IP-Assets
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pages/centers"
-                  className="block py-2 px-3 md:p-0 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:bg-red-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Centers
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pages/activity"
-                  className="block py-2 px-3 md:p-0 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:bg-red-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Activity
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pages/news"
-                  className="block py-2 px-3 md:p-0 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:bg-red-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  News/Media
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/pages/prizes"
-                  className="block py-2 px-3 md:p-0 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:bg-red-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Prizes
-                </a>
-              </li>
-            </ul>
-          </div>
+          {navbarItems.map(({ id, label, link }) => (
+            <a
+              href={link}
+              key={id}
+              className="block px-4 py-2 font-medium hover:text-gray-200 hover:bg-red-800 transition-colors duration-300 rounded-md"
+            >
+              {label}
+            </a>
+          ))}
         </div>
-      </nav>
-    </div>
+      </div>
+    </Disclosure>
   );
 }

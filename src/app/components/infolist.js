@@ -2,8 +2,8 @@ import React from "react";
 
 const InfoList = ({ data }) => {
   return (
-    <div className="flex justify-center pt-8 pb-8">
-      <dl className="info-list flex flex-row flex-wrap items-start gap-8 text-left">
+    <div className="flex justify-center pt-6 pb-6">
+      <dl className="info-list flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center text-left">
         {data.map((item) => (
           <div
             key={item.id}

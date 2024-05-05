@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
 const COLORS = [
   "#7F1D1D", // bg-red-950
@@ -26,123 +26,95 @@ const ActiveShapePieChart = ({ data }) => {
   const totalResearchOutput = data.reduce((acc, curr) => acc + curr.value, 0);
 
   return (
-    <div className="flex items-center pl-10">
-      <div className="flex flex-col items-center pl-10">
-        <PieChart width={300} height={300}>
-          <Pie
-            activeIndex={activeIndex}
-            data={data}
-            cx={150}
-            cy={150}
-            innerRadius={60}
-            outerRadius={100}
-            fill="#8884d8"
-            dataKey="value"
-            onMouseEnter={onPieEnter}
-          >
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-          <text
-            x="50%"
-            y="50%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize={20} // Decrease the font size
-            fontWeight="bold" // Make the text bold
-          >
-            {totalResearchOutput}
-          </text>
-          <text
-            x="50%"
-            y="50%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize={9} // Decrease the font size
-            fontWeight="bold" // Make the text bold
-            dy={20} // Move the text below the total number
-          >
-            Research Output
-          </text>
-        </PieChart>
-        {activeIndex !== null && (
-          <text
-            x="50%"
-            y="50%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize={12} // Adjust the font size
-            fontWeight="bold" // Make the text bold
-            dy={40} // Move the text further below
-          >
-            {data[activeIndex]?.name}
-          </text>
-        )}
-        {activeIndex !== null && (
-          <text
-            x="50%"
-            y="50%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize={12} // Adjust the font size
-            fontWeight="bold" // Make the text bold
-            dy={60} // Move the text further below
-          >
-            {((data[activeIndex].value / totalResearchOutput) * 100).toFixed(2)}
-            %
-          </text>
-        )}
+    <div className="flex flex-wrap justify-center items-center">
+      <div className="w-full sm:w-auto mx-4 sm:mx-0 mb-2 sm:mb-0">
+        <ResponsiveContainer width="90%" minWidth={300} height={300}>
+          <PieChart>
+            <Pie
+              activeIndex={activeIndex}
+              data={data}
+              cx="50%"
+              cy="50%"
+              innerRadius={60}
+              outerRadius={100}
+              dataKey="value"
+              onMouseEnter={onPieEnter}
+            >
+              {data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <text
+              x="50%"
+              y="50%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontSize={20}
+              fontWeight="bold"
+            >
+              {totalResearchOutput}
+            </text>
+            <text
+              x="50%"
+              y="50%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontSize={9}
+              fontWeight="bold"
+              dy={20}
+            >
+              Research Output
+            </text>
+          </PieChart>
+        </ResponsiveContainer>
       </div>
-      <div className="ml-2 flex flex-col">
-        {" "}
-        {/* Adjusted margin and added flexbox */}
-        <h2 className="text-lg font-semibold text-red-600 mb-2">
-          Top 5 Research topics:
-        </h2>
-        <ul className="mt-2">
-          {data
-            .sort((a, b) => b.value - a.value)
-            .slice(0, 5)
-            .map((entry, index) => (
-              <li key={index} className="mb-2 flex justify-between">
-                <span>
-                  {index + 1}. {entry.name}
-                </span>
-                <span>
-                  {((entry.value / totalResearchOutput) * 100).toFixed(2)}%
-                </span>
-              </li>
-            ))}
-        </ul>
+      <div className="mr-4 sm:mr-0">
+        <div className="mx-8">
+          <h2 className="text-lg font-semibold text-red-600 mb-2">
+            Top 5 Research topics:
+          </h2>
+          <ul className="mt-2">
+            {data
+              .sort((a, b) => b.value - a.value)
+              .slice(0, 5)
+              .map((entry, index) => (
+                <li key={index} className="mb-2 flex justify-between">
+                  <span>
+                    {index + 1}. {entry.name}
+                  </span>
+                  <span>
+                    {((entry.value / totalResearchOutput) * 100).toFixed(2)}%
+                  </span>
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
-      <div className="flex flex-col items-center pl-10">
+      <div className="mx-12 mb-4">
         <img
           src="/image28.png" // Replace with the path to your image.
           alt="Image Description"
           layout="intrinsic"
         />
         <div className="flex items-center mt-4">
-          {" "}
-          <h1 className="text-4xl text-red-500 font-bold mr-2">100k</h1>{" "}
+          <h1 className="text-4xl text-red-500 font-bold mr-2">100k</h1>
           <p className="text-sm">
             <span className="block">Researches with</span>
             <span className="block">Altmetric activity</span>
           </p>
         </div>
       </div>
-      <div className="flex flex-col items-center pl-10">
+      <div className="mb-4">
         <img
           src="/image30.png" // Replace with the path to your image.
           alt="Image Description"
           layout="intrinsic"
         />
         <div className="flex items-center mt-4">
-          {" "}
-          <h1 className="text-4xl text-red-500 font-bold mr-2">112k</h1>{" "}
+          <h1 className="text-4xl text-red-500 font-bold mr-2">112k</h1>
           <p className="text-sm">
             <span className="block">Researches with</span>
             <span className="block">Scopus activity</span>
