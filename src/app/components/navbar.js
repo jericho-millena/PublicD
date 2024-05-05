@@ -18,7 +18,7 @@ export default function Navbar() {
           <div className="flex items-center p-2">
             <span className="mr-4">
               <img
-                src="/logon.png"
+                src="/logon1.png"
                 alt="Robin Vriens Logo"
                 width={55}
                 height={47}
