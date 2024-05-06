@@ -4,6 +4,7 @@ import Searchbar from "./components/searchbar";
 import BarGraph from "./components/bargraph";
 import ActiveShapePieChart from "./components/ActiveShapePieChart";
 import SDGCard from "./components/SDGCard";
+import Footer from "./components/footer";
 import { data, data2, pieChartData, sdgData } from "../app/Data/data";
 
 export default function Home() {
@@ -16,34 +17,42 @@ export default function Home() {
         <Searchbar />
       </div>
 
-      <div className="flex justify-center my-5 relative">
-        <div className="z-10 relative">
-          <h2 className="text-xl lg:text-2xl xl:text-3xl text-red-800 font-bold mb-7 pt-7">
-            University <span className="text-red-500">Research </span>
-            Statistics
-          </h2>
-          <div className="flex flex-col items-start">
-            <ul className="list-disc list-inside">
-              <li className="flex items-center mb-2">
-                <div className="h-4 w-4 bg-red-900 rounded-full mr-2"></div>
-                <span>Research paper</span>
-              </li>
-              <li className="flex items-center mb-2">
-                <div className="h-4 w-4 bg-red-600 rounded-full mr-2"></div>
-                <span>Projects</span>
-              </li>
-              <li className="flex items-center mb-2">
-                <div className="h-4 w-4 bg-red-300 rounded-full mr-2"></div>
-                <span>Activities</span>
-              </li>
-            </ul>
+      <div className="container mx-auto px-2">
+        <div className="flex justify-center my-5 relative">
+          <div className="z-10 relative">
+            <h2 className="text-lg lg:text-xl xl:text-2xl text-red-800 font-bold mb-5 lg:mb-7 xl:mb-7 pt-5 lg:pt-7 xl:pt-7">
+              University <span className="text-red-500">Research </span>
+              Statistics
+            </h2>
+            <div className="flex flex-col items-start">
+              <ul className="list-disc list-inside">
+                <li className="flex items-center mb-2 lg:mb-3 xl:mb-3">
+                  <div className="h-3 w-3 lg:h-4 lg:w-4 xl:h-5 xl:w-5 bg-red-900 rounded-full mr-2"></div>
+                  <span className="text-xs lg:text-sm xl:text-base">
+                    Research paper
+                  </span>
+                </li>
+                <li className="flex items-center mb-2 lg:mb-3 xl:mb-3">
+                  <div className="h-3 w-3 lg:h-4 lg:w-4 xl:h-5 xl:w-5 bg-red-600 rounded-full mr-2"></div>
+                  <span className="text-xs lg:text-sm xl:text-base">
+                    Projects
+                  </span>
+                </li>
+                <li className="flex items-center mb-2 lg:mb-3 xl:mb-3">
+                  <div className="h-3 w-3 lg:h-4 lg:w-4 xl:h-5 xl:w-5 bg-red-300 rounded-full mr-2"></div>
+                  <span className="text-xs lg:text-sm xl:text-base">
+                    Activities
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <BarGraph />
           </div>
-          <BarGraph />
         </div>
       </div>
 
       <div className="flex justify-center">
-        <div className="container mx-20 my-1">
+        <div className="container my-1">
           <InfoList data={data2} />
         </div>
       </div>
@@ -56,14 +65,8 @@ export default function Home() {
           <SDGCard sdgData={sdgData} />
         </div>
       </div>
-      {/* Background image at the bottom */}
-      <div className="fixed bottom-0 left-0 w-full h-full pointer-events-none">
-        <img
-          src="/rec223.png"
-          alt="Background Image"
-          className="absolute w-1/2 h-auto object-cover"
-          style={{ bottom: 0, left: 0, zIndex: -1 }}
-        />
+      <div>
+        <Footer />
       </div>
     </>
   );

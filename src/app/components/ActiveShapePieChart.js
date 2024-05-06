@@ -27,53 +27,53 @@ const ActiveShapePieChart = ({ data }) => {
 
   return (
     <div className="flex flex-wrap justify-center items-center">
-      <div className="w-full sm:w-auto mx-4 sm:mx-0 mb-2 sm:mb-0">
-        <ResponsiveContainer width="90%" minWidth={300} height={300}>
-          <PieChart>
-            <Pie
-              activeIndex={activeIndex}
-              data={data}
-              cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={100}
-              dataKey="value"
-              onMouseEnter={onPieEnter}
-            >
-              {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize={20}
-              fontWeight="bold"
-            >
-              {totalResearchOutput}
-            </text>
-            <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize={9}
-              fontWeight="bold"
-              dy={20}
-            >
-              Research Output
-            </text>
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-      <div className="mr-4 sm:mr-0">
+      <div className="flex flex-wrap justify-center items-center">
+        <div className="w-full sm:w-auto mx-4 sm:mx-0 mb-2 sm:mb-0">
+          <ResponsiveContainer width="90%" minWidth={300} height={300}>
+            <PieChart>
+              <Pie
+                activeIndex={activeIndex}
+                data={data}
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={100}
+                dataKey="value"
+                onMouseEnter={onPieEnter}
+              >
+                {data.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontSize={20}
+                fontWeight="bold"
+              >
+                {totalResearchOutput}
+              </text>
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontSize={9}
+                fontWeight="bold"
+                dy={20}
+              >
+                Research Output
+              </text>
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
         <div className="mx-8">
-          <h2 className="text-lg font-semibold text-red-600 mb-2">
+          <h2 className="text-md lg:text-lg font-semibold text-red-600 mb-2">
             Top 5 Research topics:
           </h2>
           <ul className="mt-2">
@@ -81,7 +81,10 @@ const ActiveShapePieChart = ({ data }) => {
               .sort((a, b) => b.value - a.value)
               .slice(0, 5)
               .map((entry, index) => (
-                <li key={index} className="mb-2 flex justify-between">
+                <li
+                  key={index}
+                  className="text-sm lg:text-lg mb-2 flex justify-between"
+                >
                   <span>
                     {index + 1}. {entry.name}
                   </span>
@@ -93,32 +96,41 @@ const ActiveShapePieChart = ({ data }) => {
           </ul>
         </div>
       </div>
-      <div className="mx-12 mb-4">
-        <img
-          src="/image28.png" // Replace with the path to your image.
-          alt="Image Description"
-          layout="intrinsic"
-        />
-        <div className="flex items-center mt-4">
-          <h1 className="text-4xl text-red-500 font-bold mr-2">100k</h1>
-          <p className="text-sm">
-            <span className="block">Researches with</span>
-            <span className="block">Altmetric activity</span>
-          </p>
+
+      <div className="mx-12 mb-4 flex flex-row justify-between items-center mt-5">
+        {" "}
+        <div className="flex flex-col items-center">
+          <img
+            src="/image28.png"
+            alt="Image Description"
+            className="w-16 lg:w-28 md:w-20"
+          />
+          <div className="flex items-center mt-4">
+            <h1 className="text-2xl lg:text-4xl md:text-3xl text-red-500 font-bold mr-2">
+              100k
+            </h1>
+            <p className="text-xs lg:text-sm">
+              <span className="block">Researches with</span>
+              <span className="block">Altmetric activity</span>
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="mb-4">
-        <img
-          src="/image30.png" // Replace with the path to your image.
-          alt="Image Description"
-          layout="intrinsic"
-        />
-        <div className="flex items-center mt-4">
-          <h1 className="text-4xl text-red-500 font-bold mr-2">112k</h1>
-          <p className="text-sm">
-            <span className="block">Researches with</span>
-            <span className="block">Scopus activity</span>
-          </p>
+        <div className="flex flex-col items-center ml-8">
+          {" "}
+          <img
+            src="/image30.png"
+            alt="Image Description"
+            className="w-16 lg:w-28 md:w-20"
+          />
+          <div className="flex items-center">
+            <h1 className="text-2xl lg:text-4xl md:text-3xl text-red-500 font-bold mr-2">
+              112k
+            </h1>
+            <p className="text-xs lg:text-sm">
+              <span className="block">Researches with</span>
+              <span className="block">Scopus activity</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
