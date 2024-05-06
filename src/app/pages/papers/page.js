@@ -1,6 +1,6 @@
 import React from 'react';
 import Card2 from '@/app/components/Card2';
-import { users } from '@/app/Data/data2'; // Assuming you've renamed the file and imported users instead of user
+import { users } from '@/app/Data/data2'; 
 import { DropDown } from '@/app/components/dropdown';
 
 export default function Papers() {
