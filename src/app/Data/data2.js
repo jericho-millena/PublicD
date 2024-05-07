@@ -2,10 +2,12 @@ export const users = [
   {
     id: 1,
     title: "Research 1",
-    progress: 25,
+    progress: 1,
     researchInfo: "Research about industry",
     sdg: ["Industry, Innovation & Infrastructure", "Electronics"],
-    link: "/research/1"
+    link: "/research/1",
+    views: 100, 
+    downloads: 50 
   },
   {
     id: 2,
