@@ -8,7 +8,7 @@ const SDGCard = ({ sdgData }) => {
   return (
     <div className="container mx-auto px-2 flex justify-center">
       <div className="w-full max-w-6xl max-w-screen-lg">
-        <h1 className="text-lg lg:text-xl xl:text-2xl text-red-800 font-bold mb-5 lg:mb-7 xl:mb-7 pt-5 lg:pt-7 xl:pt-7">
+        <h1 className="text-lg lg:text-2xl xl:text-2xl text-red-800 font-bold mb-5 lg:mb-7 xl:mb-7 pt-5 lg:pt-7 xl:pt-7">
           Sustainable Development Goals
         </h1>
         <div className="grid grid-rows-9 grid-flow-rows gap-4 md:grid-rows-6 grid-flow-col gap-4 lg:grid-rows-5 grid-flow-col gap-4">
