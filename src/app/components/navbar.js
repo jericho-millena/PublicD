@@ -28,7 +28,7 @@ export default function Navbar() {
               <h1 className="text-white text-lg font-semibold">
                 Research Management
               </h1>
-              <p className="text-white text-lg font-semibold">System</p>
+              <p className="text-white text-lg font-semibold">Information System</p>
             </div>
           </div>
           <div className="flex items-center">
