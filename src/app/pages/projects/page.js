@@ -1,5 +1,5 @@
 import React from 'react';
-import Card2 from '@/app/components/Card2';
+import PaperP from '@/app/components/paperP';
 import { users } from '@/app/Data/data3'; 
 import { DropDown } from '@/app/components/dropdown';
 
@@ -39,7 +39,7 @@ export default function Projects() {
       <div className="p-4">
         <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-10">
           {users.map((userData) => (
-            <Card2 key={userData.id} user={userData} />
+            <PaperP key={userData.id} user={userData} />
           ))}
         </div>
       </div>
