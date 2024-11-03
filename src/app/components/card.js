@@ -4,7 +4,7 @@ const Card = ({ user }) => {
   const { name, campus, image, topic } = user;
 
   return (
-  <a href='/pages/profile/profile2' className="items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl h-95 hover:bg-gray-400 relative">
+  <a href='/pages/profile/profile2' className="items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl h-95 hover:bg-gray-100 relative">
     <div class="group flex items-center ml-5">
       <img class="mr-2 mt-5 h-13 w-20 rounded-full" src={image} alt={name} />
       <div class="ltr:ml-3">
