@@ -38,12 +38,7 @@ export default function Profile() {
           </div>
           </form>
       </div>
-    </nav> 
-        {/* Add space between search bar and filter dropdown */}
-        <div className="ml-4">  
-          <DropDown />  
-        </div>    
-
+    </nav>   
         
     <div className="p-4">
         <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-10">
