@@ -4,7 +4,7 @@ const Card = ({ user }) => {
   const { name, campus, image, topic } = user;
 
   return (
-  <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 3xl:max-w-2xl">
+  <a href='/pages/profile/profile2' className="items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl h-95 hover:bg-gray-100 relative">
     <div class="group flex items-center ml-5">
       <img class="mr-2 mt-5 h-13 w-20 rounded-full" src={image} alt={name} />
       <div class="ltr:ml-3">
@@ -15,7 +15,7 @@ const Card = ({ user }) => {
     <div className="mb-2 mt-2 ml-5 w-20 bg-red-500 rounded-lg overflow-hidden shadow-sm p-1 flex flex-col items-center">
         <p className="text-xs text-white text-center">{topic}</p>
       </div>
-    </div>
+    </a>
   );
 };
 
