@@ -6,7 +6,7 @@ export default function PSideBar() {
   return (
     <aside
       id="logo-sidebar"
-      className="fixed top-30 left-0 z-40 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0" // Changed width from w-64 to w-80
+      className="flex top-30 left-0 z-40 w-96 h-screen transition-transform -translate-x-full sm:translate-x-0" // Changed width from w-64 to w-80
       aria-label="Sidebar"
     >
       <div className="h-full p-6 overflow-y-auto bg-gray-300">
