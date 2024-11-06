@@ -9,7 +9,10 @@ const ProfileMain = () => {
         <PSideBar />
       </div>
       <div className="w-3/4 p-4">
-        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+        <div class="py-2  ">
+          <div className="py-5">
+            <h1 class="text-2xl text-black-800">Research activity per year </h1>
+          </div>
           <div class="grid grid-cols-3 gap-4 mb-4">
             <div class="flex items-center justify-center rounded bg-gray-50 w-full h-28 dark:bg-gray-800 col-span-2">
               <p class="text-2xl text-gray-400 dark:text-gray-500">
