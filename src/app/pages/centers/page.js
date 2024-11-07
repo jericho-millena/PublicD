@@ -1,7 +1,6 @@
 import React from 'react'
 import Card from '@/app/components/centerList';
 import { user } from '@/app/Data/data4';
-import { DropDown } from '@/app/components/dropdown'; 
 
 export default function Profile() {
   return (
