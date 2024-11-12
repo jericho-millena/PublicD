@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 import ProfileList from "@/app/components/profile_components/ProfileList";
 import { user } from "@/app/Data/data";
-import { DropDown } from "@/app/components/dropdown";
+import FilterOptions from "@/app/components/FilterOptions";
 
 export default function Profile() {
   return (
@@ -40,15 +42,21 @@ export default function Profile() {
         </div>
       </nav>
       {/* Add space between search bar and filter dropdown */}
-      <div className="ml-4">
-        <DropDown />
-      </div>
 
-      <div className="p-4">
-        <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-10">
-          {user.map((user) => (
-            <ProfileList key={user.id} user={user} />
-          ))}
+      <div className="flex">
+        {/* Filter Section */}
+        <div className="w-1/4">
+          <FilterOptions />
+        </div>
+
+        {/* Profile Section */}
+        <div className="w-3/4 p-4">
+          {/* Grid Layout for Profile Cards */}
+          <div className="grid grid-cols-3  gap-4">
+            {user.map((user) => (
+              <ProfileList key={user.id} user={user} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
