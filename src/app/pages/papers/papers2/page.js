@@ -1,9 +1,21 @@
-import React from "react";
+// components/PaperSideBar.js
 
-export default function papers2() {
+import React from "react";
+import Papers2 from "@/app/components/papersdata_component/papersidebar"; 
+
+
+
+export default function PaperSideBar() {
   return (
-    <main>
-      <h1>page 2</h1>
-    </main>
+  
+<div className="flex-grow relative">
+
+       
+        <Papers2/>
+        </div>
+       
+       
+       
+      
   );
 }
