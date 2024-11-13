@@ -9,7 +9,7 @@ import ShowMoreButton from "@/app/components/profile_components/ShowMoreButton";
 
 
 
-const ProfileMain = () => {
+const PapersMain = () => {
   const [selectedYear, setSelectedYear] = useState(2024);
 
   const years = [2024, 2023, 2022, 2021];
@@ -50,11 +50,28 @@ const ProfileMain = () => {
     <div className="flex">
       {/* Sidebar */}
       <div className="w-1/4">
+
         <SideBar />
+
       </div>
 
       <div className="w-3/4 p-4">
         <div className="py-2">
+        <div className="w-3/4 p-4">
+        <div className="py-2">
+          <div className="flex justify-end mb-4">
+            <div className="flex items-center w-96 border border-gray-400 text-gray-700 rounded-lg shadow-md bg-white hover:bg-gray-200">
+              <input
+                type="text"
+                placeholder="Search"
+                className="flex-grow px-4 py-2 text-gray-700 bg-transparent outline-none"
+              />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M10 2a8 8 0 105.293 13.707l3.414 3.414a1 1 0 001.414-1.414l-3.414-3.414A8 8 0 0010 2zM5 10a5 5 0 1110 0A5 5 0 015 10z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          </div>
           {/* Research Activity */}
           <div className="py-5">
             <h1 className="text-2xl text-black-800">Research activity per year</h1>
@@ -70,7 +87,8 @@ const ProfileMain = () => {
 
           {/* Abstract */}
           <div className="pt-5 pb-8">
-            <h1 className="text-2xl text-black-800">Abstract</h1>
+
+            <h1 className="mt-20 text-2xl text-black-800">Abstract</h1>
             <p className="text-s text-black-800">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis
             elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien, bibendum quis nisi
@@ -118,14 +136,14 @@ const ProfileMain = () => {
         
       </div>
 
-      
+   
     </div>
 
-
+</div>
 
 
 
   );
 };
 
-export default ProfileMain;
+export default PapersMain;
