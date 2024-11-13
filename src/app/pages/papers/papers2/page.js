@@ -2,18 +2,14 @@
 
 import React, { useState } from "react";
 import SideBar from "@/app/components/papersdata_component/Sidebar";
-import ResearchActivityGrid from "@/app/components/profile_components/ResearchActivityGrid";
-import YearSelector from "@/app/components/profile_components/YearSelector";
+import ResearchActivity from "@/app/components/papersdata_component/ResearchActivity";
 import AuthorsData from "@/app/components/papersdata_component/Authorsdata";
 import ShowMoreButton from "@/app/components/profile_components/ShowMoreButton";
 
 
 
 const PapersMain = () => {
-  const [selectedYear, setSelectedYear] = useState(2024);
-
-  const years = [2024, 2023, 2022, 2021];
-
+ 
   // Author data
   const authors = [
     {
@@ -47,9 +43,9 @@ const PapersMain = () => {
   ];
 
   return (
-    <div className="flex">
+    <div className="flex h-5">
       {/* Sidebar */}
-      <div className="w-1/4">
+      <div className="w-1/4 ">
 
         <SideBar />
 
@@ -57,7 +53,7 @@ const PapersMain = () => {
 
       <div className="w-3/4 p-4">
         <div className="py-2">
-        <div className="w-3/4 p-4">
+        <div className="w-10/2 p-4">
         <div className="py-2">
           <div className="flex justify-end mb-4">
             <div className="flex items-center w-96 border border-gray-400 text-gray-700 rounded-lg shadow-md bg-white hover:bg-gray-200">
@@ -74,15 +70,13 @@ const PapersMain = () => {
           </div>
           {/* Research Activity */}
           <div className="py-5">
-            <h1 className="text-2xl text-black-800">Research activity per year</h1>
+            <h1 className="text-2xl text-black-800">Research activity within the year (142)</h1>
           </div>
-          <div className="grid grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-1 gap-4 mb-4 mt-10">
             <div className="flex items-center justify-center w-full h-48 col-span-2">
-              <ResearchActivityGrid year={selectedYear} />
+              <ResearchActivity />
             </div>
-            <div className="flex items-center justify-center w-full h-48">
-              <YearSelector years={years} selectedYear={selectedYear} onSelectYear={setSelectedYear} />
-            </div>
+      
           </div>
 
           {/* Abstract */}

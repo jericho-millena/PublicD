@@ -41,13 +41,57 @@ export default class PapersChart extends PureComponent {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
+          
+          {/* Custom Legend with colored boxes */}
           <Legend
             verticalAlign="top"
+            iconType="square"  // Use square for box-shaped legends
             payload={[
-              { value: 'Download', type: 'line', color: '#ff0000' }, // Red color for Download
-              { value: 'Views', type: 'line', color: '#808080' }     // Gray color for Views
+              {
+                value: 'Download',
+                type: 'line',
+                color: '#ff0000',
+                // Customizing the legend box for "Download"
+                iconSize: 20,
+                formatter: () => (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: '#ff0000',
+                        borderRadius: '2px', // Square box
+                        marginRight: '8px', // Space between box and label
+                      }}
+                    />
+                    <span>Download</span> {/* Label directly beside the colored box */}
+                  </div>
+                ),
+              },
+              {
+                value: 'Views',
+                type: 'line',
+                color: '#808080',
+                // Customizing the legend box for "Views"
+                iconSize: 20,
+                formatter: () => (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: '#808080',
+                        borderRadius: '2px', // Square box
+                        marginRight: '8px', // Space between box and label
+                      }}
+                    />
+                    <span>Views</span> {/* Label directly beside the colored box */}
+                  </div>
+                ),
+              },
             ]}
           />
+          
           <Area type="monotone" dataKey="pv" stroke="#808080" fill="#808080" fillOpacity={0.3} />
           <Area type={cardinal} dataKey="uv" stroke="#ff0000" fill="#ff0000" fillOpacity={0.3} />
         </AreaChart>
