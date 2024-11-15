@@ -1,10 +1,10 @@
 import React from "react";
 import InfoList from "./components/infolist";
 import Searchbar from "./components/searchbar";
-import BarGraph from "./components/bargraph";
-import ActiveShapePieChart from "./components/ActiveShapePieChart";
-import SDGCard from "./components/SDGCard";
-import Footer from "./components/footer";
+import BarGraph from "./components/home_components/bargraph";
+import ActiveShapePieChart from "./components/home_components/PieChart";
+import SDGCard from "./components/home_components/SDGCard";
+import Footer from "./components/home_components/footer";
 import { data, data2, pieChartData, sdgData } from "../app/Data/data";
 
 export default function Home() {
