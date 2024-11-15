@@ -4,7 +4,7 @@ export default function ProjectMain() {
   return (
     <main>
       <div class="p-4 center mx-10 my-2">
-        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+        <div class="p-4">
           <div className="flex justify-end mb-4">
             <div className="flex items-center w-96 border border-gray-400 text-gray-700 rounded-lg shadow-md bg-white hover:bg-gray-200">
               <input
