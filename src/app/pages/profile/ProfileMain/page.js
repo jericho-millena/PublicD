@@ -1,7 +1,18 @@
-import React from "react";
-import PSideBar from "@/app/components/profile_components/PSideBar";
+"use client";
 
+import React, { useState } from "react";
+import PSideBar from "@/app/components/profile_components/PSideBar";
+import ResearchActivityGrid from "@/app/components/profile_components/ResearchActivityGrid";
+import YearSelector from "@/app/components/profile_components/YearSelector";
+import ResearchChart from "@/app/components/profile_components/ResearchChart";
+import ResearchSummary from "@/app/components/profile_components/ResearchSummary";
+import AltmetricBadge from "@/app/components/profile_components/AltmetricBadge";
+import ScopusRadarChart from "@/app/components/profile_components/ScopusRadarChart";
+import ResearchOutputs from "@/app/components/profile_components/ResearchOutputs";
 const ProfileMain = () => {
+  const [selectedYear, setSelectedYear] = useState(2024);
+
+  const years = [2024, 2023, 2022, 2021];
   return (
     <div className="flex">
       {/* Sidebar */}
@@ -14,144 +25,41 @@ const ProfileMain = () => {
             <h1 class="text-2xl text-black-800">Research activity per year</h1>
           </div>
           <div class="grid grid-cols-3 gap-4 mb-4">
-            <div class="flex items-center justify-center rounded bg-gray-50 w-full h-28 dark:bg-gray-800 col-span-2">
-              <p class="text-2xl text-gray-400 dark:text-gray-500">
-                <svg
-                  class="w-3.5 h-3.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </p>
+            <div className="flex items-center justify-center w-full h-48 col-span-2">
+              <ResearchActivityGrid year={selectedYear} />
             </div>
-            <div class="flex items-center justify-center rounded bg-gray-50 w-full h-28 dark:bg-gray-800">
-              <p class="text-2xl text-gray-400 dark:text-gray-500">
-                <svg
-                  class="w-3.5 h-3.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </p>
+            <div class="flex items-center justify-center w-full h-48">
+              <YearSelector
+                years={years}
+                selectedYear={selectedYear}
+                onSelectYear={setSelectedYear}
+              />
             </div>
+          </div>
+          <div className="pt-5 pb-8">
+            <h1 class="text-2xl text-black-800">Research output statistics </h1>
           </div>
           <div class="grid grid-cols-5 gap-4 mb-4">
-            <div class="flex items-center justify-center rounded bg-gray-50 w-full h-28 dark:bg-gray-800 col-span-2">
-              <p class="text-2xl text-gray-400 dark:text-gray-500">
-                <svg
-                  class="w-3.5 h-3.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </p>
+            <div class="flex items-center justify-center w-full h-48 col-span-2">
+              <ResearchChart />
             </div>
-            <div class="flex items-center justify-center rounded bg-gray-50 w-full h-28 dark:bg-gray-800 col-span-3">
-              <p class="text-2xl text-gray-400 dark:text-gray-500">
-                <svg
-                  class="w-3.5 h-3.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </p>
+            <div class="flex items-center justify-center w-full h-48 col-span-3">
+              <ResearchSummary />
             </div>
           </div>
-
+          <div className="pt-10 pb-5">
+            <h1 class="text-2xl text-black-800">Performance </h1>
+          </div>
           <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class="flex items-center justify-center rounded bg-gray-50 w-full h-28 dark:bg-gray-800">
-              <p class="text-2xl text-gray-400 dark:text-gray-500">
-                <svg
-                  class="w-3.5 h-3.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </p>
+            <div class="flex items-center justify-center w-full h-58">
+              <ScopusRadarChart />
             </div>
-            <div class="flex items-center justify-center rounded bg-gray-50 w-full h-28 dark:bg-gray-800">
-              <p class="text-2xl text-gray-400 dark:text-gray-500">
-                <svg
-                  class="w-3.5 h-3.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </p>
+            <div class="flex items-center justify-center w-full h-58">
+              <AltmetricBadge doi="10.1016/S0140-6736(11)61619-x" />
             </div>
           </div>
-          <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-              <svg
-                class="w-3.5 h-3.5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 18 18"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 1v16M1 9h16"
-                />
-              </svg>
-            </p>
+          <div className="flex items-start w-full mb-4">
+            <ResearchOutputs />
           </div>
         </div>
       </div>

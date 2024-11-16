@@ -7,7 +7,7 @@ const Card2 = ({ user }) => {
   const remainingLength = circumference - progressLength;
 
   return (
-    <a href='/pages/papers/papers2' className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl h-95 hover:bg-gray-100 relative">
+    <a href='/pages/papers/papers2' className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-30 h-95 hover:bg-gray-100 relative">
       <div className="flex-none mr-4">
         <div className="w-20 h-20 relative">
           {/* Background circle */}
