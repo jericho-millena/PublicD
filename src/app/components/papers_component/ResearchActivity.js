@@ -59,7 +59,9 @@ const ResearchActivity = () => {
           className="p-2 disabled:text-gray-400 hover:text-gray-500 transition-colors"
         >
           <svg
-            className={`w-6 h-6 ${startIndex === 0 ? "text-gray-400" : "text-gray-700"}`}
+            className={`w-6 h-6 ${
+              startIndex === 0 ? "text-gray-400" : "text-gray-700"
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -76,28 +78,33 @@ const ResearchActivity = () => {
 
         {/* Calendar Grid */}
         <div className="grid grid-cols-8 gap-12 mt-4">
-          {allMonths.slice(startIndex, startIndex + monthsPerRow).map((month) => {
-            const grid = generateGridStructure(month.days, month.activeDays || []);
-            return (
-              <div key={month.name} className="text-center">
-                <div className="grid grid-cols-5 gap-1">
-                  {grid.flat().map((day, index) => (
-                    <div
-                      key={index}
-                      className={`w-4 h-4 rounded ${
-                        day && month.activeDays?.includes(day)
-                          ? "bg-green-400"
-                          : day
-                          ? "bg-gray-300"
-                          : "bg-transparent"
-                      }`}
-                    ></div>
-                  ))}
+          {allMonths
+            .slice(startIndex, startIndex + monthsPerRow)
+            .map((month) => {
+              const grid = generateGridStructure(
+                month.days,
+                month.activeDays || []
+              );
+              return (
+                <div key={month.name} className="text-center">
+                  <div className="grid grid-cols-5 gap-1">
+                    {grid.flat().map((day, index) => (
+                      <div
+                        key={index}
+                        className={`w-4 h-4 rounded ${
+                          day && month.activeDays?.includes(day)
+                            ? "bg-red-500"
+                            : day
+                            ? "bg-gray-300"
+                            : "bg-transparent"
+                        }`}
+                      ></div>
+                    ))}
+                  </div>
+                  <h2 className="mt-2 text-gray-700">{month.name}</h2>
                 </div>
-                <h2 className="mt-2 text-gray-700">{month.name}</h2>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
 
         {/* Right Arrow Button */}
