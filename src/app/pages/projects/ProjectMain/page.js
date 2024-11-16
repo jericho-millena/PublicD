@@ -36,8 +36,8 @@ export default function ProjectMain() {
           </svg>
         </div>
       </div>
-      <div class="p-4 center mx-10 my-2">
-        <div class="p-4">
+      <div className="p-4 center mx-10 my-2">
+        <div className="p-4">
           <div className="grid grid-cols-[5fr_2fr] gap-4 mb-4">
             <div className="flex items-center justify-center rounded bg-gray-50 h-48 dark:bg-gray-800">
               <p className="text-2xl text-gray-400 dark:text-gray-500">
@@ -67,7 +67,7 @@ export default function ProjectMain() {
             </div>
           </div>
           
-          <div class="flex items-center justify-center h-48 mb-4">
+          <div className="flex items-center justify-center h-48 mb-4 ">
             <ScrollingBarChart/>
           </div>
           <div className="container mx-auto px-4 py-8">
@@ -90,10 +90,10 @@ export default function ProjectMain() {
           <div className="py-5">
             <Output/>
             </div>
-          </div>
+          
 
           <div className="py-5">
-            <h1 class="text-xl text-black-800">About the authors (6) </h1>
+            <h1 className="text-xl text-black-800">About the authors (6) </h1>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div
@@ -200,7 +200,7 @@ export default function ProjectMain() {
           </div>
 
           <div className="py-5">
-            <h1 class="text-xl text-black-800">Fundings</h1>
+            <h1 className="text-xl text-black-800">Fundings</h1>
           </div>
 
           <div
@@ -223,6 +223,7 @@ export default function ProjectMain() {
             <p style={{ fontSize: "14px", color: "#666" }}>
               ₱ Total Project Fundings
             </p>
+          </div>
           </div>
     </main>
   );
