@@ -6,6 +6,8 @@ import PaperP from "@/app/components/papers_component/paperP";
 import { users } from "@/app/Data/data2";
 import ProjectList from "@/app/components/project_components/ProjectList";
 import { userss } from "@/app/Data/data3";
+import Card from "@/app/components/centers_components/newsFile";
+import { user1 } from "@/app/Data/data6";
 
 const CenterMain = () => {
   return (
@@ -154,10 +156,10 @@ const CenterMain = () => {
             </div>
           </div>
           {/* Paper */}
-          <div className="p-4">
-            <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-10">
-              {users.slice(0, 2).map((userData) => (
-                <PaperP key={userData.id} user={userData} />
+          <div className="p-4 w-[600px]"> {/* Fixed width of 400px */}
+          <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-10">
+            {users.slice(0, 2).map((userData) => (
+            <PaperP key={userData.id} user={userData} />
               ))}
             </div>
             <br></br>
@@ -204,31 +206,35 @@ const CenterMain = () => {
           </h1>
           {/* Projects */}
           <div className="p-4">
-            <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-10">
-              {userss.slice(0, 2).map((userData) => (
-                <ProjectList key={userData.id} user={userData} />
-              ))}
-            </div>{" "}
-            <br></br>
-            <div className="flex justify-center items-center mt-4">
-              <button className="px-8 py-2 text-black border hover:bg-blue-600 shadow-md flex items-center justify-center">
-                Show More Projects
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 ml-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
+  <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-10">
+    {userss.slice(0, 2).map((userData) => (
+      <div key={userData.id} className="flex justify-between items-center">
+        <ProjectList user={userData} />
+        <div className="ml-4 text-gray-600">4/1/2022    -   3/22/2023 <br></br>Project : Research Project</div>
+      </div>
+    ))}
+  </div>
+  <br></br>
+  <div className="flex justify-center items-center mt-4">
+    <button className="px-8 py-2 text-black border hover:bg-blue-600 shadow-md flex items-center justify-center">
+      Show More Projects
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-4 w-4 ml-2"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          fillRule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+
           <br></br>
           {/* Horizontal line */}
           <hr className="mt-4 border-t-2 border-gray-300" />
@@ -352,30 +358,40 @@ const CenterMain = () => {
             </svg>
             News/Media
           </h1>
-          <div className="flex justify-center items-center mt-4">
-            <button className="px-8 py-2 text-black border hover:bg-blue-600 shadow-md flex items-center justify-center">
-              Show More News Article
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 ml-2"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>{" "}
+      {/* news/media */}
+           <div className="p-4">
+           <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-10">
+          {user1.map((user) => (
+            <Card key={user1.id} user={user} />
+          ))}
+        </div>{" "}
+            <br></br>
+            <div className="flex justify-center items-center mt-4">
+              <button className="px-8 py-2 text-black border hover:bg-blue-600 shadow-md flex items-center justify-center">
+                Show More News Article
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 ml-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
           <br></br> <br></br>
           {/* Horizontal line */}
           <hr className="mt-4 border-t-2 border-gray-300" />
           <br></br>
           {/* NPrizes*/}
           <h1 className="font-lato text-2xl flex items-center">
+            
             {/* newspaper icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
