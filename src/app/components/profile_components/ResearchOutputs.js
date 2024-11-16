@@ -1,6 +1,6 @@
 // components/ResearchOutputs.js
 import React, { useState, useEffect } from "react";
-import ShowMoreButton from "./ShowMoreButton";
+import ShowMoreButton from "../ShowMoreButton";
 
 const researchItems = [
   {
