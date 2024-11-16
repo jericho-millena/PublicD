@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import SideBar from "@/app/components/papers_component/Sidebar";
 import ResearchActivity from "@/app/components/papers_component/ResearchActivity";
 import AuthorsData from "@/app/components/papers_component/Authorsdata";
-import ShowMoreButton from "@/app/components/profile_components/ShowMoreButton";
+import ShowMoreButton from "@/app/components/ShowMoreButton";
 
 const PapersMain = () => {
   // Author data
