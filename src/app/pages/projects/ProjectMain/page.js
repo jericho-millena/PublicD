@@ -5,6 +5,8 @@ import Component from "@/app/components/project_components/DocumentLink";
 import Output from "@/app/components/project_components/PreviewOfOutput";
 import ProjectStatus from "@/app/components/project_components/ProjectStatus";
 import ScrollingBarChart from "@/app/components/project_components/ScrollingBarChart";
+import Author from "@/app/components/project_components/Authors";
+import FundingPage from "@/app/components/project_components/Fundings";
 
 export default function ProjectMain() {
   const projectData = {
@@ -90,140 +92,8 @@ export default function ProjectMain() {
           <div className="py-5">
             <Output/>
             </div>
-          
-
-          <div className="py-5">
-            <h1 className="text-xl text-black-800">About the authors (6) </h1>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div
-              style={{ display: "flex", alignItems: "center", padding: "10px" }}
-            >
-              <div
-                style={{
-                  width: "50px",
-                  height: "50px",
-                  borderRadius: "50%",
-                  marginRight: "10px",
-                }}
-              >
-                <img
-                  src="/socials/avatar.png"
-                  alt="name"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-              <div>
-                <p style={{ fontWeight: "bold" }}>
-                  Firstname Middlename Lastname
-                </p>
-                <p>Doctorate Degree in Computer Science</p>
-                <p>
-                  <i className="fa fa-map-marker"></i> Batangas State University
-                  - Alangilan Campus
-                </p>
-              </div>
-            </div>
-
-            <div
-              style={{ display: "flex", alignItems: "center", padding: "10px" }}
-            >
-              <div
-                style={{
-                  width: "50px",
-                  height: "50px",
-                  borderRadius: "50%",
-                  marginRight: "10px",
-                }}
-              >
-                <img
-                  src="/socials/avatar.png"
-                  alt="name"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-              <div>
-                <p style={{ fontWeight: "bold" }}>
-                  Firstname Middlename Lastname
-                </p>
-                <p>Doctorate Degree in Computer Science</p>
-                <p>
-                  <i className="fa fa-map-marker"></i> Batangas State University
-                  - Alangilan Campus
-                </p>
-              </div>
-            </div>
-
-            <div
-              style={{ display: "flex", alignItems: "center", padding: "10px" }}
-            >
-              <div
-                style={{
-                  width: "50px",
-                  height: "50px",
-                  borderRadius: "50%",
-                  marginRight: "10px",
-                }}
-              >
-                <img
-                  src="/socials/avatar.png"
-                  alt="name"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-              <div>
-                <p style={{ fontWeight: "bold" }}>
-                  Firstname Middlename Lastname
-                </p>
-                <p>Doctorate Degree in Computer Science</p>
-                <p>
-                  <i className="fa fa-map-marker"></i> Batangas State University
-                  - Alangilan Campus
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="py-5">
-            <h1 className="text-xl text-black-800">Fundings</h1>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-            }}
-          >
-            <p
-              style={{
-                fontSize: "36px",
-                fontWeight: "bold",
-                color: "red",
-                marginBottom: "5px",
-              }}
-            >
-              500,000
-            </p>
-            <p style={{ fontSize: "14px", color: "#666" }}>
-              ₱ Total Project Fundings
-            </p>
-          </div>
+            <Author/>
+            <FundingPage/>
           </div>
     </main>
   );
