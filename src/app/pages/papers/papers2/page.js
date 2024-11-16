@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import SideBar from "@/app/components/papers_component/Sidebar";
 import ResearchActivity from "@/app/components/papers_component/ResearchActivity";
-import AuthorsData from "@/app/components/papers_component/Authorsdata";
-import ShowMoreButton from "@/app/components/ShowMoreButton";
+import ShowMoreButtonP from "@/app/components/papers_component/ShowMoreButtonP";
 
 const PapersMain = () => {
   // Author data
@@ -30,6 +29,24 @@ const PapersMain = () => {
       image: "/RProfile.png",
     },
 
+    {
+      name: "Firstname Middlename Lastname",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/RProfile.png",
+    },
+    {
+      name: "Firstname Middlename Lastname",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/RProfile.png",
+    },
+    {
+      name: "Firstname Middlename Lastname",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/RProfile.png",
+    },
     {
       name: "Firstname Middlename Lastname",
       degree: "Doctorate Degree in Computer Science",
@@ -153,17 +170,15 @@ const PapersMain = () => {
               </div>
             </div>
 
-            {/* About the Authors */}
-            <div className="pt-10 pb-5 mt-40">
-              <h1 className="text-3xl text-black-800">About the Authors (6)</h1>
-            </div>
-            <AuthorsData authors={authors} />
+             {/* About the Authors */}
+          <div className="pt-10 pb-5 mt-40">
+            <h1 className="text-3xl text-black-800">About the Authors (6)</h1>
+            {/* Call the ShowMoreButtonP component */}
+            <ShowMoreButtonP authors={authors} />
           </div>
-          <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class="flex items-center justify-center w-full h-28 col-span-2">
-              <ShowMoreButton />
-            </div>
+           
           </div>
+          
         </div>
       </div>
     </div>
