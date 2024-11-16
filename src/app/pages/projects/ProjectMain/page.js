@@ -1,4 +1,6 @@
 import React from "react";
+import Component from "@/app/components/project_components/DocumentLink";
+import Output from "@/app/components/project_components/PreviewOfOutput";
 
 export default function ProjectMain() {
   return (
@@ -67,6 +69,7 @@ export default function ProjectMain() {
               </p>
             </div>
           </div>
+          
           <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
             <p class="text-2xl text-gray-400 dark:text-gray-500">
               <svg
@@ -86,42 +89,25 @@ export default function ProjectMain() {
               </svg>
             </p>
           </div>
-          <div className="py-5">
-            <h1 class="text-xl text-black-800">
-              Description{" "}
-            </h1>
-          </div>
-          <div className="grid grid-cols-[4fr_3fr] gap-4 mb-4">
-            <div className="">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien, bibendum quis nisi ut, convallis tempor augue. Curabitur nunc lacus, posuere sed semper in, dignissim in nunc. Sed vel volutpat erat, eget malesuada urna. Aenean tellus elit, maximus at nunc nec, congue condimentum nulla. Quisque nec malesuada mauris. Cras nisl ipsum, suscipit vitae malesuada eget, tempor tristique odio. Vivamus pharetra ullamcorper tellus, et faucibus ligula hendrerit sed. Integer vestibulum convallis nisl, ac tincidunt nulla lobortis ac. Cras iaculis metus vitae felis laoreet facilisis. Integer vitae tempor augue, a fermentum enim. Vivamus urna eros, congue sed molestie sed, aliquet id orci. Nam tincidunt leo ut turpis dictum consectetur.</p>
-            </div>
-            <div className="py-5">
-            <h1 class="text-xl text-black-800 h-90">
-              Document Link{" "}
-            </h1>
-          </div>
-            <div className="">
-              <p className="text-2xl text-gray-400 dark:text-gray-500">
-              </p>
-            </div>
+          <div className="container mx-auto px-4 py-8">
+  <h2 className="text-2xl font-bold text-gray-800 mb-6">
+    Description
+  </h2>
+  <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8">
+    <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none">
+      <p className="text-gray-600 leading-relaxed">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien, bibendum quis nisi ut, convallis tempor augue. Curabitur nunc lacus, posuere sed semper in, dignissim in nunc. Sed vel volutpat erat, eget malesuada urna. Aenean tellus elit, maximus at nunc nec, congue condimentum nulla. Quisque nec malesuada mauris. Cras nisl ipsum, suscipit vitae malesuada eget, tempor tristique odio. Vivamus pharetra ullamcorper tellus, et faucibus ligula hendrerit sed. Integer vestibulum convallis nisl, ac tincidunt nulla lobortis ac. Cras iaculis metus vitae felis laoreet facilisis. Integer vitae tempor augue, a fermentum enim. Vivamus urna eros, congue sed molestie sed, aliquet id orci. Nam tincidunt leo ut turpis dictum consectetur.
+      </p>
+    </div>
+    <div>
+        <Component/>
+    </div>
+  </div>
+</div>
+            
           </div>
           <div className="py-5">
-            <h1 class="text-xl text-black-800">
-              Preview of Output / Documentation{" "}
-            </h1>
-          </div>
-          <div class="grid grid-cols-2 gap-4 mb-4">
-        <div className="flex items-center justify-center rounded bg-gray-50 h-85 dark:bg-gray-800"> <img src="/socials/lab.png" className="w-full h-full object-fit-cover" />
-        
-       <p className="text-        text-gray-400              dark:text-gray-500">
-        </p>
-             
-            </div>
-            <div className="flex items-center justify-center rounded bg-gray-50 h-85 dark:bg-gray-800"> <img src="/socials/mess.png" className="w-full h-full object-fit-cover" />
-            <p class="text-2xl        text-gray-400              dark:text-gray-500">
-          </p>
-              
-            </div>
+            <Output/>
           </div>
 
 <div className="py-5">
@@ -178,7 +164,6 @@ export default function ProjectMain() {
       </div>
             <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800"></div>
           </div>
-        </div>
     </main>
   );
 }
