@@ -63,7 +63,7 @@ export default function SideBar() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 mb-4 mt-6">
+        <div className="grid grid-cols-1 gap-4 mb-4 mt-6 ml-8">
           <div className="items-center rounded w-full h-28">
             <ResearchStatistics percentage={percentage} width={90} height={120} />
           </div>
