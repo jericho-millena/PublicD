@@ -7,8 +7,12 @@ import ProjectStatus from "@/app/components/project_components/ProjectStatus";
 import ScrollingBarChart from "@/app/components/project_components/ScrollingBarChart";
 import Author from "@/app/components/project_components/Authors";
 import FundingPage from "@/app/components/project_components/Fundings";
+import Description from "@/app/components/project_components/Description";
 
 export default function ProjectMain() {
+  const sampleText =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus.";
+
   const projectData = {
     status: "Ongoing",
     started: "04 / 12 / 23",
@@ -68,33 +72,28 @@ export default function ProjectMain() {
               />
             </div>
           </div>
-          
+
           <div className="flex items-center justify-center h-48 mb-4 ">
-            <ScrollingBarChart/>
+            <ScrollingBarChart />
           </div>
           <div className="container mx-auto px-4 py-8">
-  <h2 className="text-2xl font-bold text-gray-800 mb-6">
-    Description
-  </h2>
-  <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8">
-    <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none">
-      <p className="text-gray-600 leading-relaxed">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien, bibendum quis nisi ut, convallis tempor augue. Curabitur nunc lacus, posuere sed semper in, dignissim in nunc. Sed vel volutpat erat, eget malesuada urna. Aenean tellus elit, maximus at nunc nec, congue condimentum nulla. Quisque nec malesuada mauris. Cras nisl ipsum, suscipit vitae malesuada eget, tempor tristique odio. Vivamus pharetra ullamcorper tellus, et faucibus ligula hendrerit sed. Integer vestibulum convallis nisl, ac tincidunt nulla lobortis ac. Cras iaculis metus vitae felis laoreet facilisis. Integer vitae tempor augue, a fermentum enim. Vivamus urna eros, congue sed molestie sed, aliquet id orci. Nam tincidunt leo ut turpis dictum consectetur.
-      </p>
-    </div>
-    <div>
-        <Component/>
-    </div>
-  </div>
-</div>
-            
-          </div>
-          <div className="py-5">
-            <Output/>
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              Description
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8">
+              <Description content={sampleText} />
+              <div>
+                <Component />
+              </div>
             </div>
-            <Author/>
-            <FundingPage/>
           </div>
+        </div>
+        <div className="py-5">
+          <Output />
+        </div>
+        <Author />
+        <FundingPage />
+      </div>
     </main>
   );
 }
