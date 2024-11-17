@@ -1,13 +1,13 @@
 import React from "react";
 
-const ProjectList = ({ user }) => {
+const Card2 = ({ user }) => {
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
   const progressLength = (user.progress / 100) * circumference;
   const remainingLength = circumference - progressLength;
 
   return (
-    <a href='/pages/projects/ProjectMain' className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl h-95 hover:bg-gray-100 relative">
+    <a href='/pages/projects/ProjectMain' className="flex flex-col items-centnaer bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-30 h-95 hover:bg-gray-100 relative">
       <div className="flex-none mr-4">
         <div className="w-20 h-20 relative">
           {/* Background circle */}
@@ -43,4 +43,4 @@ const ProjectList = ({ user }) => {
   );
 };
 
-export default ProjectList;
+export default Card2;
