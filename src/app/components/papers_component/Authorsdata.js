@@ -6,9 +6,10 @@ const AuthorsData = ({ authors }) => {
   return (
     <div className="mt-4 grid grid-cols-2 gap-4"> {/* Keep gap for spacing */}
       {authors.map((author, index) => (
-        <div
+        <a
           key={index}
-          className="bg-gray-100 p-4 rounded-lg shadow-md flex items-center w-full max-w-full" // Set max-width to full
+          href="/pages/profile/ProfileMain" // Directly link to ProfileMain
+          className="bg-gray-100 p-4 rounded-lg shadow-md flex items-center w-full max-w-full hover:bg-gray-200 transition-colors" // Add hover effect
         >
           <img
             src={author.image}
@@ -22,7 +23,7 @@ const AuthorsData = ({ authors }) => {
             <p className="text-gray-600 text-xs">{author.degree}</p>
             <p className="text-gray-600 text-xs mt-1">{author.university}</p>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   );
