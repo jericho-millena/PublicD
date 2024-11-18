@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import AltmetricBadge from "@/app/components/home_components/AlmetricHome";
 
 const COLORS = [
   "#7F1D1D", // bg-red-950
@@ -100,11 +101,8 @@ const ActiveShapePieChart = ({ data }) => {
       <div className="mx-12 mb-4 flex flex-row justify-between items-center mt-5">
         {" "}
         <div className="flex flex-col items-center">
-          <img
-            src="/image28.png"
-            alt="Image Description"
-            className="w-16 lg:w-28 md:w-20"
-          />
+          <AltmetricBadge doi="10.1016/S0140-6736(11)61619-x" />
+
           <div className="flex items-center mt-4">
             <h1 className="text-2xl lg:text-4xl md:text-3xl text-red-500 font-bold mr-2">
               100k
