@@ -25,7 +25,7 @@ export default function ProjectMain() {
 
   return (
     <main>
-      <div className="flex justify-end mb-2 m-5">
+      <div className="flex justify-end mb-2 my-5 mx-10 pr-4">
         <div className="flex items-center w-96 border border-gray-400 text-gray-700 rounded-lg shadow-md bg-white hover:bg-gray-200">
           <input
             type="text"
@@ -50,7 +50,7 @@ export default function ProjectMain() {
       <div className="p-4 center mx-10 my-2">
         <div className="p-4">
           <div className="grid grid-cols-[5fr_2fr] gap-4 mb-4">
-            <div className="flex items-center justify-start h-48 dark:bg-gray-800 ml-20 px-4">
+            <div className="flex items-center justify-start h-48 dark:bg-gray-800 px-4">
               <div className="flex items-center">
                 <Progress
                   percentage={percentage}
@@ -105,7 +105,10 @@ export default function ProjectMain() {
           <Output />
         </div>
         <Author />
+        <div>
         <FundingPage />
+        </div>
+    
       </div>
     </main>
   );

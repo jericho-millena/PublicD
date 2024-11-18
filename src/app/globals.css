@@ -80,3 +80,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* 
+* {
+  outline: solid blue 1px;
+} */
