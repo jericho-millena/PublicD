@@ -59,7 +59,7 @@ export default function AuthorsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
         {displayedAuthors.map((author, index) => (
           <div key={index} className="space-y-1">
-            <h3 className="font-medium leading-none">{author.name}</h3>
+            <h3 className="text-lg  leading-none">{author.name}</h3>
             <p className="text-sm text-gray-600">{author.degree}</p>
             <div className="flex items-center text-sm text-gray-600">
               <MapPin className="w-4 h-4 mr-1" />
