@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "@/lib/axiosInstance"; // Adjust the path according to your Axios instance
 import dynamic from "next/dynamic";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import AltmetricBadge from "@/app/components/home_components/AlmetricHome";
@@ -17,14 +18,38 @@ const COLORS = [
   "#610A81", // bg-fuchsia-800
 ];
 
-const ActiveShapePieChart = ({ data }) => {
-  const [activeIndex, setActiveIndex] = useState(null);
+const ActiveShapePieChart = () => {
+  const [data, setData] = useState([]); // Default to an empty array
+  const [loading, setLoading] = useState(true);
 
-  const onPieEnter = (_, index) => {
-    setActiveIndex(index);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/research-data"); // Adjust endpoint
+        setData(response.data || []); // Ensure data is always an array
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setData([]); // Fallback to empty array on error
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const totalResearchOutput = data.reduce((acc, curr) => acc + curr.value, 0);
+    fetchData();
+  }, []);
+
+  const totalResearchOutput = data.reduce(
+    (acc, curr) => acc + (curr.value || 0),
+    0
+  );
+
+  if (loading) {
+    return <p className="text-center text-gray-600">Loading...</p>;
+  }
+
+  if (data.length === 0) {
+    return <p className="text-center text-gray-600">No data available.</p>;
+  }
 
   return (
     <div className="flex flex-wrap justify-center items-center">
@@ -33,14 +58,13 @@ const ActiveShapePieChart = ({ data }) => {
           <ResponsiveContainer width="90%" minWidth={300} height={300}>
             <PieChart>
               <Pie
-                activeIndex={activeIndex}
+                activeIndex={null}
                 data={data}
                 cx="50%"
                 cy="50%"
                 innerRadius={60}
                 outerRadius={100}
                 dataKey="value"
-                onMouseEnter={onPieEnter}
               >
                 {data.map((entry, index) => (
                   <Cell
@@ -57,7 +81,7 @@ const ActiveShapePieChart = ({ data }) => {
                 fontSize={20}
                 fontWeight="bold"
               >
-                {totalResearchOutput}
+                {totalResearchOutput.toLocaleString()}
               </text>
               <text
                 x="50%"

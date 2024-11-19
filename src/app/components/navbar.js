@@ -25,10 +25,12 @@ export default function Navbar() {
               />
             </span>
             <div>
-              <h1 className="text-white text-lg font-semibold">
+              <h1 className="text-white text-xs md:text-l font-semibold">
                 Research Management
               </h1>
-              <p className="text-white text-lg font-semibold">Information System</p>
+              <p className="text-white text-xs md:text-l font-semibold">
+                Information System
+              </p>
             </div>
           </div>
           <div className="flex items-center">
