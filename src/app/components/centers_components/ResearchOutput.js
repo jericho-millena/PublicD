@@ -15,7 +15,7 @@ const ResearchOutput = ({ user }) => {
         </div>
 
         {/* Research Info */}
-        <p className="text-gray-600 text-sm">{user.researchInfo}</p>
+        <p className="text-gray-600  text-sm">{user.researchInfo}</p>
 
         {/* SDG Goals, Download Icon, and Views Icon */}
         <div className="sdg-list mt-2 flex flex-wrap items-center space-y-2 sm:space-y-0">
