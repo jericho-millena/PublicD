@@ -6,7 +6,7 @@ import PaperP from "@/app/components/papers_component/paperP";
 import { users } from "@/app/Data/data2";
 import ProjectList from "@/app/components/project_components/ProjectList";
 import { userss } from "@/app/Data/data3";
-import Card from "@/app/components/centers_components/newsFile";
+
 import { user1 } from "@/app/Data/data6";
 import Activities from "@/app/components/centers_components/Activities";
 import Prizes from "@/app/components/centers_components/Prizes";
@@ -181,37 +181,6 @@ const CenterMain = () => {
           <div>
            <Activities />
           </div>
-          <hr className="mt-4 border-t-2 border-gray-300" /><br></br>
-          
-
-{/* News/media*/}
-          <h1 className="font-lato text-2xl flex items-center">
-            {/* newspaper icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 mr-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19 20H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v13a2 2 0 01-2 2zM3 8h18M8 12h8M8 16h8M5 20h14"
-              />
-            </svg>
-            News/Media
-          </h1>
-          <div className="p-4">
-            <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-10">
-              {user1.map((user) => (
-                <Card key={user1.id} user={user} />
-              ))}
-            </div>{" "}
-            <br></br>
-            
-          </div><br></br> <br></br>
           <hr className="mt-4 border-t-2 border-gray-300" /><br></br>
           
 {/* NPrizes*/}
