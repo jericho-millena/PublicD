@@ -3,82 +3,37 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { BarChart, Bar, XAxis, Tooltip } from "recharts";
-
-const data = [
-  {
-    name: "Pablo Borbon",
-    "Research Paper": 4000,
-    Projects: 2400,
-    Activities: 2000,
-    amt: 2400,
-  },
-  {
-    name: "Alangilan",
-    "Research Paper": 3000,
-    Projects: 1398,
-    Activities: 2200,
-    amt: 2210,
-  },
-  {
-    name: "Nasugbu",
-    "Research Paper": 2000,
-    Projects: 9800,
-    Activities: 1550,
-    amt: 2290,
-  },
-  {
-    name: "Malvar",
-    "Research Paper": 2780,
-    Projects: 3908,
-    Activities: 1600,
-    amt: 2000,
-  },
-  {
-    name: "Lipa",
-    "Research Paper": 1890,
-    Projects: 4800,
-    Activities: 3200,
-    amt: 2181,
-  },
-  {
-    name: "Lemery",
-    "Research Paper": 2390,
-    Projects: 3800,
-    Activities: 1240,
-    amt: 2500,
-  },
-  {
-    name: "Balayan",
-    "Research Paper": 3490,
-    Projects: 4300,
-    Activities: 3250,
-    amt: 2100,
-  },
-  {
-    name: "Lobo",
-    "Research Paper": 2390,
-    Projects: 3800,
-    Activities: 1200,
-    amt: 2500,
-  },
-  {
-    name: "Rosario",
-    "Research Paper": 2780,
-    Projects: 3908,
-    Activities: 1600,
-    amt: 2000,
-  },
-  {
-    name: "San Juan",
-    "Research Paper": 3000,
-    Projects: 1398,
-    Activities: 1600,
-    amt: 2210,
-  },
-];
+import axios from "@/lib/axiosInstance"; // Adjust this path to your Axios instance
 
 const BarGraph = () => {
+  const [data, setData] = useState([]);
   const [chartWidth, setChartWidth] = useState(1400);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/chart-data"); // Replace with your API endpoint
+        const fetchedData = response.data.map((item) => ({
+          name: item.name || "Unknown",
+          "Research Paper": item.researchPaper || 0, // Fallback to 0 if undefined
+          Projects: item.projects || 0,
+          Activities: item.activities || 0,
+        }));
+
+        if (fetchedData.length === 0) {
+          throw new Error("No data available");
+        }
+
+        setData(fetchedData);
+      } catch (error) {
+        console.error("Error fetching chart data:", error);
+        setError(true);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -90,6 +45,16 @@ const BarGraph = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  if (error || data.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <p className="text-gray-500 text-lg">
+          No data available for the graph. Please try again later.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-5">
