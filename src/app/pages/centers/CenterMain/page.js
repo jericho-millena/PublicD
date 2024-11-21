@@ -1,6 +1,5 @@
 import React from "react";
 import CenterSideBar from "@/app/components/centers_components/CenterSidebar";
-import ProfileList from "@/app/components/profile_components/ProfileList";
 import { user } from "@/app/Data/data";
 import PaperP from "@/app/components/papers_component/paperP";
 import { users } from "@/app/Data/data2";
@@ -10,6 +9,7 @@ import Card from "@/app/components/centers_components/newsFile";
 import { user1 } from "@/app/Data/data6";
 import Activities from "@/app/components/centers_components/Activities";
 import Prizes from "@/app/components/centers_components/Prizes";
+import ProfileC from "@/app/components/centers_components/ProfileC";
 
 const CenterMain = () => {
   return (
@@ -65,31 +65,12 @@ const CenterMain = () => {
           <hr className="mt-4 border-t-2 border-gray-300" /> <br></br>
          
 {/* Profile page */}
-          <h1 className="font-lato text-2xl flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 mr-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-              />
-            </svg>
-            Researchers
-          </h1>
-          <div className="p-4">
-            <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-10">
+           <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-10">
               {user.slice(0, 6).map((user) => (
-                <ProfileList key={user.id} user={user} />
-              ))}
-            </div>{" "} <br></br>
-          </div>{" "} <br></br>
-          <hr className="mt-4 border-t-2 border-gray-300" /> <br></br>
+               <ProfileC key={user.id} user={user} />
+             ))}
+            </div><br></br>
+            <hr className="mt-4 border-t-2 border-gray-300" /><br></br>
 
 {/* Paper page */}
           <h1 className="font-lato text-2xl flex items-center">
