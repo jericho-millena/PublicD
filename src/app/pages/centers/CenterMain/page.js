@@ -5,25 +5,11 @@ import PaperP from "@/app/components/papers_component/paperP";
 import { users } from "@/app/Data/data2";
 import ProjectList from "@/app/components/project_components/ProjectList";
 import { userss } from "@/app/Data/data3";
-import Card from "@/app/components/centers_components/newsFile";
-import { user1 } from "@/app/Data/data6";
 import Activities from "@/app/components/centers_components/Activities";
 import Prizes from "@/app/components/centers_components/Prizes";
 import ProfileC from "@/app/components/centers_components/ProfileC";
-import ResearchOutput from "@/app/components/centers_components/ResearchOutput";
 
 const CenterMain = () => {
-  const sampleUser = {
-    id: 1,
-    title: "Sustainable Development Research",
-    researchInfo: "Exploring innovative solutions for global challenges.",
-    sdg: ["Goal 1: No Poverty", "Goal 13: Climate Action"],
-    downloads: 120,
-    views: 450,
-    image: "/path-to-image.jpg",
-    doi: "10.1234/example-doi",
-  };
-
   return (
     <div className="flex">
       <div className="w-1/4">
@@ -31,7 +17,6 @@ const CenterMain = () => {
       </div>
 
       <div className="flex-grow relative">
-        {/* Search Bar */}
         <div className="absolute top-4 right-4">
           <div className="flex items-center w-95 border border-gray-400 text-gray-700 rounded-lg shadow-md bg-white hover:bg-gray-200">
             <input
@@ -54,15 +39,13 @@ const CenterMain = () => {
             </svg>
           </div>
         </div>
-
         <div className="mr-20 mt-20 ml-20">
-          {/* Header Image */}
           <img
             src="/socials/kist1.png"
             alt="Research Icon"
             className="h-120 w-full object-cover mb-4"
           />
-          <br />
+          <br></br>
           <p className="text-gray-600 text-justify">
             The Knowledge, Innovation, and Science Technology (KIST) Park is a
             pioneering economic zone established by Batangas State University
@@ -76,22 +59,18 @@ const CenterMain = () => {
             and researchers, the KIST Park aims to position Batangas State
             University as a leading center for innovation and technological
             advancement in the Philippines.
-          </p>
-          <br />
-          <hr className="mt-4 border-t-2 border-gray-300" />
-          <br />
+          </p>{" "}   <br></br>
+          <hr className="mt-4 border-t-2 border-gray-300" /> <br></br>
+         
+{/* Profile page */}
+           <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-10">
+              {user.slice(0, 6).map((user) => (
+               <ProfileC key={user.id} user={user} />
+             ))}
+            </div><br></br>
+            <hr className="mt-4 border-t-2 border-gray-300" /><br></br>
 
-          {/* Profile Section */}
-          <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-10">
-            {user.slice(0, 6).map((user) => (
-              <ProfileC key={user.id} user={user} />
-            ))}
-          </div>
-          <br />
-          <hr className="mt-4 border-t-2 border-gray-300" />
-          <br />
-
-          {/* Research Output Section */}
+{/* Paper page */}
           <h1 className="font-lato text-2xl flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -109,24 +88,39 @@ const CenterMain = () => {
             </svg>
             Research Output
           </h1>
-          <div className="p-4">
-            <ResearchOutput user={sampleUser} />
+          <div className="flex justify-end mt-[-45px] mr-10">
+            <div className="flex gap-4">
+              <div className="text-center">
+                <div className="w-[200px] h-[100px] bg-[#effff] px-[20px] py-[10px] border-l-[2.5px] border-black flex flex-col justify-center">
+                  <span className="text-black text-[25px]">9012</span>
+                  <div className="font-lato text-[15px] text-[#333333]">
+                    Articles
+                  </div>
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="w-[200px] h-[100px] bg-[#effff] px-[20px] py-[10px] border-l-[2.5px] border-black flex flex-col justify-center">
+                  <span className="text-black text-[25px]">123</span>
+                  <div className="font-lato text-[15px] text-[#333333]">
+                    Review Articles
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        
-
-          {/* Paper Section */}
           <div className="p-4">
+            {" "}
             <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-10">
               {users.slice(0, 2).map((userData) => (
                 <PaperP key={userData.id} user={userData} />
               ))}
-            </div>
-          </div>
-          <br />
-          <hr className="mt-4 border-t-2 border-gray-300" />
-          <br />
+            </div><br></br>
+            
+          </div>{" "}<br></br>
+          <hr className="mt-4 border-t-2 border-gray-300" /><br></br>
+          
 
-          {/* Project Section */}
+{/* Project*/}
           <h1 className="font-lato text-2xl flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -153,54 +147,27 @@ const CenterMain = () => {
                 >
                   <ProjectList user={userData} />
                   <div className="ml-4 text-gray-600">
-                    4/1/2022 - 3/22/2023 <br />
-                    Project: Research Project
+                    4/1/2022 - 3/22/2023 <br></br>Project : Research Project
                   </div>
                 </div>
               ))}
             </div>
+            <br></br>
+          </div><br></br>
+          <hr className="mt-4 border-t-2 border-gray-300" /><br></br>
+          
+{/* activities*/}
+          <div>
+           <Activities />
           </div>
-          <br />
-          <hr className="mt-4 border-t-2 border-gray-300" />
-          <br />
-
-          {/* Activities Section */}
-          <Activities />
-          <hr className="mt-4 border-t-2 border-gray-300" />
-          <br />
-
-          {/* News/Media Section */}
-          <h1 className="font-lato text-2xl flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 mr-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19 20H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v13a2 2 0 01-2 2zM3 8h18M8 12h8M8 16h8M5 20h14"
-              />
-            </svg>
-            News/Media
-          </h1>
-          <div className="p-4">
-            <div className="mt-4 flex justify-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-10">
-              {user1.map((user) => (
-                <Card key={user.id} user={user} />
-              ))}
-            </div>
+          <hr className="mt-4 border-t-2 border-gray-300" /><br></br>
+          
+{/* NPrizes*/}
+          <div>
+           <Prizes />
           </div>
-          <br />
-          <hr className="mt-4 border-t-2 border-gray-300" />
-          <br />
-
-          {/* Prizes Section */}
-          <Prizes />
-          <hr className="mt-4 border-t-2 border-gray-300" />
+          <hr className="mt-4 border-t-2 border-gray-300" /><br></br><br></br>
+          
         </div>
       </div>
     </div>
