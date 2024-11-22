@@ -21,6 +21,18 @@ const Activities = () => {
       date: "April 12, 2023",
       activity: "Invited Talk",
     },
+    {
+      projectName: "Project Name / Title",
+      speaker: "John Doe (Speaker)",
+      date: "April 12, 2023",
+      activity: "Invited Talk",
+    },
+    {
+      projectName: "Project Name / Title",
+      speaker: "John Doe (Speaker)",
+      date: "April 12, 2023",
+      activity: "Invited Talk",
+    },
   ];
 
   return (
