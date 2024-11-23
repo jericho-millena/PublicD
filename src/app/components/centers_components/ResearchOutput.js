@@ -8,6 +8,7 @@ const ResearchOutput = ({ user }) => {
   const circumference = 2 * Math.PI * radius;
   const progressLength = (user.progress / 100) * circumference;
   const remainingLength = circumference - progressLength;
+  
 
   return (
     <a
