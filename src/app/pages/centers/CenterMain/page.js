@@ -159,35 +159,43 @@ const CenterMain = () => {
 
         {/* Projects Section */}
         <div className="mx-4 md:mx-8 lg:mx-12">
-          <h2 className="text-3xl mb-4 flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              className="w-9 h-9 text-gray-700 mr-2"
-            >
-              <path
-                d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.8L18 7v6.4l-6 3V9l6-3V4.8zm0 0L6 7v6.4l6 3V9l-6-3V4.8z"
-              />
-            </svg>
-            Projects
-          </h2>
+  <h2 className="text-3xl mb-4 flex items-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      className="w-9 h-9 text-gray-700 mr-2"
+    >
+      <path
+        d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.8L18 7v6.4l-6 3V9l6-3V4.8zm0 0L6 7v6.4l6 3V9l-6-3V4.8z"
+      />
+    </svg>
+    Projects
+  </h2>
+  <br />
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+    {visibleProjects.map((project) => (
+      <div key={project.id} className="flex justify-between">
+        <Projects project={project} />
+        <div className="ml-4 text-gray-600">
+          4/1/2022 - 3/22/2023
           <br />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
-            {visibleProjects.map((project) => (
-              <Projects key={project.id} project={project} />
-            ))}
-          </div>
-          <br />
-          {/* Show More or Show Less for Projects */}
-          <ShowMoreProjects
-            isExpanded={isProjectsExpanded}
-            onToggle={() => setIsProjectsExpanded(!isProjectsExpanded)}
-          />
-          <br />
-          <hr className="mt-4 border-t-2 border-gray-300" />
-          <br />
+          Project: Research project
         </div>
+      </div>
+    ))}
+  </div>
+  <br />
+  {/* Show More or Show Less for Projects */}
+  <ShowMoreProjects
+    isExpanded={isProjectsExpanded}
+    onToggle={() => setIsProjectsExpanded(!isProjectsExpanded)}
+  />
+  <br />
+  <hr className="mt-4 border-t-2 border-gray-300" />
+  <br />
+</div>
+
 
         {/* Activities Section */}
         <div className="mx-4 md:mx-8 lg:mx-12">

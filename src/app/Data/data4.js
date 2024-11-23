@@ -29,7 +29,7 @@ export const data = [
       id: 2,
       name: "Verde Island Passage Center for Oceanographic Research and Aquatic Life Science (VIP CORALS)",
       image: "/socials/verde.png", 
-      campus: "Batangas State University - Alangilan Campus",
+      campus: "Alangilan, Batangas",
     },
     {
       id: 3,
