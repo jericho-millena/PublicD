@@ -1,4 +1,4 @@
-// Data/data.js
+// Data/data6.js
 
 export const data = [
    
@@ -26,6 +26,20 @@ export const user1 = [
       campus: "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
       campus1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
     },
+  {
+    id: 2,
+    name: "Research Topic",
+    image: "/socials/medicine.png", 
+    campus: "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
+    campus1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
+  },
+  {
+    id: 2,
+    name: "Research Topic",
+    image: "/socials/medicine.png", 
+    campus: "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
+    campus1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
+  },
   {
     id: 2,
     name: "Research Topic",
