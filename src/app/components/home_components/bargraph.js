@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { BarChart, Bar, XAxis, Tooltip } from "recharts";
-import axios from "@/lib/axiosInstance"; // Adjust this path to your Axios instance
+import axios from "@/lib/axiosInstance"; // Adjust this path to match your Axios instance setup
 
 const BarGraph = () => {
   const [data, setData] = useState([]);
@@ -13,21 +13,21 @@ const BarGraph = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/chart-data"); // Replace with your API endpoint
+        const response = await axios.get("/chart-data"); // Replace with your actual API endpoint
         const fetchedData = response.data.map((item) => ({
-          name: item.name || "Unknown",
+          name: item.name || "Unknown", // Default to "Unknown" if name is undefined
           "Research Paper": item.researchPaper || 0, // Fallback to 0 if undefined
           Projects: item.projects || 0,
           Activities: item.activities || 0,
         }));
 
-        if (fetchedData.length === 0) {
+        if (!fetchedData.length) {
           throw new Error("No data available");
         }
 
         setData(fetchedData);
-      } catch (error) {
-        console.error("Error fetching chart data:", error);
+      } catch (err) {
+        console.error("Error fetching chart data:", err);
         setError(true);
       }
     };
@@ -37,8 +37,11 @@ const BarGraph = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setChartWidth(window.innerWidth > 1300 ? 1300 : window.innerWidth - 40);
+      const newWidth = window.innerWidth > 1300 ? 1300 : window.innerWidth - 40;
+      setChartWidth(newWidth);
     };
+
+    handleResize(); // Initialize chart width on mount
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -74,7 +77,7 @@ const BarGraph = () => {
             dataKey="name"
             tickLine={false}
             stroke="#9b2c2c"
-            strokeWidth={5}
+            strokeWidth={2}
           />
           <Tooltip />
           <Bar dataKey="Projects" fill="#9b2c2c" barSize={27} />
