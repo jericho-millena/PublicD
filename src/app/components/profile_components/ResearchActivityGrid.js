@@ -1,6 +1,5 @@
-// components/ResearchActivityGrid.js
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "@/lib/axiosInstance";
 
 const ResearchActivityGrid = ({ year }) => {
   const allMonths = [
@@ -18,40 +17,27 @@ const ResearchActivityGrid = ({ year }) => {
     { name: "December", days: 31 },
   ];
 
-  const activeDays = {
-    2024: {
-      May: [2, 4],
-      June: [3, 5],
-      July: [1, 4],
-      August: [2],
-      September: [3],
-    },
-    2023: {
-      May: [1, 3],
-      June: [2, 6],
-      July: [5, 10],
-      August: [4],
-      September: [8],
-    },
-    2022: {
-      May: [7, 15],
-      June: [5, 10],
-      July: [6, 12],
-      August: [3],
-      September: [2],
-    },
-    2021: {
-      May: [9, 14],
-      June: [8, 12],
-      July: [7, 11],
-      August: [1],
-      September: [5],
-    },
-  };
-
-  const yearData = activeDays[year] || {};
+  const [activeDays, setActiveDays] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const [startIndex, setStartIndex] = useState(0);
+
+  useEffect(() => {
+    // Fetch data from the API
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/research-activity"); // Replace with your API endpoint
+        setActiveDays(response.data);
+      } catch (err) {
+        setError("Failed to load data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleNext = () => {
     if (startIndex < allMonths.length - 5) {
@@ -82,6 +68,16 @@ const ResearchActivityGrid = ({ year }) => {
 
     return grid;
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  const yearData = activeDays[year] || {};
 
   return (
     <div className="flex items-center space-x-8">
