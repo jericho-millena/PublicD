@@ -39,37 +39,40 @@ const Activities = () => {
     <div className="activities">
       {/* Header */}
 
-      {/* Activity Cards */}
-      <div className="flex justify-end mt-[-45px] mr-10">
-        <div className="flex gap-4">
-          {activityData.map((activity, index) => (
-            <div key={index} className="text-center">
-              <div className="w-[200px] h-[100px] bg-[#effff] px-[20px] py-[10px] border-l-[2.5px] border-black flex flex-col justify-center">
-                <span className="text-black text-[25px]">{activity.count}</span>
-                <div className="font-lato text-[15px] text-[#333333]">
-                  {activity.label}
-                </div>
-              </div>
+      {/* Activity Cards in One Line */}
+      <div className="flex justify-end mt-4 gap-6">
+        {activityData.map((activity, index) => (
+          <div
+            key={index}
+            className="flex flex-col justify-center items-center w-[150px] h-[90px] bg-[#effff] px-[10px] py-[10px] border-l-[2px] border-black"
+          >
+            <span className="text-black text-[14px] sm:text-[16px] md:text-[20px]">
+              {activity.count}
+            </span>
+            <div className="font-lato text-[8px] sm:text-[10px] md:text-[12px] text-[#333333]">
+              {activity.label}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
       {/* Project Details */}
-      {projectDetails.map((project, index) => (
-        <div key={index} className="project-details mt-6">
-          <div className="font-lato text-[#333333] text-[25px]">
-            {project.projectName}
+      <div className="mt-6">
+        {projectDetails.map((project, index) => (
+          <div key={index} className="project-details mt-6">
+            <div className="font-lato text-[#333333] text-[20px] sm:text-[25px]">
+              {project.projectName}
+            </div>
+            <p className="text-justify text-[12px] sm:text-[15px] text-gray-500">
+              {project.speaker}
+            </p>
+            <p className="text-justify text-[12px] sm:text-[15px] text-black">
+              {project.date} <br />
+              Activity: {project.activity}
+            </p>
           </div>
-          <p className="text-justify text-[15px] text-gray-500">
-            {project.speaker}
-          </p>
-          <p className="text-justify text-[15px] text-black">
-            {project.date} <br />
-            Activity: {project.activity}
-          </p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
