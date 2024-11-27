@@ -1,5 +1,6 @@
 "use client";
 
+
 import React, { useState } from "react";
 import CenterSideBar from "@/app/components/centers_components/CenterSidebar";
 import KistPark from "@/app/components/centers_components/KistPark";
@@ -14,12 +15,12 @@ import Projects from "@/app/components/centers_components/Projects";
 import ShowMoreProjects from "@/app/components/centers_components/ShowMoreProjects";
 import NewsMedia from "@/app/components/centers_components/NewsMedia";
 import ShowMoreArticles from "@/app/components/centers_components/ShowMoreArticles";
-import { user1 } from "@/app/Data/data6"; // Import data6.js for NewsMedia
-import Activities from "@/app/components/centers_components/Activities"; // Import Activities
-import ShowMoreActivities from "@/app/components/centers_components/ShowMoreActivities"; // Import ShowMoreActivities
-import Prizes from "@/app/components/centers_components/Prizes"; // Import Prizes component
+import { user1 } from "@/app/Data/data6";
+import Activities from "@/app/components/centers_components/Activities";
+import ShowMoreActivities from "@/app/components/centers_components/ShowMoreActivities";
+import Prizes from "@/app/components/centers_components/Prizes";
 
-// Define activity data (just as an example)
+
 const activityData = [
   { id: 1, title: "Activity 1", description: "Description of activity 1" },
   { id: 2, title: "Activity 2", description: "Description of activity 2" },
@@ -28,48 +29,39 @@ const activityData = [
   { id: 5, title: "Activity 5", description: "Description of activity 5" },
 ];
 
+
 const CenterMain = () => {
   const [isResearchersExpanded, setIsResearchersExpanded] = useState(false);
   const [isResearchOutputExpanded, setIsResearchOutputExpanded] = useState(false);
   const [isProjectsExpanded, setIsProjectsExpanded] = useState(false);
-  const [isArticlesExpanded, setIsArticlesExpanded] = useState(false); // For articles expansion
-  const [isActivitiesExpanded, setIsActivitiesExpanded] = useState(false); // For activities expansion
+  const [isArticlesExpanded, setIsArticlesExpanded] = useState(false);
+  const [isActivitiesExpanded, setIsActivitiesExpanded] = useState(false);
 
-  // Show only 6 researchers initially, or all if expanded
+
   const visibleResearchers = isResearchersExpanded ? user : user.slice(0, 6);
-
-  // Slice the users for research outputs
   const visibleResearchOutputs = isResearchOutputExpanded ? users : users.slice(0, 2);
-
-  // Slice the users for projects
   const visibleProjects = isProjectsExpanded ? userss : userss.slice(0, 2);
-
-  // Slice the articles for NewsMedia section (using user1 from data6.js)
   const visibleArticles = isArticlesExpanded ? user1 : user1.slice(0, 2);
-
-  // Slice the activities for Activities section
   const visibleActivities = isActivitiesExpanded ? activityData : activityData.slice(0, 2);
 
-  // Function to handle toggling articles expansion
-  const handleArticlesToggle = () => {
-    setIsArticlesExpanded((prev) => !prev); // Toggle the expanded state for articles
-  };
 
-  // Function to handle toggling activities expansion
-  const handleActivitiesToggle = () => {
-    setIsActivitiesExpanded((prev) => !prev); // Toggle the expanded state for activities
-  };
+  const handleArticlesToggle = () => setIsArticlesExpanded((prev) => !prev);
+  const handleActivitiesToggle = () => setIsActivitiesExpanded((prev) => !prev);
+
 
   return (
-    <div className="flex">
+    <div className="flex flex-col lg:flex-row border-none shadow-none">
       {/* Sidebar */}
-      <div className="w-1/4">
+      <div className="w-full lg:w-1/4 border-r border-gray-300">
         <CenterSideBar />
       </div>
 
-      <div className="flex-grow relative">
-        {/* KistPark Component */}
+
+      {/* Main Content */}
+      <div className="flex-grow p-4">
+        {/* KistPark Section */}
         <KistPark />
+
 
         {/* Researchers Section */}
         <div className="mx-4 md:mx-8 lg:mx-12">
@@ -105,60 +97,59 @@ const CenterMain = () => {
 
         {/* Research Output Section */}
         <div className="mx-4 md:mx-8 lg:mx-12">
-          <h2 className="text-3xl mb-4 flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              className="w-9 h-9 text-gray-700 mr-2"
-            >
-              <path
-                d="M6 2h12c1.1 0 1.99.89 1.99 2L20 18c0 1.1-.89 2-1.99 2H6c-1.1 0-1.99-.89-1.99-2L4 4c0-1.1.89-2 1.99-2zM6 4v12h12V4H6z"
-              />
-            </svg>
-            Research Output
-          </h2>
-          <div className="flex justify-end mt-[-45px] mr-10">
-            <div className="flex gap-4">
-              <div className="text-center">
-                <div className="w-[200px] h-[100px] bg-[#effff] px-[20px] py-[10px] border-l-[2.5px] border-black flex flex-col justify-center">
-                  <span className="text-black text-[25px]">9012</span>
-                  <div className="font-lato text-[15px] text-[#333333]">
-                    Articles
-                  </div>
-                </div>
-              </div>
+  <h2 className="text-3xl mb-4 flex items-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      className="w-9 h-9 text-gray-700 mr-2"
+    >
+      <path
+        d="M6 2h12c1.1 0 1.99.89 1.99 2L20 18c0 1.1-.89 2-1.99 2H6c-1.1 0-1.99-.89-1.99-2L4 4c0-1.1.89-2 1.99-2zM6 4v12h12V4H6z"
+      />
+    </svg>
+    Research Output
+  </h2>
 
-              <div className="text-center">
-                <div className="w-[200px] h-[100px] bg-[#effff] px-[20px] py-[10px] border-l-[2.5px] border-black flex flex-col justify-center">
-                  <span className="text-black text-[25px]">123</span>
-                  <div className="font-lato text-[15px] text-[#333333]">
-                    Review Articles
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  {/* Boxes aligned in one line */}
+  <div className="flex flex-col sm:flex-row justify-end mt-4 sm:mt-[-45px] sm:mr-10 gap-4 sm:gap-6">
+    {/* Box 1 */}
+    <div className="flex flex-col justify-center items-center w-[150px] sm:w-[180px] h-[80px] sm:h-[90px] bg-[#effff] px-[10px] sm:px-[15px] py-[8px] sm:py-[10px] border-l-[2px] sm:border-l-[2.5px] border-black">
+      <span className="text-black text-[14px] sm:text-[16px] md:text-[20px]">9012</span>
+      <div className="font-lato text-[8px] sm:text-[10px] md:text-[12px] text-[#333333]">
+        Articles
+      </div>
+    </div>
 
-          <br />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
-            {visibleResearchOutputs.map((research) => (
-              <ResearchOutput key={research.id} user={research} />
-            ))}
-          </div>
-          <br />
-          {/* Show More or Show Less for Research Outputs */}
-          <ShowMoreResearchOutput
-            isExpanded={isResearchOutputExpanded}
-            onToggle={() => setIsResearchOutputExpanded(!isResearchOutputExpanded)}
-          />
-          <br />
-          <hr className="mt-4 border-t-2 border-gray-300" />
-          <br />
-        </div>
+    {/* Box 2 */}
+    <div className="flex flex-col justify-center items-center w-[150px] sm:w-[180px] h-[80px] sm:h-[90px] bg-[#effff] px-[10px] sm:px-[15px] py-[8px] sm:py-[10px] border-l-[2px] sm:border-l-[2.5px] border-black">
+      <span className="text-black text-[14px] sm:text-[16px] md:text-[20px]">123</span>
+      <div className="font-lato text-[8px] sm:text-[10px] md:text-[12px] text-[#333333]">
+        Review Articles
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+    {visibleResearchOutputs.map((research) => (
+      <ResearchOutput key={research.id} user={research} />
+    ))}
+  </div>
+  <br />
+  {/* Show More or Show Less for Research Outputs */}
+  <ShowMoreResearchOutput
+    isExpanded={isResearchOutputExpanded}
+    onToggle={() => setIsResearchOutputExpanded(!isResearchOutputExpanded)}
+  />
+  <br />
+  <hr className="mt-4 border-t-2 border-gray-300" />
+  <br />
+</div>
+
 
         {/* Projects Section */}
-        <div className="mx-4 md:mx-8 lg:mx-12">
+         <div className="mx-4 md:mx-8 lg:mx-12">
   <h2 className="text-3xl mb-4 flex items-center">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -212,7 +203,6 @@ const CenterMain = () => {
             </svg>
             Activities
           </h2>
-          <br />
           <Activities activities={visibleActivities} /> {/* Pass visibleActivities to Activities */}
           {/* Show More or Show Less for Activities */}
           <ShowMoreActivities
@@ -224,7 +214,7 @@ const CenterMain = () => {
           <br />
         </div>
 
-        {/* News / Media Section */}
+        {/* News/Media Section */}
         <div className="mx-4 md:mx-8 lg:mx-12">
           <h2 className="text-3xl mb-4 flex items-center">
             <svg
@@ -256,6 +246,7 @@ const CenterMain = () => {
           <br />
         </div>
 
+
         {/* Prizes Section */}
         <div className="mx-4 md:mx-8 lg:mx-12">
           <h2 className="text-3xl mb-4 flex items-center">
@@ -274,11 +265,12 @@ const CenterMain = () => {
           <br />
           <Prizes /> {/* Add Prizes Component */}
           <br />
-          <hr className="mt-4 border-t-2 border-gray-300" />
         </div>
       </div>
     </div>
   );
 };
 
+
 export default CenterMain;
+
