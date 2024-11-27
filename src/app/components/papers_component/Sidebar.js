@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import Progressbar from "./Progressbar";
 import ResearchStatistics from "./ResearchStatistics";
@@ -21,10 +23,10 @@ export default function SideBar() {
   return (
     <aside
       id="logo-sidebar"
-      className="flex flex-col top-40 left-0 z-40 w-97 h-50 border-b-2 border-gray-200 border-r-2"
+      className="flex flex-col md:flex-row top-40 left-0 z-40 w-full md:w-70 h-auto border-b-2 border-gray-200 border-r-2"
       aria-label="Sidebar"
     >
-      <div className="h-full p-6 bg-white">
+      <div className="h-full p-6 bg-white w-full">
         <span className="flex items-center py-2 text-3xl mt-4 text-gray-900 rounded-lg border-gray-300">
           Research name / title
         </span>
@@ -33,7 +35,7 @@ export default function SideBar() {
           non lorem non lorem gravida imperdiet non at elit. Suspendisse rhoncus ipsum quis risus.
         </span>
 
-        <div className="grid grid-cols-5 gap-4 mb-4 mt-9">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4 mt-9">
           <div className="flex items-center justify-center w-full h-28 col-span-2">
             <Progressbar percentage={percentage} width={100} height={120} />
           </div>
@@ -55,7 +57,7 @@ export default function SideBar() {
         </div>
 
         {/* Other sections and components... */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="justify-center w-full h-28 col-span-2">
             <span className="flex items-center py-2 text-2xl mt-9 text-gray-900 rounded-lg border-gray-300">
               Research Statistics
@@ -69,7 +71,7 @@ export default function SideBar() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="justify-center w-full h-28 col-span-2">
             <span className="flex items-center py-2 text-xl mt-9 mb-10 text-gray-900 rounded-lg border-gray-300">
               Downloads and Views per Month
@@ -77,14 +79,14 @@ export default function SideBar() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-10">
-          <div className="flex items-center justify-center rounded w-50 h-60 col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+          <div className="flex items-center justify-center rounded w-full h-60 col-span-2">
             <PapersChart />
           </div>
         </div>
 
         {/* Top countries table */}
-        <div className="grid grid-cols-2 gap-4 mb-4 border-t-2 border-l-2 border-r-2 border-b-2 border-gray-600">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 border-t-2 border-l-2 border-r-2 border-b-2 border-gray-600">
           <div className="flex items-center justify-center w-full h-auto col-span-2">
             <table className="min-w-full bg-white">
               <thead>

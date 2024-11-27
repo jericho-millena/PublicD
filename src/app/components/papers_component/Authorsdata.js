@@ -1,33 +1,53 @@
-"use client";
+import React, { useState, useEffect } from "react";
+import axios from "axios";  // Import axios for fetching data
 
-import React from "react";
-import { ChevronDown, MapPin } from "lucide-react";
+const AuthorsData = () => {
+  const [authors, setAuthors] = useState([]);   
+  const [loading, setLoading] = useState(true);  
+  const [error, setError] = useState(null);     
 
-const AuthorsData = ({ authors }) => {
+  useEffect(() => {
+    
+    axios
+      .get("/authors")  
+      .then((response) => {
+        setAuthors(response.data);  
+        setLoading(false);           
+      })
+      .catch((err) => {
+        setError("No data available"); 
+        setLoading(false);  
+      });
+  }, []);  
+
+  if (loading) {
+    return <div>Loading...</div>;  
+  }
+
+  if (error) {
+    return <div>{error}</div>;  
+  }
+
   return (
-    <div className="mt-4 grid grid-cols-2 gap-4"> 
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
       {authors.map((author, index) => (
-        <a
+        <div
           key={index}
-          href="/pages/profile/ProfileMain" 
-          className="bg-gray-100 p-4 rounded-lg shadow-md flex items-center w-full max-w-full hover:bg-gray-200 transition-colors" // Add hover effect
+          className="w-full max-w-full rounded-lg overflow-hidden shadow-lg bg-white p-4 border border-gray-300"
         >
-          <img
-            src={author.image}
-            alt="profile"
-            width={90} 
-            height={60} 
-            className="rounded-full" 
-          />
-          <div className="ml-4 flex flex-col w-full"> 
-            <h3 className="text-sm font-semibold text-gray-900">{author.name}</h3>
-            <p className="text-gray-600 text-xs">{author.degree}</p>
-            <div className="flex items-center text-gray-600 text-xs mt-1"> 
-              <MapPin className="w-4 h-4 mr-1" /> 
-              {author.university}
+          <div className="flex items-center space-x-4 mb-4">
+            <img
+              src={author.image}
+              alt={author.name}
+              className="w-20 h-25 border-2 border-gray-200"
+            />
+            <div>
+              <div className="text-xl font-semibold text-gray-800">{author.name}</div>
+              <div className="text-sm text-gray-600">{author.degree}</div>
+              <div className="text-sm text-gray-600">{author.university}</div>
             </div>
           </div>
-        </a>
+        </div>
       ))}
     </div>
   );
