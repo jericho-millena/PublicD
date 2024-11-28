@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import AuthorsData from "@/app/components/papers_component/Authorsdata";
+import AuthorsData from "@/app/components/papers_component/AuthorsData";
 
 const ShowMoreButtonP = ({ authors }) => {
   const [showAllAuthors, setShowAllAuthors] = useState(false);

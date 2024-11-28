@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import AltmetricBadges from "./AltmetricBadges";
 import { GoDownload } from "react-icons/go";
 import { FaEye } from "react-icons/fa";
 
-const Card2 = ({ user }) => {
+const Card2 = ({ userId }) => {
+  const [user, setUser] = useState(null);  
+  const [loading, setLoading] = useState(true);  
+  const [error, setError] = useState(null);     
+
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
+
+  useEffect(() => {
+    
+    axios
+      .get(`/papers}`) 
+      .then((response) => {
+        setUser(response.data);  
+        setLoading(false);       
+      })
+      .catch((err) => {
+        setError("No data available");
+        setLoading(false);  
+      });
+  }, [userId]);  
+
+  if (loading) {
+    return <div>Loading...</div>;  
+  }
+
+  if (error) {
+    return <div>{error}</div>;  
+  }
+
   const progressLength = (user.progress / 100) * circumference;
   const remainingLength = circumference - progressLength;
 
