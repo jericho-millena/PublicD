@@ -2,7 +2,7 @@ import React from "react";
 
 const KistPark = () => {
   return (
-    <div className="mr-10 mt-20 ml-10">
+    <div className="mr-10 mt-15 ml-10">
       {/* Search Section */}
       <div className="absolute top-4 right-4">
       

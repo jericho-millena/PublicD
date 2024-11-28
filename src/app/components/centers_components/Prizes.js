@@ -1,24 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Prizes = () => {
-  const prizesData = [
-    {
-      title: "Prize Title",
-      recipient: "John Doe (Speaker)",
-      date: "April 12, 2023",
-    },
-    {
-      title: "Prize Title",
-      recipient: "John Doe (Speaker)",
-      date: "April 12, 2023",
-    },
-  ];
+  const [prizesData, setPrizesData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch data from the API
+    const fetchPrizesData = async () => {
+      try {
+        const response = await axios.get("/prizes"); // Update URL as needed
+        setPrizesData(response.data);
+      } catch (err) {
+        setError("Failed to load prizes data.");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPrizesData();
+  }, []);
+
+  if (loading) return <p>Loading prizes...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="prizes">
-      {/* Header */}
-      
-
       {/* Prizes List */}
       {prizesData.map((prize, index) => (
         <div key={index} className="prize-details mt-4">
