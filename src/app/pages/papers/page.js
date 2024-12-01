@@ -5,32 +5,74 @@ import PaperP from "@/app/components/papers_component/paperP";
 import { users } from "@/app/Data/data2"; // Assuming data2 is the data source
 import FilterOptions from "@/app/components/FilterOptions";
 
-export default function Papers() {
-  // State to hold search query
-  const [searchQuery, setSearchQuery] = useState("");
+export default function Profile() {
+  const [filteredUsers, setFilteredUsers] = useState(users); // Use 'users' from data2
+  const [searchQuery, setSearchQuery] = useState(""); // State for the search input
 
-  // Function to handle input change and update search query
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
+  // Function to handle filters
+  const handleFilters = (filters) => {
+    console.log("Active Filters:", filters);
+
+    // If no filters are applied, reset to the default user list
+    let filtered = users; // Use 'users' instead of 'user'
+
+    if (
+      filters.publicationYear?.length ||
+      filters.language?.length
+      // Add checks for other filter categories as needed
+    ) {
+      if (filters.publicationYear?.length) {
+        filtered = filtered.filter((u) =>
+          filters.publicationYear.some((year) => u.publicationYear === year)
+        );
+      }
+
+      if (filters.language?.length) {
+        filtered = filtered.filter((u) =>
+          filters.language.some((language) => u.language === language)
+        );
+      }
+    }
+
+    // Apply the search query filter
+    if (searchQuery) {
+      filtered = filtered.filter((u) =>
+        u.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredUsers(filtered);
   };
 
-  // Filter users based on search query
-  const filteredUsers = users.filter((user) =>
-    user.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Function to handle search input
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    // Filter users based on the search query
+    const filtered = users.filter((u) =>
+      u.name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    // Combine search with other filters
+    setFilteredUsers(filtered);
+  };
 
   return (
     <div className="p-8">
       <nav className="bg-white-600 p-4">
         <div className="max-w-4xl mx-auto flex justify-center">
-          <form className="relative w-full max-w-xl flex items-center">
+          <form
+            className="relative w-full max-w-xl flex items-center"
+            onSubmit={(e) => e.preventDefault()} // Prevent form submission
+          >
             <div className="relative flex-grow">
               <input
                 type="text"
                 className="w-full p-2 pl-10 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="Search"
                 value={searchQuery}
-                onChange={handleSearchChange} // Handle the search input change
+                onChange={handleSearch} // Update searchQuery state on input change
               />
               <button
                 type="submit"
@@ -50,7 +92,7 @@ export default function Papers() {
                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                   />
                 </svg>
-                <span className="sr-only">Search</span>
+                <span className="sr-only">Filter</span>
               </button>
             </div>
           </form>
@@ -59,7 +101,7 @@ export default function Papers() {
 
       <div className="flex">
         <div className="w-1/4">
-          <FilterOptions />
+          <FilterOptions onApplyFilters={handleFilters} />
         </div>
 
         {/* Centering the cards */}
