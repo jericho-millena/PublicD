@@ -23,7 +23,7 @@ const ProfileMain = () => {
     // Fetch DOI for Altmetric badge
     const fetchDoi = async () => {
       try {
-        const response = await axios.get("/api/altmetric-doi"); // Replace with your API endpoint
+        const response = await axios.get("/altmetric-doi"); // Replace with your API endpoint
         setAltmetricDoi(response.data.doi); // Assuming API returns { doi: "DOI_STRING" }
       } catch (error) {
         setErrorDoi("Failed to load DOI for Altmetric Badge.");
