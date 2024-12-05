@@ -13,8 +13,6 @@ const Activities = () => {
         setLoading(true);
         const response = await axios.get("/activities"); // Replace with your API endpoint
 
-        // Assuming data structure:
-        // { activities: [...], projects: [...] }
         const { activities, projects } = response.data;
 
         setActivityData(activities);
