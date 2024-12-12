@@ -130,7 +130,7 @@ const ActiveShapePieChart = () => {
           </div>
         </div>
         <div className="flex flex-col items-center ml-8">
-          <PlumXMetrics doi="10.1016/j.cell.2016.06.054" />
+          <PlumXMetrics />
           <div className="flex items-center">
             <h1 className="text-2xl lg:text-4xl md:text-3xl text-red-500 font-bold mr-2">
               0

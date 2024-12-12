@@ -17,13 +17,15 @@ const PlumXMetrics = ({ doi }) => {
 
   return (
     <div>
-      {/* Add the PlumX Print Widget */}
       <a
-        href={`https://plu.mx/plum/a/?doi=${doi}`}
-        className="plumx-bigben"
+        href="https://plu.mx/plum/a/?doi=10.1016%2Fj.cell.2016.06.054"
+        data-popup="right"
+        data-size="large"
+        class="plumx-plum-print-popup"
+        data-site="plum"
         data-hide-when-empty="true"
       >
-        PlumX Metrics
+        The Troubled Touch of Autism
       </a>
     </div>
   );
