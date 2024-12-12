@@ -75,16 +75,8 @@ const ProfileMain = () => {
             <div class="flex items-center justify-center w-full h-58">
               <ScopusRadarChart />
             </div>
-            <div className="flex items-center justify-center w-full h-58">
-              {loadingDoi ? (
-                <p>Loading Altmetric Badge...</p>
-              ) : errorDoi ? (
-                <p>{errorDoi}</p>
-              ) : altmetricDoi ? (
-                <AltmetricBadge doi={altmetricDoi} />
-              ) : (
-                <p>DOI not available for Altmetric Badge.</p>
-              )}
+            <div class="flex items-center justify-center w-full h-58">
+              <AltmetricBadge doi="	10.1038/s41433-023-02760-0" />
             </div>
           </div>
           <div className="flex items-start w-full mb-4">
