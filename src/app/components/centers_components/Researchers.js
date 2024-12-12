@@ -5,7 +5,7 @@ const Researchers = ({ user }) => {
 
   return (
     <a
-      href="/pages/profile/ProfileMain"
+      href="/PublicD/pages/profile/ProfileMain"
       className="items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl h-95 hover:bg-gray-100 relative"
     >
       <div className="group flex items-center ml-5">
