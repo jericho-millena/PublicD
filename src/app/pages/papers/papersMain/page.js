@@ -1,9 +1,8 @@
-"use client"; // Mark this as a client-side component
+"use client";
 
 import React from "react";
 import SideBar from "@/app/components/papers_component/Sidebar";
 import ResearchActivity from "@/app/components/papers_component/ResearchActivity";
-import ShowMoreButtonP from "@/app/components/papers_component/ShowMoreButtonP";
 
 const PapersMain = () => {
   // Static Abstract text
@@ -111,8 +110,6 @@ const PapersMain = () => {
           {/* About the Authors */}
           <div className="pt-5 pb-8">
             <h1 className="mt-20 text-2xl text-black-800">About the Authors</h1>
-            {/* ShowMoreButtonP component to handle visibility of authors */}
-            <ShowMoreButtonP authors={authors} />
           </div>
         </div>
       </div>
