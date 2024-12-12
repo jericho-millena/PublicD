@@ -3,8 +3,6 @@
 import React from "react";
 
 export default function PSideBar() {
-  const basePath = "/PublicD"; // Replace <repository-name> with your GitHub repository name
-
   return (
     <aside
       id="logo-sidebar"
@@ -12,7 +10,7 @@ export default function PSideBar() {
       aria-label="Sidebar"
     >
       <div className="h-full p-6 overflow-y-auto bg-gray-300">
-        <img src="PublicD/RProfile.png" className="h-20 me-10 pb-2 sm:h-100" />
+        <img src="./RProfile.png" className="h-20 me-10 pb-2 sm:h-100" />
         <span className="flex items-center py-2 text-xl text-gray-900 rounded-lg">
           John Doe
         </span>
