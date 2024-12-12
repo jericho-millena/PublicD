@@ -1,9 +1,9 @@
-// components/PlumXMetrics.js
+// components/PlumXBigBen.js
 import React, { useEffect } from "react";
 
 const PlumXMetrics = ({ doi }) => {
   useEffect(() => {
-    // Ensure the PlumX script is loaded dynamically
+    // Dynamically load the PlumX widget script
     const script = document.createElement("script");
     script.src = "https://d39af2mgp1pqhg.cloudfront.net/widget-popup.js";
     script.async = true;
@@ -17,10 +17,11 @@ const PlumXMetrics = ({ doi }) => {
 
   return (
     <div>
+      {/* Add the PlumX Print Widget */}
       <a
         href={`https://plu.mx/plum/a/?doi=${doi}`}
-        className="plumx-plum-print-popup"
-        data-popup="right"
+        className="plumx-bigben"
+        data-hide-when-empty="true"
       >
         PlumX Metrics
       </a>
