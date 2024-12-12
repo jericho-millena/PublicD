@@ -1,24 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { PieChart, Pie, Cell } from "recharts";
-
-const data = [
-  { name: "Center for Technopreneurship and Innovation (CTI)", value: 25 },
-  { name: "Electronic Systems Research Center", value: 25 },
-  { name: "Innovation and Technology Support Office (ITSO)", value: 50 },
-];
 
 const COLORS = ["#fecaca", "#ef4444", "#7f1d1d"]; // Tailwind-compatible colors
 
 export default function FundingPage() {
+  const [data, setData] = useState(); // Use staticData as initial state
+  const [totalFunding, setTotalFunding] = useState(); // Initial static total funding amount
+  const [loading, setLoading] = useState(true); // For loading state
+  const [error, setError] = useState(null); // To store any errors
+
+  useEffect(() => {
+    axios
+      .get("/api/funding")
+      .then((response) => {
+        const fetchedData = response.data;
+        setData(fetchedData.items); // Assuming response has an "items" array
+        setTotalFunding(fetchedData.total); // Assuming total is part of the response
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError("Failed to load data.");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
-    
     <div className="flex w-full mx-14 max-w-6xl p-6">
       <h1 className="text-2xl font-semibold mb-8">Fundings</h1>
       <div className="w-full max-w-6xl py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Left side - Total Funding Amount */}
           <div className="flex flex-col">
-            <span className="text-6xl font-bold text-red-600">500,000</span>
+            <span className="text-6xl font-bold text-red-600">
+              {totalFunding}
+            </span>
             <div className="flex items-center gap-2 mt-2">
               <span className="text-2xl">₱</span>
               <span className="text-gray-700">Total Project Fundings</span>
@@ -67,6 +92,5 @@ export default function FundingPage() {
         </div>
       </div>
     </div>
-
   );
 }

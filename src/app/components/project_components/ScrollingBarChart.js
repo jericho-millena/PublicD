@@ -1,84 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const ScrollingBarChart = () => {
-  // Sample Data for All Months (365 Days)
-  const data = [
-    ...Array.from({ length: 31 }, (_, i) => ({
-      day: i + 1,
-      month: "January",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 28 }, (_, i) => ({
-      day: i + 1,
-      month: "February",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 31 }, (_, i) => ({
-      day: i + 1,
-      month: "March",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 30 }, (_, i) => ({
-      day: i + 1,
-      month: "April",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 31 }, (_, i) => ({
-      day: i + 1,
-      month: "May",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 30 }, (_, i) => ({
-      day: i + 1,
-      month: "June",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 31 }, (_, i) => ({
-      day: i + 1,
-      month: "July",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 31 }, (_, i) => ({
-      day: i + 1,
-      month: "August",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 30 }, (_, i) => ({
-      day: i + 1,
-      month: "September",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 31 }, (_, i) => ({
-      day: i + 1,
-      month: "October",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 30 }, (_, i) => ({
-      day: i + 1,
-      month: "November",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-    ...Array.from({ length: 31 }, (_, i) => ({
-      day: i + 1,
-      month: "December",
-      year: "2023",
-      value: Math.floor(Math.random() * 11) + 1,
-    })),
-  ];
+  // State for data, loading, and error
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // State for the visible range
+  // State for pagination
   const [startIndex, setStartIndex] = useState(0);
   const monthsPerPage = 2;
 
@@ -97,6 +27,32 @@ const ScrollingBarChart = () => {
     { name: "November", days: 30 },
     { name: "December", days: 31 },
   ];
+
+  // Fetch data using axios
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/project-data"); // Replace with your actual API endpoint
+        setData(response.data); // Assume the response is an array of daily data
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to load data");
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // Run once when component mounts
+
+  // Handle loading state
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  // Handle error state
+  if (error) {
+    return <div className="text-red-600">{error}</div>;
+  }
 
   // Calculate the start and end indices for the current page
   const calculatePageRange = (startMonthIndex) => {

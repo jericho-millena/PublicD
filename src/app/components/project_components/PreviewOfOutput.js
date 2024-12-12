@@ -1,18 +1,28 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Image from "next/image";
 
 export default function Output() {
-  const documentationItems = [
-    {
-      image: "/socials/lab.png",
-      description: "Short description describing the image",
-      alt: "Students working on an engineering project at a workbench",
-    },
-    {
-      image: "/socials/mess.png",
-      description: "Short description describing the image",
-      alt: "3D printer or robotic equipment setup on a workbench",
-    },
-  ];
+  const [documentationItems, setDocumentationItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Replace with your actual API endpoint
+    axios
+      .get("/Documentation")
+      .then((response) => {
+        setDocumentationItems(response.data); // Assuming the response data is an array of documentation items
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">

@@ -1,48 +1,25 @@
-import { ChevronDown, MapPin } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ShowMoreButton from "../ShowMoreButton"; // Adjust the path as needed
-
-const authors = [
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-];
+import { MapPin } from "lucide-react";
 
 export default function AuthorsPage() {
+  const [authors, setAuthors] = useState([]);
   const [showMore, setShowMore] = useState(false);
+
+  // Fetch authors data from API
+  useEffect(() => {
+    const fetchAuthors = async () => {
+      try {
+        const response = await axios.get("/Authors"); // Replace with your actual API URL
+        setAuthors(response.data); // Assuming the data structure is an array of authors
+      } catch (error) {
+        console.error("Error fetching authors:", error);
+      }
+    };
+
+    fetchAuthors();
+  }, []);
 
   // Limit the number of authors displayed if "Show More" is not active
   const displayedAuthors = showMore ? authors : authors.slice(0, 3);
@@ -59,7 +36,7 @@ export default function AuthorsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
         {displayedAuthors.map((author, index) => (
           <div key={index} className="space-y-1">
-            <h3 className="text-lg  leading-none">{author.name}</h3>
+            <h3 className="text-lg leading-none">{author.name}</h3>
             <p className="text-sm text-gray-600">{author.degree}</p>
             <div className="flex items-center text-sm text-gray-600">
               <MapPin className="w-4 h-4 mr-1" />

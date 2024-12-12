@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Component from "@/app/components/project_components/DocumentLink";
 import Output from "@/app/components/project_components/PreviewOfOutput";
 import ProjectStatus from "@/app/components/project_components/ProjectStatus";
@@ -12,16 +13,34 @@ import Progress from "@/app/components/project_components/Progress";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 
 export default function ProjectMain() {
-  const sampleText =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus.";
+  const [projectData, setProjectData] = useState(null);
+  const [authors, setAuthors] = useState([]);
+  const [progressPercentage, setProgressPercentage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const projectData = {
-    status: "Ongoing",
-    started: "04 / 12 / 23",
-    expectedCompletion: "04 / 12 / 23",
-  };
+  // Fetch data from API when the component mounts
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const projectResponse = await axios.get("/api/project"); // Adjust the endpoint
+        const authorsResponse = await axios.get("/api/authors"); // Adjust the endpoint
+        const progressResponse = await axios.get("/api/project/progress"); // Adjust the endpoint
 
-  const percentage = 20.5;
+        // Assuming the API responses have the following structure
+        setProjectData(projectResponse.data);
+        setAuthors(authorsResponse.data);
+        setProgressPercentage(progressResponse.data.percentage);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError("Failed to load data.");
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <main>
@@ -47,13 +66,14 @@ export default function ProjectMain() {
           </svg>
         </div>
       </div>
+
       <div className="p-4 center mx-10 my-2">
         <div className="p-4">
           <div className="grid grid-cols-[5fr_2fr] gap-4 mb-4">
             <div className="flex items-center justify-start h-48 dark:bg-gray-800 px-4">
               <div className="flex items-center">
                 <Progress
-                  percentage={percentage}
+                  percentage={progressPercentage} // Dynamic progress value
                   label="Project Progress"
                   width={120}
                   height={120}
@@ -62,16 +82,18 @@ export default function ProjectMain() {
 
                 <div className="ml-6 text-gray-700 dark:text-gray-300 mb-20 mt-35">
                   <h1 className="text-2xl font-semibold mt-20">
-                    Project name / title
+                    {projectData?.name} {/* Dynamic project name */}
                   </h1>
-                  <p className="text-lg mt-5 ">
-                    Authors... Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Suspendisse non{" "}
+                  <p className="text-lg mt-5">
+                    {authors.length > 0
+                      ? authors.map((author) => author.name).join(", ")
+                      : "Authors..."}{" "}
+                    {/* Dynamic authors */}
                   </p>
                   <div className="flex items-center mt-10">
                     <HiBuildingOffice2 className="text-xl mr-2" />
                     <p className="text-lg">
-                      Knowledge, Innovation, and Science Technology (KIST) Park
+                      {projectData?.location} {/* Dynamic project location */}
                     </p>
                   </div>
                 </div>
@@ -79,36 +101,39 @@ export default function ProjectMain() {
             </div>
             <div className="flex items-center justify-end pr-2 pt-12 h-48">
               <ProjectStatus
-                status={projectData.status}
-                started={projectData.started}
-                expectedCompletion={projectData.expectedCompletion}
+                status={projectData?.status || "Ongoing"} // Dynamic project status
+                started={projectData?.started || "N/A"} // Dynamic project start date
+                expectedCompletion={projectData?.expectedCompletion || "N/A"} // Dynamic expected completion
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-center h-48 mb-4 ">
+          <div className="flex items-center justify-center h-48 mb-4">
             <ScrollingBarChart />
           </div>
+
           <div className="container mx-auto px-4 py-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Description
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8">
-              <Description content={sampleText} />
+              <Description content={projectData?.description} />{" "}
+              {/* Dynamic project description */}
               <div>
                 <Component />
               </div>
             </div>
           </div>
         </div>
+
         <div className="py-5">
           <Output />
         </div>
+
         <Author />
         <div>
-        <FundingPage />
+          <FundingPage />
         </div>
-    
       </div>
     </main>
   );
