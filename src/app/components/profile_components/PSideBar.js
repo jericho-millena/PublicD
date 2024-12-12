@@ -3,6 +3,8 @@
 import React from "react";
 
 export default function PSideBar() {
+  const basePath = "/PublicD";
+
   return (
     <aside
       id="logo-sidebar"
@@ -11,7 +13,7 @@ export default function PSideBar() {
     >
       <div className="h-full p-6 overflow-y-auto bg-gray-300">
         <img
-          src="/PublicD/public/RProfile.png"
+          src={`${basePath}/RProfile.png`}
           className="h-20 me-10 pb-2 sm:h-100"
         />
         <span className="flex items-center py-2 text-xl text-gray-900 rounded-lg">
