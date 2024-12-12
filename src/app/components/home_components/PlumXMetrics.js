@@ -25,7 +25,7 @@ const PlumXMetrics = ({ doi }) => {
         data-site="plum"
         data-hide-when-empty="true"
       >
-        The Troubled Touch of Autism
+        PlumX Metrics
       </a>
     </div>
   );
