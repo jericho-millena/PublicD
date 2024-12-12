@@ -1,5 +1,5 @@
 // components/AltmetricBadge.js
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"; // Import the useEffect hook
 
 const AltmetricBadge = ({ doi }) => {
   useEffect(() => {
