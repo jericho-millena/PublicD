@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import axios from "@/lib/axiosInstance";
 
+const data = [{ name: "Algorithm", value: 1 }];
+
+// Updated colors
 const COLORS = [
   "#FCA5A5", // red-300
   "#F87171", // red-400
@@ -10,44 +12,16 @@ const COLORS = [
   "#7F1D1D", // red-900
 ];
 
+// Total research output for the central label
+const totalResearchOutput = data.reduce((acc, curr) => acc + curr.value, 0);
+
 export default function ResearchChart() {
-  const [data, setData] = useState([]);
-  const [totalResearchOutput, setTotalResearchOutput] = useState(0);
   const [activeIndex, setActiveIndex] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/research-output"); // Replace with your API endpoint
-        setData(response.data);
-
-        // Calculate total research output dynamically
-        const total = response.data.reduce((acc, curr) => acc + curr.value, 0);
-        setTotalResearchOutput(total);
-      } catch (err) {
-        setError("Failed to load chart data");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   // Handler function for mouse enter on pie segments
   const onPieEnter = (_, index) => {
     setActiveIndex(index);
   };
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
 
   return (
     <div className="flex flex-rows items-center">

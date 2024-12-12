@@ -33,7 +33,7 @@ export default function Navbar() {
               </p>
             </div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center justify-center">
             <div className="hidden md:flex h-full">
               {navbarItems.map(({ id, label, link }) => (
                 <a
