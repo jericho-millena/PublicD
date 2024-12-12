@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import AltmetricBadge from "@/app/components/home_components/AlmetricHome";
+import PlumXMetrics from "@/app/components/home_components/PlumXMetrics";
 
 const COLORS = [
   "#7F1D1D", // bg-red-950
@@ -129,12 +130,7 @@ const ActiveShapePieChart = () => {
           </div>
         </div>
         <div className="flex flex-col items-center ml-8">
-          {" "}
-          <img
-            src="./image30.png"
-            alt="Image Description"
-            className="w-16 lg:w-28 md:w-20"
-          />
+          <PlumXMetrics doi="10.1016/j.cell.2016.06.054" />
           <div className="flex items-center">
             <h1 className="text-2xl lg:text-4xl md:text-3xl text-red-500 font-bold mr-2">
               0
