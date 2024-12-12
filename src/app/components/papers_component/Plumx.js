@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 const Plumx = () => {
   useEffect(() => {
     // Dynamically load the PlumX widget script
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = "//cdn.plu.mx/widget-popup.js";
     script.async = true;
     script.onload = () => {
-      console.log('PlumX script loaded');
+      console.log("PlumX script loaded");
     };
     document.body.appendChild(script);
 
@@ -24,10 +24,8 @@ const Plumx = () => {
       data-size="medium"
       className="plumx-plum-print-popup plum-bigben-theme"
       data-site="plum"
-      data-pass-hidden-categories="true"
-    >
-      PlumX Widget
-    </a>
+      data-pass-hidden-categories="false"
+    ></a>
   );
 };
 
