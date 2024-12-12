@@ -1,39 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import AltmetricBadges from "./AltmetricBadges";
 import { GoDownload } from "react-icons/go";
 import { FaEye } from "react-icons/fa";
 
-const Card2 = ({ userId }) => {
-  const [user, setUser] = useState(null);  
-  const [loading, setLoading] = useState(true);  
-  const [error, setError] = useState(null);     
-
+const Card2 = ({ user }) => {
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
-
-  useEffect(() => {
-    
-    axios
-      .get(`/papers}`) 
-      .then((response) => {
-        setUser(response.data);  
-        setLoading(false);       
-      })
-      .catch((err) => {
-        setError("No data available");
-        setLoading(false);  
-      });
-  }, [userId]);  
-
-  if (loading) {
-    return <div>Loading...</div>;  
-  }
-
-  if (error) {
-    return <div>{error}</div>;  
-  }
-
   const progressLength = (user.progress / 100) * circumference;
   const remainingLength = circumference - progressLength;
 
@@ -120,7 +92,7 @@ const Card2 = ({ userId }) => {
         </div>
       </div>
 
-      {/* Image and PlumX Metrics (only for research 1, 4, 6) */}
+      {/* Image and PlumX Metrics (only for specific IDs) */}
       {(user.id === 1 || user.id === 4 || user.id === 6) && (
         <div className="flex-none flex flex-col items-center mt-4 md:mt-0">
           <img
