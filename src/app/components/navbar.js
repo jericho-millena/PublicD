@@ -5,6 +5,7 @@ import { Disclosure } from "@headlessui/react";
 import { navbarItems } from "../Data/data";
 
 export default function Navbar() {
+  const basePath = "/PublicD";
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDisclosure = () => {
@@ -18,7 +19,7 @@ export default function Navbar() {
           <div className="flex items-center p-2">
             <span className="mr-4">
               <img
-                src="./logon1.png"
+                src={`${basePath}/logon1.png`}
                 alt="University Logo"
                 width={55}
                 height={47}

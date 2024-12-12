@@ -3,13 +3,13 @@ import Image from "next/image";
 export default function Output() {
   const documentationItems = [
     {
-      image: "./socials/lab.png",
-      description: "Short description describing the image",
+      image: "/PublicD/socials/lab.png",
+      description: "Students working on an engineering project at a workbench",
       alt: "Students working on an engineering project at a workbench",
     },
     {
-      image: "./socials/mess.png",
-      description: "Short description describing the image",
+      image: "/PublicD/socials/mess.png",
+      description: "3D printer or robotic equipment setup on a workbench",
       alt: "3D printer or robotic equipment setup on a workbench",
     },
   ];

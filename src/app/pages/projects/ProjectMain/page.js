@@ -13,7 +13,7 @@ import { HiBuildingOffice2 } from "react-icons/hi2";
 
 export default function ProjectMain() {
   const sampleText =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus.";
+    "This project focuses on developing cutting-edge solutions to harness renewable energy more efficiently and sustainably. It aims to innovate in areas such as solar, wind, and geothermal energy systems, integrating advanced technologies to optimize energy production, reduce environmental impact, and promote a cleaner, greener future.";
 
   const projectData = {
     status: "Ongoing",
@@ -62,12 +62,9 @@ export default function ProjectMain() {
 
                 <div className="ml-6 text-gray-700 dark:text-gray-300 mb-20 mt-35">
                   <h1 className="text-2xl font-semibold mt-20">
-                    Project name / title
+                    Advance Renewable Energy technologies
                   </h1>
-                  <p className="text-lg mt-5 ">
-                    Authors... Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Suspendisse non{" "}
-                  </p>
+                  <p className="text-lg mt-5 ">John Doe </p>
                   <div className="flex items-center mt-10">
                     <HiBuildingOffice2 className="text-xl mr-2" />
                     <p className="text-lg">
@@ -106,9 +103,8 @@ export default function ProjectMain() {
         </div>
         <Author />
         <div>
-        <FundingPage />
+          <FundingPage />
         </div>
-    
       </div>
     </main>
   );
