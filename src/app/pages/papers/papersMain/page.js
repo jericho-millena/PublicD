@@ -3,17 +3,18 @@
 import React from "react";
 import SideBar from "@/app/components/papers_component/Sidebar";
 import ResearchActivity from "@/app/components/papers_component/ResearchActivity";
+import ShowMoreButtonP from "@/app/components/papers_component/ShowMoreButtonP";
 
 const PapersMain = () => {
   // Static Abstract text
   const abstractText =
-    "This study investigates the optimization of machine learning algorithms for real-time data processing in the context of Internet of Things (IoT) networks. With the exponential growth of IoT devices, real-time data analysis has become essential to enable efficient decision-making. The research explores various machine learning models, focusing on improving processing speeds without compromising accuracy. Several optimization techniques, including data pre-processing and parallel processing, are employed to enhance the performance of the algorithms. Experimental results show significant improvements in both processing time and accuracy when these techniques are applied. The findings offer valuable insights into the integration of advanced machine learning models into IoT systems, contributing to more effective real-time analytics in smart environments.";
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris...";
 
   // Static Publication Details
   const publicationDetails = [
     { label: "Language", value: "English" },
     { label: "Article Number", value: "36" },
-    { label: "Journal", value: "Archives of Electronics" },
+    { label: "Journal", value: "Lorem Ipsum Archives of Electronics" },
     { label: "Volume", value: "40" },
     { label: "Issue Number", value: "1" },
     { label: "Publication Status", value: "Not yet published" },
@@ -22,16 +23,46 @@ const PapersMain = () => {
   // Static Authors data
   const authors = [
     {
-      name: "Dr. Maria Clara Santos",
+      name: "Firstname Middlename Lastname",
       degree: "Doctorate Degree in Computer Science",
       university: "Batangas State University-Alangilan Campus",
       image: "/RProfile.png",
     },
     {
-      name: "Dr. Juan Dela Cruz",
+      name: "Firstname Middlename Lastname",
       degree: "Doctorate Degree in Computer Science",
       university: "Batangas State University-Alangilan Campus",
-      image: "/PublicD/RProfile.png",
+      image: "/RProfile.png",
+    },
+    {
+      name: "Firstname Middlename Lastname",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/RProfile.png",
+    },
+    {
+      name: "Firstname Middlename Lastname",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/RProfile.png",
+    },
+    {
+      name: "Firstname Middlename Lastname",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/RProfile.png",
+    },
+    {
+      name: "Firstname Middlename Lastname",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/RProfile.png",
+    },
+    {
+      name: "Firstname Middlename Lastname",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/RProfile.png",
     },
   ];
 
@@ -93,7 +124,9 @@ const PapersMain = () => {
                 <span className="semi-bold">36</span>
               </div>
               <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">Archives of Electronics</span>
+                <span className="semi-bold">
+                  Lorem Ipsum Archives of Electronics
+                </span>
               </div>
               <div className="text-s text-black-800 mt-2">
                 <span className="semi-bold">40</span>
@@ -110,6 +143,8 @@ const PapersMain = () => {
           {/* About the Authors */}
           <div className="pt-5 pb-8">
             <h1 className="mt-20 text-2xl text-black-800">About the Authors</h1>
+            {/* ShowMoreButtonP component to handle visibility of authors */}
+            <ShowMoreButtonP authors={authors} />
           </div>
         </div>
       </div>

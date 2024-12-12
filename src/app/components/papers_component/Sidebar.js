@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import Progressbar from "./Progressbar";
@@ -11,11 +11,11 @@ export default function SideBar() {
 
   // Example list of top countries by views
   const topCountries = [
-    { country: "United States", views: 1200 },
-    { country: "United Kingdom", views: 800 },
-    { country: "Canada", views: 600 },
-    { country: "Australia", views: 500 },
-    { country: "Germany", views: 400 },
+    { country: "Philippines", views: 10 },
+    { country: "United Kingdom", views: 0 },
+    { country: "Canada", views: 0 },
+    { country: "Australia", views: 0 },
+    { country: "Germany", views: 0 },
   ];
 
   const doi = "10.1016/S0140-6736(11)61619-x"; // Example DOI
@@ -28,11 +28,10 @@ export default function SideBar() {
     >
       <div className="h-full p-6 bg-white w-full">
         <span className="flex items-center py-2 text-3xl mt-4 text-gray-900 rounded-lg border-gray-300">
-          Research name / title
+          AI Driven Cars
         </span>
         <span className="flex items-center py-2 text-sm text-slate-800 rounded-lg mt-4">
-          Authors... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          non lorem non lorem gravida imperdiet non at elit. Suspendisse rhoncus ipsum quis risus.
+          John Doe
         </span>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4 mt-9">
@@ -42,7 +41,7 @@ export default function SideBar() {
           <div className="grid grid-cols-3 gap-4 mb-4 mr-10">
             <div className="flex items-center w-full h-28 col-span-5">
               <img
-                src="/image30.png" 
+                src="/image30.png"
                 alt="Image 30"
                 className="w-20 h-20" // Adjust size as needed
               />
@@ -67,7 +66,11 @@ export default function SideBar() {
 
         <div className="grid grid-cols-1 gap-4 mb-4 mt-6 ml-8">
           <div className="items-center rounded w-full h-28">
-            <ResearchStatistics percentage={percentage} width={90} height={120} />
+            <ResearchStatistics
+              percentage={percentage}
+              width={90}
+              height={120}
+            />
           </div>
         </div>
 
@@ -91,7 +94,10 @@ export default function SideBar() {
             <table className="min-w-full bg-white">
               <thead>
                 <tr>
-                  <th className="text-center py-3 px-4 font-semibold text-l border-b border-gray-400" colSpan="2">
+                  <th
+                    className="text-center py-3 px-4 font-semibold text-l border-b border-gray-400"
+                    colSpan="2"
+                  >
                     Top Countries per View
                   </th>
                 </tr>
