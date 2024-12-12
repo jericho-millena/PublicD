@@ -35,7 +35,7 @@ const Footer = () => {
                       className="mr-4"
                     >
                       <Image
-                        src="/socials/facebook.png"
+                        src="./socials/facebook.png"
                         alt="Facebook"
                         width={30}
                         height={30}
