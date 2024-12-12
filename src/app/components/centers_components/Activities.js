@@ -10,28 +10,16 @@ const Activities = () => {
 
   const projectDetails = [
     {
-      projectName: "Project Name / Title",
-      speaker: "John Doe (Speaker)",
+      projectName: "AI-Driven Healthcare Solutions",
+      speaker: "Dr. Maria Clara Santos (Keynote Speaker)",
       date: "April 12, 2023",
       activity: "Invited Talk",
     },
     {
-      projectName: "Project Name / Title",
-      speaker: "John Doe (Speaker)",
-      date: "April 12, 2023",
-      activity: "Invited Talk",
-    },
-    {
-      projectName: "Project Name / Title",
-      speaker: "John Doe (Speaker)",
-      date: "April 12, 2023",
-      activity: "Invited Talk",
-    },
-    {
-      projectName: "Project Name / Title",
-      speaker: "John Doe (Speaker)",
-      date: "April 12, 2023",
-      activity: "Invited Talk",
+      projectName: "Blockchain for Secure Transactions in E-Commerce",
+      speaker: "Dr. Juan Dela Cruz (Guest Speaker)",
+      date: "May 3, 2023",
+      activity: "Workshop",
     },
   ];
 

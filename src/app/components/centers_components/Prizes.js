@@ -3,12 +3,7 @@ import React from "react";
 const Prizes = () => {
   const prizesData = [
     {
-      title: "Prize Title",
-      recipient: "John Doe (Speaker)",
-      date: "April 12, 2023",
-    },
-    {
-      title: "Prize Title",
+      title: "Best Thesis Presenter",
       recipient: "John Doe (Speaker)",
       date: "April 12, 2023",
     },
