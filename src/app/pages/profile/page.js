@@ -1,20 +1,37 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProfileList from "@/app/components/profile_components/ProfileList";
-import { user } from "@/app/Data/data";
 import FilterOptions from "@/app/components/FilterOptions";
+import axios from "@/lib/axiosInstance";
 
 export default function Profile() {
-  const [filteredUsers, setFilteredUsers] = useState(user);
-  const [searchQuery, setSearchQuery] = useState(""); // State for the search input
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // Error state
+
+  useEffect(() => {
+    // Fetch user data from API
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get("/userList"); // Replace with your API endpoint
+        setUsers(response.data); // Set fetched users
+        setFilteredUsers(response.data); // Initialize filtered users
+        setLoading(false); // Stop loading
+      } catch (err) {
+        setError("Failed to load user data. Please try again later.");
+        setLoading(false); // Stop loading
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   // Function to handle filters
   const handleFilters = (filters) => {
-    console.log("Active Filters:", filters);
-
-    // If no filters are applied, reset to the default user list
-    let filtered = user;
+    let filtered = users;
 
     if (
       filters.publicationYear?.length ||
@@ -50,13 +67,21 @@ export default function Profile() {
     setSearchQuery(query);
 
     // Filter users based on the search query
-    const filtered = user.filter((u) =>
+    const filtered = users.filter((u) =>
       u.name.toLowerCase().includes(query.toLowerCase())
     );
 
     // Combine search with other filters
     setFilteredUsers(filtered);
   };
+
+  if (loading) {
+    return <p className="text-center text-gray-500">Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-center text-red-500">{error}</p>;
+  }
 
   return (
     <div className="p-8">
@@ -109,9 +134,13 @@ export default function Profile() {
         <div className="w-3/4 p-4">
           {/* Grid Layout for Profile Cards */}
           <div className="grid grid-cols-3 gap-4">
-            {filteredUsers.map((user) => (
-              <ProfileList key={user.id} user={user} />
-            ))}
+            {filteredUsers.length > 0 ? (
+              filteredUsers.map((user) => (
+                <ProfileList key={user.id} user={user} />
+              ))
+            ) : (
+              <p className="text-center text-gray-500">No users found.</p>
+            )}
           </div>
         </div>
       </div>
