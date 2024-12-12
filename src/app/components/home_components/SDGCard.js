@@ -1,45 +1,157 @@
 import React, { useEffect, useState } from "react";
 import { sdgData as staticSDGData } from "@/app/Data/data"; // Replace with your static placeholder data if used
-import axios from "@/lib/axiosInstance";
 
 const SDGCard = () => {
-  const [sdgData, setSdgData] = useState(staticSDGData); // Start with static data or an empty array
+  const [sdgData, setSdgData] = useState(staticSDGData); // Start with static data
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchSDGData = async () => {
-      try {
-        const response = await axios.get("/sdg-data");
-        console.log("API Response:", response.data); // Debugging: Log the API response
+    // Static data
+    const fetchedData = [
+      {
+        id: 1,
+        name: "No Poverty",
+        papers: 1,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg1.png",
+      },
+      {
+        id: 2,
+        name: "Zero Hunger",
+        papers: 0,
+        projects: 1,
+        activities: 0,
+        image: "/rms/sdg2.png",
+      },
+      {
+        id: 3,
+        name: "Good Health and Well-being",
+        papers: 0,
+        projects: 0,
+        activities: 1,
+        image: "/rms/sdg3.png",
+      },
+      {
+        id: 4,
+        name: "Quality Education",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg4.png",
+      },
+      {
+        id: 5,
+        name: "Gender Equality",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg5.png",
+      },
+      {
+        id: 6,
+        name: "Clean Water and Sanitation",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg6.png",
+      },
+      {
+        id: 7,
+        name: "Affordable and Clean Energy",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg7.png",
+      },
+      {
+        id: 8,
+        name: "Decent Work and Economic Growth",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg8.png",
+      },
+      {
+        id: 9,
+        name: "Industry, Innovation, and Infrastructure",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg9.png",
+      },
+      {
+        id: 10,
+        name: "Reduced Inequality",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg10.png",
+      },
+      {
+        id: 11,
+        name: "Sustainable Cities and Communities",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg11.png",
+      },
+      {
+        id: 12,
+        name: "Responsible Consumption and Production",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg12.png",
+      },
+      {
+        id: 13,
+        name: "Climate Action",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg13.png",
+      },
+      {
+        id: 14,
+        name: "Life Below Water",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg14.png",
+      },
+      {
+        id: 15,
+        name: "Life on Land",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg15.png",
+      },
+      {
+        id: 16,
+        name: "Peace, Justice, and Strong Institutions",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg16.png",
+      },
+      {
+        id: 17,
+        name: "Partnerships for the Goals",
+        papers: 0,
+        projects: 0,
+        activities: 0,
+        image: "/rms/sdg17.png",
+      },
+    ];
 
-        // Validate response is an array
-        const dynamicData = Array.isArray(response.data) ? response.data : [];
-
-        // Merge dynamic data with static placeholders
-        const mergedData = staticSDGData.map((sdg) => {
-          const dynamicSDG =
-            dynamicData.find((item) => item.id === sdg.id) || {};
-          return {
-            ...sdg,
-            papers: dynamicSDG.papers ?? 0, // Default to 0 if missing
-            projects: dynamicSDG.projects ?? 0,
-            activities: dynamicSDG.activities ?? 0,
-          };
-        });
-
-        setSdgData(mergedData);
-      } catch (error) {
-        console.error("Error fetching SDG data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSDGData();
+    setSdgData(fetchedData);
+    setLoading(false);
   }, []);
 
   if (loading) {
-    return <div>Loading SDG data...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
@@ -59,15 +171,9 @@ const SDGCard = () => {
                     className="w-16 lg:w-24 md:w-20 mr-4"
                   />
                   <div>
-                    <p className="text-xs lg:text-sm text-gray-700 mb-2">{`Papers: ${
-                      sdg.papers || 0
-                    }`}</p>
-                    <p className="text-xs lg:text-sm text-gray-700 mb-2">{`Projects: ${
-                      sdg.projects || 0
-                    }`}</p>
-                    <p className="text-xs lg:text-sm text-gray-700 mb-2">{`Activities: ${
-                      sdg.activities || 0
-                    }`}</p>
+                    <p className="text-xs lg:text-sm text-gray-700 mb-2">{`Papers: ${sdg.papers}`}</p>
+                    <p className="text-xs lg:text-sm text-gray-700 mb-2">{`Projects: ${sdg.projects}`}</p>
+                    <p className="text-xs lg:text-sm text-gray-700 mb-2">{`Activities: ${sdg.activities}`}</p>
                   </div>
                 </div>
               </div>

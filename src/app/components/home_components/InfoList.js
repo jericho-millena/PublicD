@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "@/lib/axiosInstance"; // Adjust the path to your Axios instance
 
 const InfoList = () => {
   const [dynamicNumbers, setDynamicNumbers] = useState({});
@@ -107,17 +106,16 @@ const InfoList = () => {
   ];
 
   useEffect(() => {
-    const fetchNumbers = async () => {
-      try {
-        const response = await axios.get("/info-numbers"); // Adjust endpoint to your API
-        console.log("API Response:", response.data); // Debugging: Log the response
-        setDynamicNumbers(response.data);
-      } catch (error) {
-        console.error("Error fetching numbers:", error);
-      }
+    // Static data
+    const fetchedNumbers = {
+      Researchers: 1,
+      Projects: 0,
+      Publications: 0,
+      "IP-Assets": 10,
+      "Research Centers": 5,
     };
 
-    fetchNumbers();
+    setDynamicNumbers(fetchedNumbers);
   }, []);
 
   return (
@@ -131,7 +129,7 @@ const InfoList = () => {
             <div className="relative flex flex-col items-center">
               <div className="absolute left-0 top-0 bottom-0 h-full w-px bg-gray-300 dark:bg-gray-700"></div>
               <dt className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900 text-red-600 mb-4 ml-4">
-                {dynamicNumbers[item.id] ?? 0} {/* Default value is 0 */}
+                {dynamicNumbers[item.label] ?? 0} {/* Default value is 0 */}
               </dt>
             </div>
             <dd className="flex items-center ml-4">

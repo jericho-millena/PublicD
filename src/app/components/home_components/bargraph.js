@@ -1,25 +1,71 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { BarChart, Bar, XAxis, Tooltip } from "recharts";
-import axios from "@/lib/axiosInstance"; // Adjust this path to match your Axios instance setup
 
 const BarGraph = () => {
   const [data, setData] = useState([]);
-  const [chartWidth, setChartWidth] = useState(1400);
+  const [chartWidth, setChartWidth] = useState(0);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/chart-data"); // Replace with your actual API endpoint
-        const fetchedData = response.data.map((item) => ({
-          name: item.name || "Unknown", // Default to "Unknown" if name is undefined
-          "Research Paper": item.researchPaper || 0, // Fallback to 0 if undefined
-          Projects: item.projects || 0,
-          Activities: item.activities || 0,
-        }));
+        const fetchedData = [
+          {
+            name: "Pablo Borbon",
+            Projects: 0,
+            "Research Paper": 0,
+            Activities: 0,
+          },
+          {
+            name: "Alangilan",
+            Projects: 1,
+            "Research Paper": 1,
+            Activities: 1,
+          },
+          {
+            name: "Lemery",
+            Projects: 0,
+            "Research Paper": 0,
+            Activities: 0,
+          },
+          {
+            name: "Lipa",
+            Projects: 0,
+            "Research Paper": 0,
+            Activities: 0,
+          },
+          {
+            name: "Arasof",
+            Projects: 0,
+            "Research Paper": 0,
+            Activities: 0,
+          },
+          {
+            name: "Balayan",
+            Projects: 0,
+            "Research Paper": 0,
+            Activities: 0,
+          },
+          {
+            name: "San Jose",
+            Projects: 0,
+            "Research Paper": 0,
+            Activities: 0,
+          },
+          {
+            name: "Malvar",
+            Projects: 0,
+            "Research Paper": 0,
+            Activities: 0,
+          },
+          {
+            name: "Rosario",
+            Projects: 0,
+            "Research Paper": 0,
+            Activities: 0,
+          },
+        ];
 
         if (!fetchedData.length) {
           throw new Error("No data available");
@@ -43,20 +89,11 @@ const BarGraph = () => {
 
     handleResize(); // Initialize chart width on mount
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  if (error || data.length === 0) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <p className="text-gray-500 text-lg">
-          No data available for the graph. Please try again later.
-        </p>
-      </div>
-    );
+  if (error) {
+    return <div>Error loading data</div>;
   }
 
   return (
