@@ -1,32 +1,25 @@
+// components/ResearchOutputs.js
 import React, { useState, useEffect } from "react";
-import axios from "@/lib/axiosInstance";
 import ShowMoreButton from "../ShowMoreButton";
 
+const researchItems = [
+  {
+    title: "Deep Learning for Natural Language Processing: A Survey",
+    authors: "John Doe, Jane Smith, Robert Lee",
+    tags: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Natural Language Processing",
+    ],
+    doi: "10.1038/s41433-023-02760-0",
+  },
+];
+
 const ResearchOutputs = () => {
-  const [researchItems, setResearchItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState([]);
   const [visibleItems, setVisibleItems] = useState(3);
   const [showMore, setShowMore] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch research items from API
-    const fetchResearchItems = async () => {
-      try {
-        const response = await axios.get("/research-contribution");
-        setResearchItems(response.data);
-        setFilteredItems(response.data);
-      } catch (err) {
-        setError("Failed to load research items.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchResearchItems();
-
     // Load the Altmetric script dynamically
     const script = document.createElement("script");
     script.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
@@ -39,51 +32,19 @@ const ResearchOutputs = () => {
     };
   }, []);
 
-  useEffect(() => {
-    // Filter items based on the search query
-    const query = searchQuery.toLowerCase();
-    const filtered = researchItems.filter(
-      (item) =>
-        item.title.toLowerCase().includes(query) ||
-        item.authors.toLowerCase().includes(query) ||
-        item.tags.some((tag) => tag.toLowerCase().includes(query))
-    );
-    setFilteredItems(filtered);
-  }, [searchQuery, researchItems]);
-
-  useEffect(() => {
-    if (window._altmetric_embed_init) {
-      window._altmetric_embed_init();
-    }
-  }, [filteredItems]);
-
   const handleShowMore = () => {
     setShowMore(!showMore);
-    setVisibleItems(showMore ? 3 : filteredItems.length);
+    setVisibleItems(showMore ? 3 : researchItems.length);
   };
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
 
   return (
-    <div className="w-full items-start max-w-6xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold flex-grow">Research outputs</h2>
         <div className="relative ml-auto">
           <input
             type="text"
             placeholder="Search more"
-            value={searchQuery}
-            onChange={handleSearchChange}
             className="pl-4 pr-8 py-2 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 w-full max-w-xs"
           />
           <span className="absolute right-3 top-2.5 text-gray-500">
@@ -107,7 +68,7 @@ const ResearchOutputs = () => {
       <hr className="border-t border-gray-300 mb-6" />
 
       {/* Research Items */}
-      {filteredItems.slice(0, visibleItems).map((item, index) => (
+      {researchItems.slice(0, visibleItems).map((item, index) => (
         <div
           key={index}
           className="flex justify-between items-start mb-6 p-4 border-b border-gray-200 w-full"
@@ -137,7 +98,7 @@ const ResearchOutputs = () => {
       ))}
 
       {/* Show More Button */}
-      {filteredItems.length > 3 && (
+      {researchItems.length > 3 && (
         <ShowMoreButton showMore={showMore} onClick={handleShowMore} />
       )}
     </div>

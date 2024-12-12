@@ -1,9 +1,6 @@
 // Data/data6.js
 
-export const data = [
-   
-];
-
+export const data = [];
 
 export const navbarItems = [
   { id: 1, label: "Home", link: "/" },
@@ -17,37 +14,41 @@ export const navbarItems = [
   { id: 9, label: "Prizes", link: "/pages/prizes" },
 ];
 
-
 export const user1 = [
   {
-      id: 1,
-      name: "Research Topic",
-      image: "/socials/medicine.png", 
-      campus: "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
-      campus1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
-    },
-  {
-    id: 2,
+    id: 1,
     name: "Research Topic",
-    image: "/socials/medicine.png", 
-    campus: "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
-    campus1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
+    image: "/socials/medicine.png",
+    campus:
+      "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
+    campus1:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
   },
   {
     id: 2,
     name: "Research Topic",
-    image: "/socials/medicine.png", 
-    campus: "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
-    campus1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
+    image: "/socials/medicine.png",
+    campus:
+      "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
+    campus1:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
   },
   {
     id: 2,
     name: "Research Topic",
-    image: "/socials/medicine.png", 
-    campus: "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
-    campus1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
+    image: "/socials/medicine.png",
+    campus:
+      "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
+    campus1:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
   },
- 
-
-  
+  {
+    id: 2,
+    name: "Research Topic",
+    image: "/socials/medicine.png",
+    campus:
+      "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
+    campus1:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
+  },
 ];

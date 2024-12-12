@@ -1,10 +1,3 @@
-// Data/data.js
-
-export const data = [
-   
-];
-
-
 export const navbarItems = [
   { id: 1, label: "Home", link: "/" },
   { id: 2, label: "Profile", link: "/pages/profile" },
@@ -17,18 +10,17 @@ export const navbarItems = [
   { id: 9, label: "Prizes", link: "/pages/prizes" },
 ];
 
-
 export const user = [
   {
-      id: 1,
-      name: "Knowledge, Innovation, and Science Technology (KIST) Park",
-      image: "/socials/kist.png", 
-      campus: "Batangas State University - Alangilan Campus",
-    },
+    id: 1,
+    name: "Knowledge, Innovation, and Science Technology (KIST) Park",
+    image: "/socials/kist.png",
+    campus: "Batangas State University - Alangilan Campus",
+  },
   {
     id: 2,
     name: "Verde Island Passage Center for Oceanographic Research and Aquatic Life Science (VIP CORALS)",
-    image: "/socials/verde.png", 
+    image: "/socials/verde.png",
     campus: "Batangas State University - Alangilan Campus",
   },
   {
@@ -92,10 +84,9 @@ export const user = [
     campus: "Batangas State University - Alangilan Campus",
   },
   {
-      id: 13,
-      name: "Innovation and Technology Support Office (ITSO)",
-      image: "/socials/itso.png",
+    id: 13,
+    name: "Innovation and Technology Support Office (ITSO)",
+    image: "/socials/itso.png",
     campus: "Batangas State University - Alangilan Campus",
-    },
-  
+  },
 ];

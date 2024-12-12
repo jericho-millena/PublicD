@@ -1,32 +1,30 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";  // Import axios for fetching data
+import axios from "axios"; // Import axios for fetching data
 
 const AuthorsData = () => {
-  const [authors, setAuthors] = useState([]);   
-  const [loading, setLoading] = useState(true);  
-  const [error, setError] = useState(null);     
+  const [authors, setAuthors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  
   useEffect(() => {
-    
     axios
-      .get("/authors")  
+      .get("/authors")
       .then((response) => {
-        setAuthors(response.data);  
-        setLoading(false);           
+        setAuthors(response.data);
+        setLoading(false);
       })
       .catch((err) => {
-        setError("No data available"); 
-        setLoading(false);  
+        setError("No data available");
+        setLoading(false);
       });
-  }, []);  
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>;  
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;  
+    return <div>{error}</div>;
   }
 
   return (
@@ -43,7 +41,9 @@ const AuthorsData = () => {
               className="w-20 h-25 border-2 border-gray-200"
             />
             <div>
-              <div className="text-xl font-semibold text-gray-800">{author.name}</div>
+              <div className="text-xl font-semibold text-gray-800">
+                {author.name}
+              </div>
               <div className="text-sm text-gray-600">{author.degree}</div>
               <div className="text-sm text-gray-600">{author.university}</div>
             </div>

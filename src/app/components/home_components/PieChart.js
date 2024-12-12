@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import axios from "@/lib/axiosInstance"; // Adjust the path according to your Axios instance
 import dynamic from "next/dynamic";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import AltmetricBadge from "@/app/components/home_components/AlmetricHome";
@@ -23,19 +22,11 @@ const ActiveShapePieChart = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/research-data"); // Adjust endpoint
-        setData(response.data || []); // Ensure data is always an array
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setData([]); // Fallback to empty array on error
-      } finally {
-        setLoading(false);
-      }
-    };
+    // Static data
+    const fetchedData = [{ name: "AI", value: 400 }];
 
-    fetchData();
+    setData(fetchedData);
+    setLoading(false);
   }, []);
 
   const totalResearchOutput = data.reduce(
@@ -81,7 +72,7 @@ const ActiveShapePieChart = () => {
                 fontSize={20}
                 fontWeight="bold"
               >
-                {totalResearchOutput.toLocaleString()}
+                1
               </text>
               <text
                 x="50%"
@@ -129,7 +120,7 @@ const ActiveShapePieChart = () => {
 
           <div className="flex items-center mt-4">
             <h1 className="text-2xl lg:text-4xl md:text-3xl text-red-500 font-bold mr-2">
-              100k
+              0
             </h1>
             <p className="text-xs lg:text-sm">
               <span className="block">Researches with</span>
@@ -146,7 +137,7 @@ const ActiveShapePieChart = () => {
           />
           <div className="flex items-center">
             <h1 className="text-2xl lg:text-4xl md:text-3xl text-red-500 font-bold mr-2">
-              112k
+              0
             </h1>
             <p className="text-xs lg:text-sm">
               <span className="block">Researches with</span>

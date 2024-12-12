@@ -1,57 +1,11 @@
 export const userss = [
   {
     id: 1,
-    title: "Project name/title",
-    progress: 12.5,
-    researchInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non lorem non lorem gravida imperdiet non at elit. Suspendisse rhoncus ipsum quis risus",
-    sdg: ["Industry, Innovation & Infrastructure", "Electronics"],
-    link: "/research/1"
+    title: "Advancing Renewable Energy Technologies",
+    progress: 45.2,
+    researchInfo:
+      "This project focuses on developing innovative solar panel technologies to enhance efficiency and reduce costs for widespread adoption.",
+    sdg: ["Affordable and Clean Energy", "Climate Action"],
+    link: "/research/1",
   },
-  
-  {
-      id: 2,
-      title: "Project name/title",
-      progress: 60,
-      researchInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non lorem non lorem gravida imperdiet non at elit. Suspendisse rhoncus ipsum quis risus",
-      sdg: ["Algorithm"],
-      link: "/research/1"
-    },
-
-    {
-      id: 3,
-      title: "Project name/title",
-      progress: 100,
-      researchInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendiss",
-      sdg: ["Industry, Innovation & Infrastructure"],
-      link: "/research/1"
-    },
-
-    {
-      id: 4,
-      
-      title: "Project name/title",
-      progress: 100,
-      researchInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non lorem non lorem gravida imperdiet non at elit. Suspendisse rhoncus ipsum quis risus",
-      sdg: ["Industry, Innovation & Infrastructure"],
-      link: "/research/1"
-    },
-
-    {
-      id: 5,
-      title: "Project name/title",
-      progress: 75,
-      researchInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non lorem non lorem gravida imperdiet non at elit. Suspendisse rhoncus ipsum quis risus",
-      sdg: ["Industry, Innovation & Infrastructure"],
-      link: "/research/1"
-    },
-
-    {
-      id: 6,
-      title: "Project name/title",
-      progress: 50,
-      researchInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non lorem non lorem gravida imperdiet non at elit. Suspendisse rhoncus ipsum quis risus",
-      sdg: ["Industry, Innovation & Infrastructure"],
-      link: "/research/1"
-    },
-
 ];
