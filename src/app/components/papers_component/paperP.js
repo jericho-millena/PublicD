@@ -7,10 +7,10 @@ import AltmetricBadges from "./AltmetricBadges";
 const users = [
   {
     id: 7,
-    title: "Research 7",
+    title: "AI Driven Cars",
     progress: 75,
     researchInfo:
-      "Research that's related to poverty ... research related to poverty...",
+      "AI in the world of vehicles is a game changer. It is a technology that is set to revolutionize the automotive industry.",
     sdg: ["No Poverty"],
     link: "/research/7",
     downloads: 200,
