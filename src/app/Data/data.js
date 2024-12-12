@@ -1,9 +1,11 @@
+const basePath = "/<repository-name>"; // Replace <repository-name> with your GitHub repository name
+
 export const navbarItems = [
-  { id: 1, label: "Home", link: "./" },
-  { id: 2, label: "Profile", link: "./pages/profile" },
-  { id: 3, label: "Projects", link: "./pages/projects" },
-  { id: 4, label: "Papers", link: "./pages/papers" },
-  { id: 6, label: "Centers", link: "./pages/centers" },
+  { id: 1, label: "Home", link: `${basePath}/` },
+  { id: 2, label: "Profile", link: `${basePath}/pages/profile` },
+  { id: 3, label: "Projects", link: `${basePath}/pages/projects` },
+  { id: 4, label: "Papers", link: `${basePath}/pages/papers` },
+  { id: 6, label: "Centers", link: `${basePath}/pages/centers` },
 ];
 
 export const user = [
