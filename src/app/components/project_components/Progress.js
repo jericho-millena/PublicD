@@ -2,7 +2,12 @@ import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const Progress = ({ percentage, width = 100, height = 100, strokeWidth = 20 }) => (
+const Progress = ({
+  percentage,
+  width = 100,
+  height = 100,
+  strokeWidth = 20,
+}) => (
   <div style={{ width: `${width}px`, height: `${height}px` }}>
     <CircularProgressbar
       value={percentage}
@@ -14,7 +19,6 @@ const Progress = ({ percentage, width = 100, height = 100, strokeWidth = 20 }) =
         strokeWidth: strokeWidth, // Increase this value to make the progress bar thicker
       })}
     />
-    
   </div>
 );
 

@@ -4,37 +4,7 @@ import ShowMoreButton from "../ShowMoreButton"; // Adjust the path as needed
 
 const authors = [
   {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
-    degree: "Doctorate Degree in Computer Science",
-    university: "Batangas State University",
-    campus: "Alangilan Campus",
-  },
-  {
-    name: "Firstname Middlename Lastname",
+    name: "John Doe",
     degree: "Doctorate Degree in Computer Science",
     university: "Batangas State University",
     campus: "Alangilan Campus",
