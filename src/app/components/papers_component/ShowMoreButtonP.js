@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import AuthorsData from "@/app/components/papers_component/AuthorsData";
+import AuthorsData from "@/app/components/papers_component/Authorsdata";
 
 const ShowMoreButtonP = ({ authors }) => {
   const [showAllAuthors, setShowAllAuthors] = useState(false);
@@ -25,7 +25,9 @@ const ShowMoreButtonP = ({ authors }) => {
           onClick={handleShowMore}
           className="bg-red-600 text-white px-4 py-2 w-48 max-w-xs shadow-lg mt-4 focus:outline-none hover:bg-red-700 hover:text-white transition duration-300 flex items-center justify-center"
         >
-          <span className="mr-2">{showAllAuthors ? "Show less" : "Show more"}</span>
+          <span className="mr-2">
+            {showAllAuthors ? "Show less" : "Show more"}
+          </span>
 
           {/* Show Less Arrow (up) */}
           {showAllAuthors ? (
