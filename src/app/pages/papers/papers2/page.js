@@ -1,144 +1,123 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import PaperP from "@/app/components/papers_component/paperP";
-import { users } from "@/app/Data/data2";
-import FilterOptions from "@/app/components/FilterOptions";
+import React from "react";
+import SideBar from "@/app/components/papers_component/Sidebar";
+import ResearchActivity from "@/app/components/papers_component/ResearchActivity";
+import ShowMoreButtonP from "@/app/components/papers_component/ShowMoreButtonP";
 
-export default function Paper() {
-  const [filteredUsers, setFilteredUsers] = useState(users);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filters, setFilters] = useState({
-    publicationYear: [],
-    language: [],
-  });
-  const [showFilters, setShowFilters] = useState(false); // State to manage hamburger menu toggle
+const PapersMain = () => {
+  // Static Abstract text
+  const abstractText =
+    "This study investigates the optimization of machine learning algorithms for real-time data processing in the context of Internet of Things (IoT) networks. With the exponential growth of IoT devices, real-time data analysis has become essential to enable efficient decision-making. The research explores various machine learning models, focusing on improving processing speeds without compromising accuracy. Several optimization techniques, including data pre-processing and parallel processing, are employed to enhance the performance of the algorithms. Experimental results show significant improvements in both processing time and accuracy when these techniques are applied. The findings offer valuable insights into the integration of advanced machine learning models into IoT systems, contributing to more effective real-time analytics in smart environments.";
 
-  // Handle the filters being applied
-  const handleFilters = (filters) => {
-    console.log("Active Filters:", filters);
-    setFilters(filters); // Update filters state
+  // Static Publication Details
+  const publicationDetails = [
+    { label: "Language", value: "English" },
+    { label: "Article Number", value: "36" },
+    { label: "Journal", value: "Archives of Electronics" },
+    { label: "Volume", value: "40" },
+    { label: "Issue Number", value: "1" },
+    { label: "Publication Status", value: "Not yet published" },
+  ];
 
-    // Apply filters
-    let filtered = users;
-
-    if (filters.publicationYear?.length) {
-      filtered = filtered.filter((u) =>
-        filters.publicationYear.includes(u.publicationYear)
-      );
-    }
-
-    if (filters.language?.length) {
-      filtered = filtered.filter((u) => filters.language.includes(u.language));
-    }
-
-    // Apply the search query filter
-    if (searchQuery) {
-      filtered = filtered.filter(
-        (u) =>
-          u.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          u.researchInfo.toLowerCase().includes(searchQuery.toLowerCase()) // Search in title and research info
-      );
-    }
-
-    setFilteredUsers(filtered);
-  };
-
-  // Function to handle search input
-  const handleSearch = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-
-    // Filter users based on the search query
-    const filtered = users.filter((u) => {
-      return (
-        u.title.toLowerCase().includes(query.toLowerCase()) || // Search in the title
-        u.researchInfo.toLowerCase().includes(query.toLowerCase()) // Search in the researchInfo
-      );
-    });
-
-    // Combine search with other filters
-    setFilteredUsers(filtered);
-  };
-
-  // Effect to handle initial data setup (e.g., when filters change)
-  useEffect(() => {
-    handleFilters(filters); // Reapply filters when the page loads or the filters are changed
-  }, [filters]);
+  // Static Authors data
+  const authors = [
+    {
+      name: "Dr. Maria Clara Santos",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/RProfile.png",
+    },
+    {
+      name: "Dr. Juan Dela Cruz",
+      degree: "Doctorate Degree in Computer Science",
+      university: "Batangas State University-Alangilan Campus",
+      image: "/PublicD/RProfile.png",
+    },
+  ];
 
   return (
-    <div className="p-4 sm:p-6 md:p-8">
-      <nav className="bg-white-600 p-4">
-        <div className="max-w-4xl mx-auto flex justify-center">
-          <form
-            className="relative w-full max-w-xl flex items-center"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div className="relative flex-grow">
-              <input
-                type="text"
-                className="w-full p-2 pl-10 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-                placeholder="Search"
-                value={searchQuery}
-                onChange={handleSearch}
-              />
-              <button
-                type="submit"
-                className="absolute right-0 top-0 bottom-0 px-3 text-gray-600 hover:text-gray-700 focus:outline-none"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                  />
-                </svg>
-                <span className="sr-only">Filter</span>
-              </button>
-            </div>
-          </form>
-        </div>
-      </nav>
+    <div className="flex flex-col lg:flex-row h-full">
+      {/* Sidebar */}
+      <div className="w-full lg:w-1/4">
+        <SideBar />
+      </div>
 
-      <div className="flex flex-col md:flex-row">
-        {/* Hamburger menu for filters */}
-        <div className="w-full md:w-1/4 p-4 md:p-6">
-          <button
-            className="block md:hidden bg-gray-300 text-gray-700 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-            onClick={() => setShowFilters(!showFilters)} // Toggle filters visibility on small screens
-          >
-            Show Filters
-          </button>
-
-          {/* Filter options (visible only when showFilters is true or on larger screens) */}
-          <div
-            className={`md:block ${
-              showFilters ? "block" : "hidden"
-            } border border-gray-200 rounded-lg`}
-          >
-            <FilterOptions onApplyFilters={handleFilters} />
+      <div className="w-full lg:w-3/4 p-4">
+        <div className="py-2">
+          {/* Research Activity */}
+          <div className="py-5">
+            <h1 className="text-2xl text-black-800">
+              Research activity within the year (142)
+            </h1>
           </div>
-        </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4 mt-10">
+            <div className="flex items-center justify-center w-full h-48 col-span-2">
+              <ResearchActivity />
+            </div>
+          </div>
 
-        <div className="w-full md:w-3/4 p-4 md:p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12">
-            {filteredUsers.length === 0 ? (
-              <div>No results found</div>
-            ) : (
-              filteredUsers.map((userData) => (
-                <PaperP key={PaperP} user={{ PaperP }} />
-              ))
-            )}
+          {/* Abstract */}
+          <div className="pt-5 pb-8">
+            <h1 className="mt-20 text-2xl text-black-800">Abstract</h1>
+            <p className="text-s text-black-800">{abstractText}</p>
+          </div>
+
+          {/* Publication Details */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-4">
+            <div className="flex flex-col justify-center w-full h-28 col-span-2 mt-11">
+              <div className="text-m text-black-800">
+                <span className="semi-bold">Language</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">Article Number</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">Journal</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">Volume</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">Issue Number</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">Publication Status</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-center w-full h-28 col-span-2 mt-11">
+              <div className="text-m text-black-800">
+                <span className="semi-bold">English</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">36</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">Archives of Electronics</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">40</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">1</span>
+              </div>
+              <div className="text-s text-black-800 mt-2">
+                <span className="semi-bold">Not yet published</span>
+              </div>
+            </div>
+          </div>
+
+          {/* About the Authors */}
+          <div className="pt-5 pb-8">
+            <h1 className="mt-20 text-2xl text-black-800">About the Authors</h1>
+            {/* ShowMoreButtonP component to handle visibility of authors */}
+            <ShowMoreButtonP authors={authors} />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default PapersMain;

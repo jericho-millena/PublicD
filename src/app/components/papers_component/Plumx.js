@@ -25,7 +25,9 @@ const Plumx = () => {
       className="plumx-plum-print-popup plum-bigben-theme"
       data-site="plum"
       data-pass-hidden-categories="false"
-    ></a>
+    >
+      PlumX
+    </a>
   );
 };
 
