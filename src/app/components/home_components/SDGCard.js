@@ -13,7 +13,7 @@ const SDGCard = () => {
         papers: 1,
         projects: 0,
         activities: 0,
-        image: "/images/rms/sdg1.png",
+        image: "../rms/sdg1.png",
       },
       {
         id: 2,
@@ -21,7 +21,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 1,
         activities: 0,
-        image: "/rms/sdg2.png",
+        image: "../rms/sdg2.png",
       },
       {
         id: 3,
@@ -29,7 +29,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 1,
-        image: "/rms/sdg3.png",
+        image: "./rms/sdg3.png",
       },
       {
         id: 4,
@@ -37,7 +37,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg4.png",
+        image: "./rms/sdg4.png",
       },
       {
         id: 5,
@@ -45,7 +45,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg5.png",
+        image: "./rms/sdg5.png",
       },
       {
         id: 6,
@@ -53,7 +53,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg6.png",
+        image: "./rms/sdg6.png",
       },
       {
         id: 7,
@@ -61,7 +61,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg7.png",
+        image: "./rms/sdg7.png",
       },
       {
         id: 8,
@@ -69,7 +69,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg8.png",
+        image: "./rms/sdg8.png",
       },
       {
         id: 9,
@@ -77,7 +77,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg9.png",
+        image: "./rms/sdg9.png",
       },
       {
         id: 10,
@@ -85,7 +85,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg10.png",
+        image: "./rms/sdg10.png",
       },
       {
         id: 11,
@@ -93,7 +93,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg11.png",
+        image: "./rms/sdg11.png",
       },
       {
         id: 12,
@@ -101,7 +101,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg12.png",
+        image: "./rms/sdg12.png",
       },
       {
         id: 13,
@@ -109,7 +109,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg13.png",
+        image: "./rms/sdg13.png",
       },
       {
         id: 14,
@@ -117,7 +117,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg14.png",
+        image: "./rms/sdg14.png",
       },
       {
         id: 15,
@@ -125,7 +125,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg15.png",
+        image: "./rms/sdg15.png",
       },
       {
         id: 16,
@@ -133,7 +133,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg16.png",
+        image: "./rms/sdg16.png",
       },
       {
         id: 17,
@@ -141,7 +141,7 @@ const SDGCard = () => {
         papers: 0,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg17.png",
+        image: "./rms/sdg17.png",
       },
     ];
 

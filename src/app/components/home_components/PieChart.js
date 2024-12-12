@@ -131,7 +131,7 @@ const ActiveShapePieChart = () => {
         <div className="flex flex-col items-center ml-8">
           {" "}
           <img
-            src="/image30.png"
+            src="./image30.png"
             alt="Image Description"
             className="w-16 lg:w-28 md:w-20"
           />

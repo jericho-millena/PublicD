@@ -57,7 +57,7 @@ const Footer = () => {
                       className="mr-4"
                     >
                       <Image
-                        src="/socials/youtube.png"
+                        src="./socials/youtube.png"
                         alt="YouTube"
                         width={30}
                         height={30}
@@ -68,7 +68,7 @@ const Footer = () => {
                       className="mr-4"
                     >
                       <Image
-                        src="/socials/tiktok.png"
+                        src="./socials/tiktok.png"
                         alt="TikTok"
                         width={30}
                         height={30}
@@ -76,7 +76,7 @@ const Footer = () => {
                     </a>
                     <a href="https://www.linkedin.com/school/batstateutheneu/">
                       <Image
-                        src="/socials/linkedin.png"
+                        src="./socials/linkedin.png"
                         alt="LinkedIn"
                         width={30}
                         height={30}
@@ -95,7 +95,7 @@ const Footer = () => {
             <div className="mr-10">
               <Image
                 src="./logon1.png"
-                alt="Image 2"
+                alt="Image 32"
                 width={170}
                 height={170}
               />
