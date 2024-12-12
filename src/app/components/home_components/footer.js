@@ -90,16 +90,11 @@ const Footer = () => {
           </div>
           <div className="w-full md:w-1/2 flex justify-end">
             <div className="mr-10">
-              <Image
-                src="/images/rms.png"
-                alt="Image 1"
-                width={170}
-                height={170}
-              />
+              <Image src="./rms.png" alt="Image 1" width={170} height={170} />
             </div>
             <div className="mr-10">
               <Image
-                src="/images/logon1.png"
+                src="./logon1.png"
                 alt="Image 2"
                 width={170}
                 height={170}
