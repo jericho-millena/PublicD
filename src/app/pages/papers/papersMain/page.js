@@ -7,8 +7,7 @@ import ShowMoreButtonP from "@/app/components/papers_component/ShowMoreButtonP";
 
 const PapersMain = () => {
   // Static Abstract text
-  const abstractText =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris...";
+  const abstractText = "AI Driven Cars";
 
   // Static Publication Details
   const publicationDetails = [
@@ -23,43 +22,7 @@ const PapersMain = () => {
   // Static Authors data
   const authors = [
     {
-      name: "Firstname Middlename Lastname",
-      degree: "Doctorate Degree in Computer Science",
-      university: "Batangas State University-Alangilan Campus",
-      image: "/RProfile.png",
-    },
-    {
-      name: "Firstname Middlename Lastname",
-      degree: "Doctorate Degree in Computer Science",
-      university: "Batangas State University-Alangilan Campus",
-      image: "/RProfile.png",
-    },
-    {
-      name: "Firstname Middlename Lastname",
-      degree: "Doctorate Degree in Computer Science",
-      university: "Batangas State University-Alangilan Campus",
-      image: "/RProfile.png",
-    },
-    {
-      name: "Firstname Middlename Lastname",
-      degree: "Doctorate Degree in Computer Science",
-      university: "Batangas State University-Alangilan Campus",
-      image: "/RProfile.png",
-    },
-    {
-      name: "Firstname Middlename Lastname",
-      degree: "Doctorate Degree in Computer Science",
-      university: "Batangas State University-Alangilan Campus",
-      image: "/RProfile.png",
-    },
-    {
-      name: "Firstname Middlename Lastname",
-      degree: "Doctorate Degree in Computer Science",
-      university: "Batangas State University-Alangilan Campus",
-      image: "/RProfile.png",
-    },
-    {
-      name: "Firstname Middlename Lastname",
+      name: "John Doe ",
       degree: "Doctorate Degree in Computer Science",
       university: "Batangas State University-Alangilan Campus",
       image: "/RProfile.png",
