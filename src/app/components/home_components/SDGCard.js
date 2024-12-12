@@ -13,7 +13,7 @@ const SDGCard = () => {
         papers: 1,
         projects: 0,
         activities: 0,
-        image: "/rms/sdg1.png",
+        image: "/images/rms/sdg1.png",
       },
       {
         id: 2,
