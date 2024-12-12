@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import axios from "@/lib/axiosInstance"; // Adjust the path according to your Axios instance
 import dynamic from "next/dynamic";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import AltmetricBadge from "@/app/components/home_components/AlmetricHome";

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { sdgData as staticSDGData } from "@/app/Data/data"; // Replace with your static placeholder data if used
+import React, { useEffect, useState } from "react"; // Replace with your static placeholder data if used
 
 const SDGCard = () => {
-  const [sdgData, setSdgData] = useState(staticSDGData); // Start with static data
+  const [sdgData, setSdgData] = useState([]); // Start with static data
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
