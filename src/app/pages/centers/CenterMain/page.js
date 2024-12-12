@@ -2,17 +2,21 @@
 
 import React, { useState } from "react";
 import CenterSideBar from "@/app/components/centers_components/CenterSidebar";
-import ShowMore from "@/app/components/ShowMoreButton";
 import KistPark from "@/app/components/centers_components/KistPark";
+import ShowMoreResearchers from "@/app/components/centers_components/ShowMoreResearchers";
 import Researchers from "@/app/components/centers_components/Researchers";
 import { user } from "@/app/Data/data";
 import { users } from "@/app/Data/data2";
 import ResearchOutput from "@/app/components/centers_components/ResearchOutput";
+import ShowMoreResearchOutput from "@/app/components/centers_components/ShowMoreResearchOutput";
 import { userss } from "@/app/Data/data3";
 import Projects from "@/app/components/centers_components/Projects";
+import ShowMoreProjects from "@/app/components/centers_components/ShowMoreProjects";
 import NewsMedia from "@/app/components/centers_components/NewsMedia";
+import ShowMoreArticles from "@/app/components/centers_components/ShowMoreArticles";
 import { user1 } from "@/app/Data/data6";
 import Activities from "@/app/components/centers_components/Activities";
+import ShowMoreActivities from "@/app/components/centers_components/ShowMoreActivities";
 import Prizes from "@/app/components/centers_components/Prizes";
 
 const activityData = [
@@ -77,7 +81,7 @@ const CenterMain = () => {
           </div>
           <br />
           {/* Show More or Show Less for Researchers */}
-          <ShowMore
+          <ShowMoreResearchers
             isExpanded={isResearchersExpanded}
             onToggle={() => setIsResearchersExpanded(!isResearchersExpanded)}
           />
@@ -131,7 +135,7 @@ const CenterMain = () => {
           </div>
           <br />
           {/* Show More or Show Less for Research Outputs */}
-          <ShowMore
+          <ShowMoreResearchOutput
             isExpanded={isResearchOutputExpanded}
             onToggle={() =>
               setIsResearchOutputExpanded(!isResearchOutputExpanded)
@@ -170,7 +174,7 @@ const CenterMain = () => {
           </div>
           <br />
           {/* Show More or Show Less for Projects */}
-          <ShowMore
+          <ShowMoreProjects
             isExpanded={isProjectsExpanded}
             onToggle={() => setIsProjectsExpanded(!isProjectsExpanded)}
           />
@@ -195,7 +199,7 @@ const CenterMain = () => {
           <Activities activities={visibleActivities} />{" "}
           {/* Pass visibleActivities to Activities */}
           {/* Show More or Show Less for Activities */}
-          <ShowMore
+          <ShowMoreActivities
             isExpanded={isActivitiesExpanded}
             onToggle={handleActivitiesToggle} // Pass the toggle function
           />
@@ -225,7 +229,7 @@ const CenterMain = () => {
           </div>
           <br />
           {/* Show More or Show Less for Articles */}
-          <ShowMore
+          <ShowMoreArticles
             isExpanded={isArticlesExpanded}
             onToggle={handleArticlesToggle} // Pass the toggle function
           />
