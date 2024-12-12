@@ -1,38 +1,25 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import AltmetricBadges from "./AltmetricBadges";
+import React from "react";
 import { GoDownload } from "react-icons/go";
 import { FaEye } from "react-icons/fa";
+import AltmetricBadges from "./AltmetricBadges";
 
-const Card2 = ({ userId }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const Card2 = () => {
+  // Hardcoded static data
+  const user = {
+    id: 1,
+    title: "Advancing Renewable Energy Technologies",
+    researchInfo:
+      "A groundbreaking study focused on the development of sustainable and efficient renewable energy systems.",
+    progress: 75, // Progress percentage
+    sdg: ["SDG 7: Affordable and Clean Energy", "SDG 13: Climate Action"],
+    downloads: 120,
+    views: 340,
+    image: "/path/to/static/image.png", // Replace with your static image path
+    doi: "10.1234/example.doi",
+  };
 
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
-
-  useEffect(() => {
-    axios
-      .get(`/papers}`)
-      .then((response) => {
-        setUser(response.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError("No data available");
-        setLoading(false);
-      });
-  }, [userId]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   const progressLength = (user.progress / 100) * circumference;
   const remainingLength = circumference - progressLength;
 

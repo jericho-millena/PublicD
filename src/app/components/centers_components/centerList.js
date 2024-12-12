@@ -11,7 +11,7 @@ const Card = ({ user }) => {
           {/* Image */}
           <img
             className="h-40 w-55 object-cover mb-4 md:mb-0 md:mr-5"
-            src={image}
+            src="/PublicD/socials/kist.png"
             alt={name}
           />
           {/* Text content */}

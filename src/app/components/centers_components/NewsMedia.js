@@ -1,31 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from "react";
 
-const NewsMedia = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get('/newsmedia'); // Replace with your API endpoint
-        setUser(response.data); // Assuming response is a single object for the user
-      } catch (err) {
-        setError('Failed to fetch user data');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserData();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-
-  if (!user) return <p>No user data available.</p>;
-
+const NewsMedia = ({ user }) => {
   const { name, campus, campus1, image } = user;
 
   return (
@@ -37,9 +12,14 @@ const NewsMedia = () => {
           alt={name} // Alt text for image
         />
         <div className="flex-1">
-          <h2 className="text-xl font-semibold mb-1 ml-5 mt-4">{name}</h2> {/* Name of the researcher/topic */}
-          <h2 className="text-xs text-gray-600 mb-1 ml-5 mt-4">{campus}</h2> {/* Campus link */}
-          <p className="text-m mb-1 ml-5 mt-4">{campus1}</p> {/* Description or other info */}
+          <h2 className="text-xl font-semibold mb-1 ml-5 mt-4">{name}</h2>{" "}
+          {/* Name of the researcher/topic */}
+          <h2 className="text-xs text-gray-600 mb-1 ml-5 mt-4">
+            {campus}
+          </h2>{" "}
+          {/* Campus link */}
+          <p className="text-m mb-1 ml-5 mt-4">{campus1}</p>{" "}
+          {/* Description or other info */}
         </div>
       </div>
     </div>

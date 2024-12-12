@@ -1,40 +1,44 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 
 const Activities = () => {
-  const [activityData, setActivityData] = useState([]);
-  const [projectDetails, setProjectDetails] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const activityData = [
+    { count: 1234, label: "Reviewed Article" },
+    { count: 90, label: "Hosting Event" },
+    { count: 9012, label: "Oral Presentation" },
+    { count: 123, label: "Invited Talk" },
+  ];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get("/activities"); // Replace with your API endpoint
-
-        // Assuming data structure:
-        // { activities: [...], projects: [...] }
-        const { activities, projects } = response.data;
-
-        setActivityData(activities);
-        setProjectDetails(projects);
-      } catch (err) {
-        setError("Failed to load activities data");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  const projectDetails = [
+    {
+      projectName: "Project Name / Title",
+      speaker: "John Doe (Speaker)",
+      date: "April 12, 2023",
+      activity: "Invited Talk",
+    },
+    {
+      projectName: "Project Name / Title",
+      speaker: "John Doe (Speaker)",
+      date: "April 12, 2023",
+      activity: "Invited Talk",
+    },
+    {
+      projectName: "Project Name / Title",
+      speaker: "John Doe (Speaker)",
+      date: "April 12, 2023",
+      activity: "Invited Talk",
+    },
+    {
+      projectName: "Project Name / Title",
+      speaker: "John Doe (Speaker)",
+      date: "April 12, 2023",
+      activity: "Invited Talk",
+    },
+  ];
 
   return (
     <div className="activities">
+      {/* Header */}
+
       {/* Activity Cards in One Line */}
       <div className="flex justify-end mt-4 gap-6">
         {activityData.map((activity, index) => (
