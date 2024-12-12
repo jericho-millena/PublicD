@@ -1,123 +1,144 @@
-"use client"
+"use client";
 
-import React from "react";
-import SideBar from "@/app/components/papers_component/Sidebar";
-import ResearchActivity from "@/app/components/papers_component/ResearchActivity";
-import ShowMoreButtonP from "@/app/components/papers_component/ShowMoreButtonP";
-import { user2 } from "@/app/Data/data7"; // Import the authors data from data7.js
+import React, { useState, useEffect } from "react";
+import PaperP from "@/app/components/papers_component/paperP";
+import { users } from "@/app/Data/data2";
+import FilterOptions from "@/app/components/FilterOptions";
 
-const PapersMain = () => {
+export default function Paper() {
+  const [filteredUsers, setFilteredUsers] = useState(users);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filters, setFilters] = useState({
+    publicationYear: [],
+    language: [],
+  });
+  const [showFilters, setShowFilters] = useState(false); // State to manage hamburger menu toggle
+
+  // Handle the filters being applied
+  const handleFilters = (filters) => {
+    console.log("Active Filters:", filters);
+    setFilters(filters); // Update filters state
+
+    // Apply filters
+    let filtered = users;
+
+    if (filters.publicationYear?.length) {
+      filtered = filtered.filter((u) =>
+        filters.publicationYear.includes(u.publicationYear)
+      );
+    }
+
+    if (filters.language?.length) {
+      filtered = filtered.filter((u) => filters.language.includes(u.language));
+    }
+
+    // Apply the search query filter
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (u) =>
+          u.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          u.researchInfo.toLowerCase().includes(searchQuery.toLowerCase()) // Search in title and research info
+      );
+    }
+
+    setFilteredUsers(filtered);
+  };
+
+  // Function to handle search input
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    // Filter users based on the search query
+    const filtered = users.filter((u) => {
+      return (
+        u.title.toLowerCase().includes(query.toLowerCase()) || // Search in the title
+        u.researchInfo.toLowerCase().includes(query.toLowerCase()) // Search in the researchInfo
+      );
+    });
+
+    // Combine search with other filters
+    setFilteredUsers(filtered);
+  };
+
+  // Effect to handle initial data setup (e.g., when filters change)
+  useEffect(() => {
+    handleFilters(filters); // Reapply filters when the page loads or the filters are changed
+  }, [filters]);
+
   return (
-    <div className="flex flex-col lg:flex-row h-full">
-      {/* Sidebar */}
-      <div className="w-full lg:w-1/4">
-        <SideBar />
-      </div>
-
-      <div className="w-full lg:w-3/4 p-4">
-        <div className="py-2">
-          {/* Search */}
-          <div className="flex justify-end mb-4">
-            <div className="flex items-center w-full lg:w-96 border border-gray-400 text-gray-700 rounded-lg shadow-md bg-white hover:bg-gray-200">
+    <div className="p-4 sm:p-6 md:p-8">
+      <nav className="bg-white-600 p-4">
+        <div className="max-w-4xl mx-auto flex justify-center">
+          <form
+            className="relative w-full max-w-xl flex items-center"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <div className="relative flex-grow">
               <input
                 type="text"
+                className="w-full p-2 pl-10 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="Search"
-                className="flex-grow px-4 py-2 text-gray-700 bg-transparent outline-none"
+                value={searchQuery}
+                onChange={handleSearch}
               />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-700 mr-2"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
+              <button
+                type="submit"
+                className="absolute right-0 top-0 bottom-0 px-3 text-gray-600 hover:text-gray-700 focus:outline-none"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M10 2a8 8 0 105.293 13.707l3.414 3.414a1 1 0 001.414-1.414l-3.414-3.414A8 8 0 0010 2zM5 10a5 5 0 1110 0A5 5 0 015 10z"
-                  clipRule="evenodd"
-                />
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                  />
+                </svg>
+                <span className="sr-only">Filter</span>
+              </button>
             </div>
-          </div>
+          </form>
+        </div>
+      </nav>
 
-          {/* Research Activity */}
-          <div className="py-5">
-            <h1 className="text-2xl text-black-800">Research activity within the year (142)</h1>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4 mt-10">
-            <div className="flex items-center justify-center w-full h-48 col-span-2">
-              <ResearchActivity />
-            </div>
-          </div>
+      <div className="flex flex-col md:flex-row">
+        {/* Hamburger menu for filters */}
+        <div className="w-full md:w-1/4 p-4 md:p-6">
+          <button
+            className="block md:hidden bg-gray-300 text-gray-700 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            onClick={() => setShowFilters(!showFilters)} // Toggle filters visibility on small screens
+          >
+            Show Filters
+          </button>
 
-          {/* Abstract */}
-          <div className="pt-5 pb-8">
-            <h1 className="mt-20 text-2xl text-black-800">Abstract</h1>
-            <p className="text-s text-black-800">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at
-              sollicitudin mauris...
-            </p>
+          {/* Filter options (visible only when showFilters is true or on larger screens) */}
+          <div
+            className={`md:block ${
+              showFilters ? "block" : "hidden"
+            } border border-gray-200 rounded-lg`}
+          >
+            <FilterOptions onApplyFilters={handleFilters} />
           </div>
+        </div>
 
-          {/* Publication Details */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-4">
-            <div className="flex flex-col justify-center w-full h-28 col-span-2 mt-11">
-              <div className="text-m text-black-800">
-                <span className="semi-bold">Language</span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">Article Number</span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">Journal</span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">Volume</span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">Issue Number</span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">Publication Status</span>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-center w-full h-28 col-span-2 mt-11">
-              <div className="text-m text-black-800">
-                <span className="semi-bold">English</span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">36</span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">
-                  Lorem Ipsum Archives of Electronics
-                </span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">40</span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">1</span>
-              </div>
-              <div className="text-s text-black-800 mt-2">
-                <span className="semi-bold">Not yet published</span>
-              </div>
-            </div>
+        <div className="w-full md:w-3/4 p-4 md:p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12">
+            {filteredUsers.length === 0 ? (
+              <div>No results found</div>
+            ) : (
+              filteredUsers.map((userData) => (
+                <PaperP key={PaperP} user={{ PaperP }} />
+              ))
+            )}
           </div>
-
-          {/* About the Authors */}
-          <div className="pt-5 pb-8">
-            <h1 className="mt-20 text-2xl text-black-800">About the Authors</h1>
-            {/* ShowMoreButtonP component to handle visibility of authors */}
-            <ShowMoreButtonP authors={user2} />
-          </div>
-          
         </div>
       </div>
     </div>
   );
-};
-
-export default PapersMain;
+}
