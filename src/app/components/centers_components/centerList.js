@@ -2,7 +2,10 @@ const Card = ({ user }) => {
   const { name, campus, image } = user;
 
   return (
-    <a href="/pages/centers/CenterMain" className="items-center bg-white hover:bg-gray-100 relative rounded-lg shadow-md cursor-pointer transition-all">
+    <a
+      href="/PublicD/pages/centers/CenterMain"
+      className="items-center bg-white hover:bg-gray-100 relative rounded-lg shadow-md cursor-pointer transition-all"
+    >
       <div className=" max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
         <div className="group flex flex-col md:flex-row items-center p-5">
           {/* Image */}

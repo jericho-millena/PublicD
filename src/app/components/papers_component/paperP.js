@@ -5,33 +5,32 @@ import { GoDownload } from "react-icons/go";
 import { FaEye } from "react-icons/fa";
 
 const Card2 = ({ userId }) => {
-  const [user, setUser] = useState(null);  
-  const [loading, setLoading] = useState(true);  
-  const [error, setError] = useState(null);     
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
-    
     axios
-      .get(`/papers}`) 
+      .get(`/papers}`)
       .then((response) => {
-        setUser(response.data);  
-        setLoading(false);       
+        setUser(response.data);
+        setLoading(false);
       })
       .catch((err) => {
         setError("No data available");
-        setLoading(false);  
+        setLoading(false);
       });
-  }, [userId]);  
+  }, [userId]);
 
   if (loading) {
-    return <div>Loading...</div>;  
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;  
+    return <div>{error}</div>;
   }
 
   const progressLength = (user.progress / 100) * circumference;
@@ -39,7 +38,7 @@ const Card2 = ({ userId }) => {
 
   return (
     <a
-      href="/pages/papers/papers2"
+      href="/PublicD/pages/papers/papers2"
       className="flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 p-4 space-y-4 md:space-y-0 md:space-x-4 w-full max-w-3xl"
     >
       {/* Progress Circle */}
