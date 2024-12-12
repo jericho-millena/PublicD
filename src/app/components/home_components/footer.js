@@ -30,7 +30,10 @@ const Footer = () => {
                   </p>
                   <div className="flex">
                     {" "}
-                    <a href="#" className="mr-4">
+                    <a
+                      href="https://www.facebook.com/BatStateUTheNEU?mibextid=ZbWKwL"
+                      className="mr-4"
+                    >
                       <Image
                         src="/socials/facebook.png"
                         alt="Facebook"
@@ -38,7 +41,10 @@ const Footer = () => {
                         height={30}
                       />
                     </a>
-                    <a href="#" className="mr-4">
+                    <a
+                      href="https://x.com/BatStateUTheNEU?t=Vsn9UIoAAQp4Xh_3QGppVQ&s=09"
+                      className="mr-4"
+                    >
                       <Image
                         src="/socials/x.png"
                         alt="Twitter"
@@ -46,7 +52,10 @@ const Footer = () => {
                         height={30}
                       />
                     </a>
-                    <a href="#" className="mr-4">
+                    <a
+                      href="https://youtube.com/@batstateutheneu?si=LT5sgFQwZvAP1dir"
+                      className="mr-4"
+                    >
                       <Image
                         src="/socials/youtube.png"
                         alt="YouTube"
@@ -54,7 +63,10 @@ const Footer = () => {
                         height={30}
                       />
                     </a>
-                    <a href="#" className="mr-4">
+                    <a
+                      href="https://www.tiktok.com/@batstateutheneu?_t=8s8yq9smcNe&_r=1"
+                      className="mr-4"
+                    >
                       <Image
                         src="/socials/tiktok.png"
                         alt="TikTok"
@@ -62,7 +74,7 @@ const Footer = () => {
                         height={30}
                       />
                     </a>
-                    <a href="#">
+                    <a href="https://www.linkedin.com/school/batstateutheneu/">
                       <Image
                         src="/socials/linkedin.png"
                         alt="LinkedIn"
