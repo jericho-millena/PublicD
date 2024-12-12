@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Mark this as a client-side component
 
 import React, { useState } from "react";
 import AuthorsData from "@/app/components/papers_component/Authorsdata";
@@ -18,7 +18,7 @@ const ShowMoreButtonP = ({ authors = [] }) => {
   return (
     <div>
       {/* Render authors data only if authors are available */}
-      {authors.length > 0 ? (
+      {authors && authors.length > 0 ? (
         <AuthorsData authors={visibleAuthors} />
       ) : (
         <p>No authors available</p> // Fallback message if no authors are passed

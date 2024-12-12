@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Mark this as a client-side component
 
 import React from "react";
 import SideBar from "@/app/components/papers_component/Sidebar";
