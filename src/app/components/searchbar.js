@@ -1,6 +1,29 @@
-// components/Navbar.js
+import { useState } from "react";
+import { user } from "@/app/Data/data"; // Assuming 'user' is your data file
 
 const Navbar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState(user);
+
+  const handleSearch = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+
+    if (query === "") {
+      setFilteredUsers(user); // Reset to all users if search is empty
+    } else {
+      const filtered = user.filter((item) => {
+        // Check if any field matches the query (name, campus, topic)
+        return (
+          item.name.toLowerCase().includes(query.toLowerCase()) ||
+          item.campus.toLowerCase().includes(query.toLowerCase()) ||
+          item.topic.toLowerCase().includes(query.toLowerCase())
+        );
+      });
+      setFilteredUsers(filtered); // Update filtered users
+    }
+  };
+
   return (
     <nav className="bg-red-600 p-4">
       <div className="max-w-4xl mx-auto flex justify-center">
@@ -9,7 +32,9 @@ const Navbar = () => {
             <input
               type="text"
               className="w-full p-2 pl-10 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-              placeholder="Search"
+              placeholder="Search authors or research papers"
+              value={searchQuery}
+              onChange={handleSearch}
             />
             <button
               type="submit"
@@ -33,6 +58,30 @@ const Navbar = () => {
             </button>
           </div>
         </form>
+      </div>
+
+      {/* Display search results */}
+      <div className="mt-4 max-w-4xl mx-auto">
+        {filteredUsers.length > 0 ? (
+          <ul>
+            {filteredUsers.map((user) => (
+              <li key={user.id} className="flex items-center space-x-4 mb-4">
+                <img
+                  src={user.image}
+                  alt={user.name}
+                  className="w-12 h-12 rounded-full"
+                />
+                <div>
+                  <h3 className="font-semibold">{user.name}</h3>
+                  <p className="text-sm text-gray-500">{user.campus}</p>
+                  <p className="text-xs text-gray-400">{user.topic}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-center text-gray-500">No results found</p>
+        )}
       </div>
     </nav>
   );
