@@ -7,7 +7,8 @@ import ShowMoreButtonP from "@/app/components/papers_component/ShowMoreButtonP";
 
 const PapersMain = () => {
   // Static Abstract text
-  const abstractText = "AI Driven Cars";
+  const abstractText =
+    "The development of AI-driven cars represents a significant advancement in the field of autonomous transportation. This research paper explores the role of artificial intelligence in revolutionizing the automotive industry, particularly focusing on self-driving technology, machine learning algorithms, and vehicle autonomy. By analyzing the integration of sensors, computer vision, and real-time data processing, the study examines how AI systems enable vehicles to perceive their environment, make decisions, and navigate complex road conditions without human intervention. The paper also investigates the ethical, legal, and safety concerns associated with AI-driven cars, as well as the potential impact on urban mobility and the economy. Additionally, the research highlights ongoing challenges in achieving full autonomy, such as improving reliability, addressing regulatory frameworks, and ensuring cybersecurity. Overall, this study provides a comprehensive overview of the current state of AI-driven car technologies and explores the future implications of their widespread adoption in transforming transportation systems worldwide.";
 
   // Static Publication Details
   const publicationDetails = [
@@ -25,7 +26,7 @@ const PapersMain = () => {
       name: "John Doe ",
       degree: "Doctorate Degree in Computer Science",
       university: "Batangas State University-Alangilan Campus",
-      image: "/RProfile.png",
+      image: "/PublicD/RProfile.png",
     },
   ];
 
