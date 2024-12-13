@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import PaperP from "@/app/components/papers_component/paperP";
-import FilterOptions from "@/app/components/FilterOptions";
+import FilterOptions from "@/app/components/profile_components/FilterAuthor";
 
 export default function Paper() {
   const users = [
