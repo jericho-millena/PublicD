@@ -35,6 +35,7 @@ const Navbar = () => {
   const handleSelect = (selectedItem) => {
     setSearchQuery(selectedItem.name); // Set selected name in search input
     setFilteredData([]); // Close the dropdown
+    window.location.href = "/PublicD/pages/profile/ProfileMain"; // Navigate using an anchor tag
   };
 
   return (
