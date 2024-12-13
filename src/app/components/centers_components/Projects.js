@@ -8,7 +8,7 @@ const Projects = ({ project }) => {
 
   return (
     <a
-      href="/pages/projects/ProjectMain"
+      href="/PublicD/pages/projects/ProjectMain"
       className="flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 p-4 space-y-4 md:space-y-0 md:space-x-4 w-full max-w-3xl"
     >
       {/* Progress Circle */}

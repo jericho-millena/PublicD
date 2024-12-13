@@ -1,10 +1,10 @@
 export const userss = [
   {
     id: 1,
-    title: "Advancing Renewable Energy Technologies",
-    progress: 45.2,
+    title: "AI in Healthcare",
+    progress: 50.5,
     researchInfo:
-      "This project focuses on developing innovative solar panel technologies to enhance efficiency and reduce costs for widespread adoption.",
+      "This project focuses on the development of AI-driven autonomous vehicles. which will enhance safety, efficiency, and the overall driving experience.",
     sdg: ["Affordable and Clean Energy", "Climate Action"],
     link: "/research/1",
   },
