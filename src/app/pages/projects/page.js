@@ -6,7 +6,8 @@ import { userss } from "@/app/Data/data3";
 import FilterOptions from "@/app/components/FilterOptions";
 
 export default function Profile() {
-  const [filteredUsers, setFilteredUsers] = useState(user);
+  // Initialize filteredUsers with userss, not 'user'
+  const [filteredUsers, setFilteredUsers] = useState(userss);
   const [searchQuery, setSearchQuery] = useState(""); // State for the search input
 
   // Function to handle filters
@@ -50,7 +51,7 @@ export default function Profile() {
     setSearchQuery(query);
 
     // Filter users based on the search query
-    const filtered = user.filter((u) =>
+    const filtered = userss.filter((u) =>
       u.name.toLowerCase().includes(query.toLowerCase())
     );
 
@@ -107,7 +108,7 @@ export default function Profile() {
 
         <div>
           <div className="grid grid-cols-1 gap-10 items-center">
-            {/* Step 4: Map through filteredUsers instead of userss */}
+            {/* Map through filteredUsers instead of userss */}
             {filteredUsers.map((userData) => (
               <ProjectList key={userData.id} user={userData} />
             ))}
