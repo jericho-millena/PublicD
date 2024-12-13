@@ -1,4 +1,9 @@
-import { user } from "@/app/Data/data"; // Adjust the path based on your folder structure
+"use client";
+
+import React, { useState } from "react";
+import ProfileList from "@/app/components/profile_components/ProfileList";
+import { user } from "@/app/Data/data";
+import FilterOptions from "@/app/components/FilterOptions";
 
 export default function Profile() {
   const [filteredUsers, setFilteredUsers] = useState(user);
@@ -8,13 +13,25 @@ export default function Profile() {
   const handleFilters = (filters) => {
     console.log("Active Filters:", filters);
 
-    let filtered = user; // Make sure the data source is correct
+    // If no filters are applied, reset to the default user list
+    let filtered = user;
 
-    // Apply the filters based on researchUnit (if it exists and is an array)
-    if (filters.researchUnit && filters.researchUnit.length > 0) {
-      filtered = filtered.filter((u) =>
-        filters.researchUnit.includes(u.researchUnit)
-      );
+    if (
+      filters.publicationYear?.length ||
+      filters.language?.length
+      // Add checks for other filter categories as needed
+    ) {
+      if (filters.publicationYear?.length) {
+        filtered = filtered.filter((u) =>
+          filters.publicationYear.some((year) => u.publicationYear === year)
+        );
+      }
+
+      if (filters.language?.length) {
+        filtered = filtered.filter((u) =>
+          filters.language.some((language) => u.language === language)
+        );
+      }
     }
 
     // Apply the search query filter
@@ -24,7 +41,6 @@ export default function Profile() {
       );
     }
 
-    // Update the state with the filtered users
     setFilteredUsers(filtered);
   };
 
@@ -39,7 +55,6 @@ export default function Profile() {
     );
 
     // Combine search with other filters
-    handleFilters({ researchUnit: filteredUsers.map((u) => u.researchUnit) });
     setFilteredUsers(filtered);
   };
 
@@ -77,6 +92,7 @@ export default function Profile() {
                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                   />
                 </svg>
+                <span className="sr-only">Filter</span>
               </button>
             </div>
           </form>
