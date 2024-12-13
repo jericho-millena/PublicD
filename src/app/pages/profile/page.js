@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import ProfileList from "@/app/components/profile_components/ProfileList";
-import { user } from "@/app/Data/data";
+import { user } from "@/app/Data/data"; // Assuming user data is stored here
 import FilterOptions from "@/app/components/FilterOptions";
 
 export default function Profile() {
@@ -13,25 +13,26 @@ export default function Profile() {
   const handleFilters = (filters) => {
     console.log("Active Filters:", filters);
 
-    // If no filters are applied, reset to the default user list
     let filtered = user;
 
-    if (
-      filters.publicationYear?.length ||
-      filters.language?.length
-      // Add checks for other filter categories as needed
-    ) {
-      if (filters.publicationYear?.length) {
-        filtered = filtered.filter((u) =>
-          filters.publicationYear.some((year) => u.publicationYear === year)
-        );
-      }
+    // Filter by Research Unit
+    if (filters.researchUnit?.length) {
+      filtered = filtered.filter((u) =>
+        filters.researchUnit.includes(u.researchUnit)
+      );
+    }
 
-      if (filters.language?.length) {
-        filtered = filtered.filter((u) =>
-          filters.language.some((language) => u.language === language)
-        );
-      }
+    // Apply other filters (e.g., publicationYear, language, etc.)
+    if (filters.publicationYear?.length) {
+      filtered = filtered.filter((u) =>
+        filters.publicationYear.some((year) => u.publicationYear === year)
+      );
+    }
+
+    if (filters.language?.length) {
+      filtered = filtered.filter((u) =>
+        filters.language.some((language) => u.language === language)
+      );
     }
 
     // Apply the search query filter
