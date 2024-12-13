@@ -15,7 +15,7 @@ export default function Profile() {
 
     let filtered = user;
 
-    // Filter by Research Unit (as a string)
+    // Ensure researchUnit is defined and not empty
     if (filters.researchUnit && filters.researchUnit.length > 0) {
       filtered = filtered.filter((u) =>
         filters.researchUnit.includes(u.researchUnit)
