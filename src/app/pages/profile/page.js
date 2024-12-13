@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import ProfileList from "@/app/components/profile_components/ProfileList";
 import { user } from "@/app/Data/data"; // Assuming user data is stored here
-import FilterOptions from "@/app/components/profile_components/FilterAuthor";
+import FilterOptions from "@/app/components/profile_components/FilterAuthor"; // Ensure this is correctly imported
 
 export default function Profile() {
   const [filteredUsers, setFilteredUsers] = useState(user);
@@ -15,23 +15,10 @@ export default function Profile() {
 
     let filtered = user;
 
-    // Filter by Research Unit
-    if (filters.researchUnit?.length) {
+    // Filter by Research Unit (as a string)
+    if (filters.researchUnit && filters.researchUnit.length > 0) {
       filtered = filtered.filter((u) =>
         filters.researchUnit.includes(u.researchUnit)
-      );
-    }
-
-    // Apply other filters (e.g., publicationYear, language, etc.)
-    if (filters.publicationYear?.length) {
-      filtered = filtered.filter((u) =>
-        filters.publicationYear.some((year) => u.publicationYear === year)
-      );
-    }
-
-    if (filters.language?.length) {
-      filtered = filtered.filter((u) =>
-        filters.language.some((language) => u.language === language)
       );
     }
 
@@ -93,7 +80,6 @@ export default function Profile() {
                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                   />
                 </svg>
-                <span className="sr-only">Filter</span>
               </button>
             </div>
           </form>
