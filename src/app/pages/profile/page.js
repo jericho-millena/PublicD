@@ -1,9 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
-import ProfileList from "@/app/components/profile_components/ProfileList";
-import { user } from "@/app/Data/data"; // Assuming user data is stored here
-import FilterOptions from "@/app/components/profile_components/FilterAuthor"; // Ensure this is correctly imported
+import { user } from "@/app/Data/data"; // Adjust the path based on your folder structure
 
 export default function Profile() {
   const [filteredUsers, setFilteredUsers] = useState(user);
@@ -13,9 +8,9 @@ export default function Profile() {
   const handleFilters = (filters) => {
     console.log("Active Filters:", filters);
 
-    let filtered = user;
+    let filtered = user; // Make sure the data source is correct
 
-    // Ensure researchUnit is defined and not empty
+    // Apply the filters based on researchUnit (if it exists and is an array)
     if (filters.researchUnit && filters.researchUnit.length > 0) {
       filtered = filtered.filter((u) =>
         filters.researchUnit.includes(u.researchUnit)
@@ -29,6 +24,7 @@ export default function Profile() {
       );
     }
 
+    // Update the state with the filtered users
     setFilteredUsers(filtered);
   };
 
@@ -43,6 +39,7 @@ export default function Profile() {
     );
 
     // Combine search with other filters
+    handleFilters({ researchUnit: filteredUsers.map((u) => u.researchUnit) });
     setFilteredUsers(filtered);
   };
 

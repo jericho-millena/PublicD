@@ -8,13 +8,13 @@ export const navbarItems = [
   { id: 6, label: "Centers", link: `${basePath}/pages/centers` },
 ];
 
-export const user = [
+const user = [
   {
     id: 1,
     name: "John Doe",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSueJ3H_hybo6F2Budlg4UsSENERnpWarVKIDQvnsffvA&s",
-    researchUnit: "KIST Park",
+    researchUnit: "KIST Park", // Ensure this field is correct
     topic: "Patient",
   },
 ];
