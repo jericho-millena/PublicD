@@ -32,14 +32,6 @@ const Navbar = () => {
               <span className="sr-only">Filter</span>
             </button>
           </div>
-          {/* Add space between search bar and filter dropdown */}
-          <div className="ml-4">
-            <select className="p-2 border border-black text-white rounded-lg text-sm bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </select>
-          </div>
         </form>
       </div>
     </nav>
