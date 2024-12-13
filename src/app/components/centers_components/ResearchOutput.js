@@ -92,18 +92,6 @@ const ResearchOutput = ({ user }) => {
         </div>
       </div>
 
-      {/* Image and PlumX Metrics (only for research 1, 4, 6) */}
-      {(user.id === 1 || user.id === 4 || user.id === 6) && (
-        <div className="flex-none flex flex-col items-center mt-4 md:mt-0">
-          <img
-            src={user.image}
-            alt={user.title}
-            className="w-11 h-14 object-contain"
-          />
-          <p className="text-sm text-gray-500 mt-2">PlumX Metrics</p>
-        </div>
-      )}
-
       {/* Altmetric Badge */}
       {user.doi && (
         <div className="altmetric-badge mt-2">

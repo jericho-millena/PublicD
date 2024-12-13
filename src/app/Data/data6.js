@@ -12,38 +12,11 @@ export const navbarItems = [
 export const user1 = [
   {
     id: 1,
-    name: "Research Topic",
-    image: "/socials/medicine.png",
+    name: "Breakthrough in Medicine: New Treatment Offers Hope",
+    image: "/PublicD/socials/medicine.png",
     campus:
       "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
     campus1:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
-  },
-  {
-    id: 2,
-    name: "Research Topic",
-    image: "/socials/medicine.png",
-    campus:
-      "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
-    campus1:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
-  },
-  {
-    id: 2,
-    name: "Research Topic",
-    image: "/socials/medicine.png",
-    campus:
-      "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
-    campus1:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
-  },
-  {
-    id: 2,
-    name: "Research Topic",
-    image: "/socials/medicine.png",
-    campus:
-      "https://www.figma.com/file/kmGXrxat6MwkKu7J0F4CUd/RMS--Researcher's-Porta...",
-    campus1:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque metus orci, ut rhoncus felis elementum ac. Mauris at sollicitudin mauris. Nulla a tristique purus. Donec odio sapien.",
+      "The campus is at the forefront of innovative medical research, with state-of-the-art laboratories and collaboration spaces for students and researchers alike. This facility brings together experts from various fields of medicine, biotechnology, and healthcare, fostering groundbreaking research projects that aim to address some of the most pressing health challenges globally. From cancer therapies to cutting-edge genetic engineering, the campus remains dedicated to advancing knowledge and providing solutions that have real-world impact. With a rich history of achievement and a forward-thinking vision, it continues to be a leader in medical research and education.",
   },
 ];
