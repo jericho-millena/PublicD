@@ -1,70 +1,88 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PaperP from "@/app/components/papers_component/paperP";
-import { users } from "@/app/Data/data2"; // Assuming data2 is the data source
 import FilterOptions from "@/app/components/FilterOptions";
 
-export default function Profile() {
-  const [filteredUsers, setFilteredUsers] = useState(users); // Use 'users' from data2
-  const [searchQuery, setSearchQuery] = useState(""); // State for the search input
+export default function Paper() {
+  const users = [
+    {
+      id: 7,
+      title: "AI Driven Cars",
+      researchInfo:
+        "AI in the world of vehicles is a game changer. It is a technology that is set to revolutionize the automotive industry.",
+      sdg: ["No Poverty"],
+      link: "/research/7",
+      downloads: 200,
+      views: 500,
+      publicationYear: "2024",
+      language: "English",
+      doi: "10.1000/xyz123",
+    },
+  ];
 
-  // Function to handle filters
-  const handleFilters = (filters) => {
-    console.log("Active Filters:", filters);
-
-    // If no filters are applied, reset to the default user list
-    let filtered = users; // Use 'users' instead of 'user'
-
-    if (
-      filters.publicationYear?.length ||
-      filters.language?.length
-      // Add checks for other filter categories as needed
-    ) {
-      if (filters.publicationYear?.length) {
-        filtered = filtered.filter((u) =>
-          filters.publicationYear.some((year) => u.publicationYear === year)
-        );
-      }
-
-      if (filters.language?.length) {
-        filtered = filtered.filter((u) =>
-          filters.language.some((language) => u.language === language)
-        );
-      }
-    }
-
-    // Apply the search query filter
-    if (searchQuery) {
-      filtered = filtered.filter((u) =>
-        u.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    setFilteredUsers(filtered);
-  };
+  const [filteredUsers, setFilteredUsers] = useState(users); // Start with the hardcoded paper
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filters, setFilters] = useState({
+    publicationYear: [],
+    language: [],
+  });
+  const [showFilters, setShowFilters] = useState(false); // Manage filter visibility on smaller screens
 
   // Function to handle search input
   const handleSearch = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
 
-    // Filter users based on the search query
-    const filtered = users.filter((u) =>
-      u.name.toLowerCase().includes(query.toLowerCase())
-    );
+    // Apply search query and existing filters
+    const filtered = users.filter((user) => {
+      const matchesSearchQuery =
+        user.title.toLowerCase().includes(query.toLowerCase()) ||
+        user.researchInfo.toLowerCase().includes(query.toLowerCase());
+      const matchesFilters =
+        (!filters.publicationYear.length ||
+          filters.publicationYear.includes(user.publicationYear)) &&
+        (!filters.language.length || filters.language.includes(user.language));
 
-    // Combine search with other filters
+      return matchesSearchQuery && matchesFilters;
+    });
+
     setFilteredUsers(filtered);
   };
 
+  // Handle filters being applied
+  const handleFilters = (newFilters) => {
+    setFilters(newFilters);
+
+    // Apply filters and search query
+    const filtered = users.filter((user) => {
+      const matchesSearchQuery =
+        user.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.researchInfo.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesFilters =
+        (!newFilters.publicationYear.length ||
+          newFilters.publicationYear.includes(user.publicationYear)) &&
+        (!newFilters.language.length ||
+          newFilters.language.includes(user.language));
+
+      return matchesSearchQuery && matchesFilters;
+    });
+
+    setFilteredUsers(filtered);
+  };
+
+  // Reapply filters whenever the filters or search query changes
+  useEffect(() => {
+    handleFilters(filters);
+  }, [filters, searchQuery]);
+
   return (
-    <div className="p-8">
-      <nav className="bg-white-600 p-4">
+    <div className="p-4 sm:p-6 md:p-8">
+      <nav className="bg-white p-4">
         <div className="max-w-4xl mx-auto flex justify-center">
           <form
             className="relative w-full max-w-xl flex items-center"
-            onSubmit={(e) => e.preventDefault()} // Prevent form submission
+            onSubmit={(e) => e.preventDefault()}
           >
             <div className="relative flex-grow">
               <input
@@ -72,7 +90,7 @@ export default function Profile() {
                 className="w-full p-2 pl-10 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="Search"
                 value={searchQuery}
-                onChange={handleSearch} // Update searchQuery state on input change
+                onChange={handleSearch}
               />
               <button
                 type="submit"
@@ -99,18 +117,35 @@ export default function Profile() {
         </div>
       </nav>
 
-      <div className="flex">
-        <div className="w-1/4">
-          <FilterOptions onApplyFilters={handleFilters} />
+      <div className="flex flex-col md:flex-row">
+        {/* Filters Section */}
+        <div className="w-full md:w-1/4 p-4 md:p-6">
+          <button
+            className="block md:hidden bg-gray-300 text-gray-700 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            Show Filters
+          </button>
+
+          <div
+            className={`md:block ${
+              showFilters ? "block" : "hidden"
+            } border border-gray-200 rounded-lg`}
+          >
+            <FilterOptions onApplyFilters={handleFilters} />
+          </div>
         </div>
 
-        {/* Centering the cards */}
-        <div className="w-3/4 p-4">
-          <div className="grid grid-cols-1 gap-10 items-center">
-            {/* Map over the filtered users instead of the entire users array */}
-            {filteredUsers.map((userData) => (
-              <PaperP key={userData.id} user={userData} />
-            ))}
+        {/* Display Filtered Results */}
+        <div className="w-full md:w-3/4 p-4 md:p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12">
+            {filteredUsers.length === 0 ? (
+              <div>No results found</div>
+            ) : (
+              filteredUsers.map((userData) => (
+                <PaperP key={userData.id} user={userData} />
+              ))
+            )}
           </div>
         </div>
       </div>

@@ -2,43 +2,45 @@
 
 import React, { useState } from "react";
 import ProjectList from "@/app/components/project_components/ProjectList";
-import { userss } from "@/app/Data/data3";
 import FilterOptions from "@/app/components/FilterOptions";
 
+// Hardcoded project data
+const userss = [
+  {
+    id: 1,
+    title: "Project 1: AI in Healthcare",
+    progress: 50.5,
+    researchInfo:
+      "This project focuses on integrating AI technologies into healthcare systems to improve diagnosis accuracy and patient care. It explores machine learning algorithms for predictive health analytics.",
+    sdg: [
+      "Good Health and Well-Being",
+      "Industry, Innovation & Infrastructure",
+    ],
+    link: "/research/1",
+  },
+];
+
 export default function Profile() {
-  // Initialize filteredUsers with userss, not 'user'
+  // Initialize filteredUsers with the hardcoded data
   const [filteredUsers, setFilteredUsers] = useState(userss);
   const [searchQuery, setSearchQuery] = useState(""); // State for the search input
+  const [filters, setFilters] = useState({ sdg: [] }); // State to manage filters
 
-  // Function to handle filters
-  const handleFilters = (filters) => {
-    console.log("Active Filters:", filters);
-
-    // If no filters are applied, reset to the default user list
+  // Function to handle filters and search
+  const handleFiltersAndSearch = (filters, searchQuery) => {
     let filtered = userss;
 
-    if (
-      filters.publicationYear?.length ||
-      filters.language?.length
-      // Add checks for other filter categories as needed
-    ) {
-      if (filters.publicationYear?.length) {
-        filtered = filtered.filter((u) =>
-          filters.publicationYear.some((year) => u.publicationYear === year)
-        );
-      }
-
-      if (filters.language?.length) {
-        filtered = filtered.filter((u) =>
-          filters.language.some((language) => u.language === language)
-        );
-      }
+    // Apply filters
+    if (filters.sdg?.length) {
+      filtered = filtered.filter((u) =>
+        filters.sdg.some((sdg) => u.sdg.includes(sdg))
+      );
     }
 
     // Apply the search query filter
     if (searchQuery) {
       filtered = filtered.filter((u) =>
-        u.name.toLowerCase().includes(searchQuery.toLowerCase())
+        u.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
@@ -50,13 +52,14 @@ export default function Profile() {
     const query = e.target.value;
     setSearchQuery(query);
 
-    // Filter users based on the search query
-    const filtered = userss.filter((u) =>
-      u.name.toLowerCase().includes(query.toLowerCase())
-    );
+    // Reapply filters and search together
+    handleFiltersAndSearch(filters, query);
+  };
 
-    // Combine search with other filters
-    setFilteredUsers(filtered);
+  // Function to handle filter changes
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+    handleFiltersAndSearch(newFilters, searchQuery);
   };
 
   return (
@@ -103,7 +106,7 @@ export default function Profile() {
       <div className="flex">
         {/* Filter Section */}
         <div className="w-1/4">
-          <FilterOptions onApplyFilters={handleFilters} />
+          <FilterOptions onApplyFilters={handleFilterChange} />
         </div>
 
         <div>

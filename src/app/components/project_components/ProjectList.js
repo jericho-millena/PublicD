@@ -1,15 +1,29 @@
 import React from "react";
 
-const Card2 = ({ user }) => {
+const Card2 = ({ userId }) => {
+  // Static user data (example)
+  const user = {
+    id: userId,
+    title: "Project 1: AI in Healthcare",
+    progress: 50.5,
+    researchInfo:
+      "This project focuses on integrating AI technologies into healthcare systems to improve diagnosis accuracy and patient care. It explores machine learning algorithms for predictive health analytics.",
+    sdg: [
+      "Good Health and Well-Being",
+      "Industry, Innovation & Infrastructure",
+    ],
+  };
+
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
+
   const progressLength = (user.progress / 100) * circumference;
   const remainingLength = circumference - progressLength;
 
   return (
     <a
-      href="/PublicD/pages/projects/ProjectMain"
-      className="flex flex-col items-centnaer bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-30 h-95 hover:bg-gray-100 relative"
+      href="/pages/projects/ProjectMain"
+      className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-30 h-95 hover:bg-gray-100 relative"
     >
       <div className="flex-none mr-4">
         <div className="w-20 h-20 relative">
