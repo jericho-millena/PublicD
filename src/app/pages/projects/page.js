@@ -1,11 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ProjectList from "@/app/components/project_components/ProjectList";
 import { userss } from "@/app/Data/data3";
 import FilterOptions from "@/app/components/FilterOptions";
 
 export default function Projects() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredUsers = userss.filter((userData) => {
+    return userData.name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
   return (
     <div className="p-8">
       <nav className="bg-white-600 p-4">
@@ -16,6 +26,8 @@ export default function Projects() {
                 type="text"
                 className="w-full p-2 pl-10 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="Search"
+                value={searchQuery}
+                onChange={handleSearch}
               />
               <button
                 type="submit"
@@ -41,14 +53,15 @@ export default function Projects() {
           </form>
         </div>
       </nav>
+
       <div className="flex">
         <div className="w-1/4">
           <FilterOptions />
         </div>
+
         <div>
           <div className="grid grid-cols-1 gap-10 items-center">
-            {" "}
-            {userss.map((userData) => (
+            {filteredUsers.map((userData) => (
               <ProjectList key={userData.id} user={userData} />
             ))}
           </div>
