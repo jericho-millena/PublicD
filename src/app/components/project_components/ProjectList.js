@@ -22,7 +22,7 @@ const Card2 = ({ userId }) => {
 
   return (
     <a
-      href="/pages/projects/ProjectMain"
+      href="/PublicD//pages/projects/ProjectMain"
       className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-30 h-95 hover:bg-gray-100 relative"
     >
       <div className="flex-none mr-4">
