@@ -6,14 +6,19 @@ import { userss } from "@/app/Data/data3";
 import FilterOptions from "@/app/components/FilterOptions";
 
 export default function Projects() {
+  // Step 1: State for search query
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Step 2: Search handler to update search query
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
 
+  // Step 3: Filter users based on the search query
   const filteredUsers = userss.filter((userData) => {
-    return userData.name.toLowerCase().includes(searchQuery.toLowerCase());
+    // Check if userData.name exists and filter based on it
+    const name = userData.name?.toLowerCase() || ""; // Safeguard with optional chaining and default to an empty string
+    return name.includes(searchQuery.toLowerCase());
   });
 
   return (
@@ -27,7 +32,7 @@ export default function Projects() {
                 className="w-full p-2 pl-10 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
                 placeholder="Search"
                 value={searchQuery}
-                onChange={handleSearch}
+                onChange={handleSearch} // Update searchQuery state on input change
               />
               <button
                 type="submit"
@@ -61,6 +66,7 @@ export default function Projects() {
 
         <div>
           <div className="grid grid-cols-1 gap-10 items-center">
+            {/* Step 4: Map through filteredUsers instead of userss */}
             {filteredUsers.map((userData) => (
               <ProjectList key={userData.id} user={userData} />
             ))}
