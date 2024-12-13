@@ -4,7 +4,7 @@ const Card2 = ({ userId }) => {
   // Static user data (example)
   const user = {
     id: userId,
-    title: "Project 1: AI in Healthcare",
+    title: "AI in Healthcare",
     progress: 50.5,
     researchInfo:
       "This project focuses on integrating AI technologies into healthcare systems to improve diagnosis accuracy and patient care. It explores machine learning algorithms for predictive health analytics.",
