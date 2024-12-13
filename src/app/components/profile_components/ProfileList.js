@@ -12,7 +12,7 @@ const ProfileList = ({ user }) => {
         <img class="mr-2 mt-5 h-13 w-20 rounded-full" src={image} alt={name} />
         <div class="ltr:ml-3">
           <h2 className="text-xl font-semibold mb-0 mt-6">{name}</h2>
-          <p className="text-xs text-gray-600">{campus}</p>
+          <p className="text-xs text-gray-600">{researchUnit}</p>
         </div>
       </div>
       <div className="mb-2 mt-2 ml-5 w-20 bg-red-700 rounded-lg overflow-hidden shadow-sm p-1 flex flex-col items-center">

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import ProfileList from "@/app/components/profile_components/ProfileList";
 import { user } from "@/app/Data/data"; // Assuming user data is stored here
-import FilterOptions from "@/app/components/FilterOptions";
+import FilterOptions from "@/app/components/profile_components/FilterAuthor";
 
 export default function Profile() {
   const [filteredUsers, setFilteredUsers] = useState(user);
