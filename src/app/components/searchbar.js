@@ -1,41 +1,50 @@
 import { useState } from "react";
-import { user } from "./data"; // Assuming 'user' is your data file
+
+const data = [
+  {
+    id: 1,
+    name: "John Doe",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSueJ3H_hybo6F2Budlg4UsSENERnpWarVKIDQvnsffvA&s",
+    campus: "Batangas State University - Alangilan Campus",
+    topic: "Patient",
+  },
+];
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   const handleSearch = (event) => {
     const query = event.target.value;
     setSearchQuery(query);
 
     if (query === "") {
-      setFilteredUsers([]); // Clear suggestions when search is empty
+      setFilteredData([]); // Clear suggestions when search is empty
     } else {
-      const filtered = user.filter(
+      const filtered = data.filter(
         (item) =>
-          // Check if name, campus, or topic includes the query
           item.name.toLowerCase().includes(query.toLowerCase()) ||
           item.campus.toLowerCase().includes(query.toLowerCase()) ||
           item.topic.toLowerCase().includes(query.toLowerCase())
       );
-      setFilteredUsers(filtered);
+      setFilteredData(filtered);
     }
   };
 
-  const handleSelect = (user) => {
-    setSearchQuery(user.name); // Fill the search bar with the selected name
-    setFilteredUsers([]); // Close the dropdown
+  const handleSelect = (selectedItem) => {
+    setSearchQuery(selectedItem.name); // Set selected name in search input
+    setFilteredData([]); // Close the dropdown
   };
 
   return (
     <nav className="bg-red-600 p-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto flex justify-center">
         <div className="relative w-full max-w-xl">
           <input
             type="text"
-            className="w-full p-2 pl-10 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            placeholder="Search authors or research papers"
+            className="w-full p-2 pl-10 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 bg-white"
+            placeholder="Search by name, campus, or topic"
             value={searchQuery}
             onChange={handleSearch}
           />
@@ -61,23 +70,23 @@ const Navbar = () => {
           </button>
 
           {/* Suggestions Dropdown */}
-          {filteredUsers.length > 0 && (
-            <ul className="absolute left-0 right-0 bg-white border border-gray-300 rounded-lg mt-1 z-10 max-h-60 overflow-y-auto shadow-lg">
-              {filteredUsers.map((user) => (
+          {filteredData.length > 0 && (
+            <ul className="absolute left-0 right-0 bg-white border border-gray-300 rounded-lg mt-1 z-10 max-h-60 overflow-y-auto shadow-lg bg-opacity-150">
+              {filteredData.map((item) => (
                 <li
-                  key={user.id}
-                  onClick={() => handleSelect(user)}
+                  key={item.id}
+                  onClick={() => handleSelect(item)}
                   className="p-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-4"
                 >
                   <img
-                    src={user.image}
-                    alt={user.name}
+                    src={item.image}
+                    alt={item.name}
                     className="w-8 h-8 rounded-full"
                   />
                   <div>
-                    <p className="font-medium">{user.name}</p>
-                    <p className="text-sm text-gray-500">{user.campus}</p>
-                    <p className="text-xs text-gray-400">{user.topic}</p>
+                    <p className="font-medium">{item.name}</p>
+                    <p className="text-sm text-gray-500">{item.campus}</p>
+                    <p className="text-xs text-gray-400">{item.topic}</p>
                   </div>
                 </li>
               ))}
