@@ -14,7 +14,7 @@ export const user = [
     name: "John Doe",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSueJ3H_hybo6F2Budlg4UsSENERnpWarVKIDQvnsffvA&s",
-    researchUnit: "STEER Hub",
+    researchUnit: "KIST Park",
     topic: "Patient",
   },
 ];
