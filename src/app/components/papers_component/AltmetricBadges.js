@@ -20,7 +20,7 @@ const AltmetricBadges = ({ doi }) => {
     <div>
       <div
         className="altmetric-embed"
-        data-badge-type="donut" // Use donut type for small badge
+        data-badge-type="medium-donut" // Use donut type for small badge
         data-doi={doi} // Dynamic DOI
         data-condensed="true" // Condensed badge style
         data-hide-no-mentions="true" // Hide if no mentions

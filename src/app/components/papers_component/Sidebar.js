@@ -5,6 +5,7 @@ import Progressbar from "./Progressbar";
 import ResearchStatistics from "./ResearchStatistics";
 import PapersChart from "./PapersChart";
 import AltmetricBadges from "./AltmetricBadges";
+import DownloadPDF from "./downloadPdf";
 
 export default function SideBar() {
   const percentage = 66; // Example percentage value
@@ -40,11 +41,6 @@ export default function SideBar() {
           </div>
           <div className="grid grid-cols-3 gap-4 mb-4 mr-10">
             <div className="flex items-center w-full h-28 col-span-5">
-              <img
-                src="/image30.png"
-                alt="Image 30"
-                className="w-20 h-20" // Adjust size as needed
-              />
               <div className="grid grid-cols-3 gap-20 ml-6">
                 <div className="flex items-center justify-center w-full h-28 col-span-2">
                   {/* Insert the AltmetricBadge here */}
@@ -125,7 +121,7 @@ export default function SideBar() {
               Download Link
             </span>
             <div className="text-m text-black-800">
-              <span className="semi-bold">https://www.figma.com/file/...</span>
+              <DownloadPDF />{" "}
             </div>
 
             <span className="flex items-center py-2 text-2xl mt-9 text-gray-900 rounded-lg border-gray-300">
