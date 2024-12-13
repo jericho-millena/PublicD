@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-red-600 p-4">
-      <div className="flex justify-center items-center h-screen">
+      <div className="max-w-4xl mx-auto">
         <div className="relative w-full max-w-xl">
           <input
             type="text"
