@@ -5,27 +5,67 @@ import ProjectList from "@/app/components/project_components/ProjectList";
 import { userss } from "@/app/Data/data3";
 import FilterOptions from "@/app/components/FilterOptions";
 
-export default function Projects() {
-  // Step 1: State for search query
-  const [searchQuery, setSearchQuery] = useState("");
+export default function Profile() {
+  const [filteredUsers, setFilteredUsers] = useState(user);
+  const [searchQuery, setSearchQuery] = useState(""); // State for the search input
 
-  // Step 2: Search handler to update search query
-  const handleSearch = (event) => {
-    setSearchQuery(event.target.value);
+  // Function to handle filters
+  const handleFilters = (filters) => {
+    console.log("Active Filters:", filters);
+
+    // If no filters are applied, reset to the default user list
+    let filtered = userss;
+
+    if (
+      filters.publicationYear?.length ||
+      filters.language?.length
+      // Add checks for other filter categories as needed
+    ) {
+      if (filters.publicationYear?.length) {
+        filtered = filtered.filter((u) =>
+          filters.publicationYear.some((year) => u.publicationYear === year)
+        );
+      }
+
+      if (filters.language?.length) {
+        filtered = filtered.filter((u) =>
+          filters.language.some((language) => u.language === language)
+        );
+      }
+    }
+
+    // Apply the search query filter
+    if (searchQuery) {
+      filtered = filtered.filter((u) =>
+        u.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredUsers(filtered);
   };
 
-  // Step 3: Filter users based on the search query
-  const filteredUsers = userss.filter((userData) => {
-    // Check if userData.name exists and filter based on it
-    const name = userData.name?.toLowerCase() || ""; // Safeguard with optional chaining and default to an empty string
-    return name.includes(searchQuery.toLowerCase());
-  });
+  // Function to handle search input
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    // Filter users based on the search query
+    const filtered = user.filter((u) =>
+      u.name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    // Combine search with other filters
+    setFilteredUsers(filtered);
+  };
 
   return (
     <div className="p-8">
       <nav className="bg-white-600 p-4">
         <div className="max-w-4xl mx-auto flex justify-center">
-          <form className="relative w-full max-w-xl flex items-center">
+          <form
+            className="relative w-full max-w-xl flex items-center"
+            onSubmit={(e) => e.preventDefault()} // Prevent form submission
+          >
             <div className="relative flex-grow">
               <input
                 type="text"
@@ -60,8 +100,9 @@ export default function Projects() {
       </nav>
 
       <div className="flex">
+        {/* Filter Section */}
         <div className="w-1/4">
-          <FilterOptions />
+          <FilterOptions onApplyFilters={handleFilters} />
         </div>
 
         <div>
