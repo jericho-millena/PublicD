@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { user } from "./data"; // Assuming 'user' is your data file
+import { user } from "@/app/Data/data"; // Assuming 'user' is your data file
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
