@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Import axios
 import AltmetricBadges from "./AltmetricBadges";
 import { GoDownload } from "react-icons/go";
 import { FaEye } from "react-icons/fa";
 
-const Card2 = ({ user }) => {
+const Card2 = ({ userId }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch user data based on userId
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(`/paperp`); // Replace with actual API URL and userId parameter
+      setUser(response.data); // Set the fetched user data
+      setLoading(false); // Set loading to false after data is fetched
+    } catch (err) {
+      setError("Failed to load user data.");
+      setLoading(false);
+    }
+  };
+
+  // Fetch user data when the component mounts or when userId changes
+  useEffect(() => {
+    fetchUserData();
+  }, [userId]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Show loading message
+  }
+
+  if (error) {
+    return <div>{error}</div>; // Show error message
+  }
+
+  if (!user) {
+    return <div>No user data available.</div>; // If no user data is found
+  }
+
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
   const progressLength = (user.progress / 100) * circumference;

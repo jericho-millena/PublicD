@@ -5,7 +5,7 @@ import PaperP from "@/app/components/papers_component/paperP";
 import { users } from "@/app/Data/data2"; 
 import FilterOptions from "@/app/components/FilterOptions";
 
-export default function Profile() {
+export default function Paper() {
   const [filteredUsers, setFilteredUsers] = useState(users);
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
