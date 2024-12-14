@@ -1,6 +1,9 @@
-# Public Dashboard
+<div align="center" style="border: none;">
+  <h1 style="margin: 0; padding: 0;">Public Dashboard</h1>
+</div>
 
-**Team Name**: DataVision Lab
+
+
 
 The Public Dashboard is a user-friendly web interface designed for viewing different research projects across various campuses. It allows users to explore a wealth of information about research initiatives while promoting accessibility and transparency. This dashboard is open to anyone and does not require authentication.
 
@@ -46,7 +49,7 @@ To set up the Public Dashboard locally, follow these steps:
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/username/PublicD.git
-   cd public-dashboard
+   cd PublicD
    ```
 
 2. **Install Dependencies**:
