@@ -52,7 +52,7 @@ export default function PSideBar() {
           {/* Profile Image */}
           <div className="flex justify-left ml-2 my-2 lg:my-6">
             <img
-              src="/RProfile.png"
+              src="./RProfile.png"
               alt="Profile"
               className={`rounded-full transition-all duration-300 ${
                 isCollapsed ? "h-12 w-12" : " h-14 w-14 lg:h-20 lg:w-20"
