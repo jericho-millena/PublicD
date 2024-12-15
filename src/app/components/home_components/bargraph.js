@@ -6,6 +6,7 @@ const BarGraph = () => {
   const [data, setData] = useState([]);
   const [chartWidth, setChartWidth] = useState(0);
   const [error, setError] = useState(false);
+  const [isMobile, setIsMobile] = useState(false); // Track if it's mobile
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,48 +24,13 @@ const BarGraph = () => {
             "Research Paper": 1,
             Activities: 1,
           },
-          {
-            name: "Lemery",
-            Projects: 0,
-            "Research Paper": 0,
-            Activities: 0,
-          },
-          {
-            name: "Lipa",
-            Projects: 0,
-            "Research Paper": 0,
-            Activities: 0,
-          },
-          {
-            name: "Arasof",
-            Projects: 0,
-            "Research Paper": 0,
-            Activities: 0,
-          },
-          {
-            name: "Balayan",
-            Projects: 0,
-            "Research Paper": 0,
-            Activities: 0,
-          },
-          {
-            name: "San Jose",
-            Projects: 0,
-            "Research Paper": 0,
-            Activities: 0,
-          },
-          {
-            name: "Malvar",
-            Projects: 0,
-            "Research Paper": 0,
-            Activities: 0,
-          },
-          {
-            name: "Rosario",
-            Projects: 0,
-            "Research Paper": 0,
-            Activities: 0,
-          },
+          { name: "Lemery", Projects: 0, "Research Paper": 0, Activities: 0 },
+          { name: "Lipa", Projects: 0, "Research Paper": 0, Activities: 0 },
+          { name: "Arasof", Projects: 0, "Research Paper": 0, Activities: 0 },
+          { name: "Balayan", Projects: 0, "Research Paper": 0, Activities: 0 },
+          { name: "San Jose", Projects: 0, "Research Paper": 0, Activities: 0 },
+          { name: "Malvar", Projects: 0, "Research Paper": 0, Activities: 0 },
+          { name: "Rosario", Projects: 0, "Research Paper": 0, Activities: 0 },
         ];
 
         if (!fetchedData.length) {
@@ -85,9 +51,10 @@ const BarGraph = () => {
     const handleResize = () => {
       const newWidth = window.innerWidth > 1300 ? 1300 : window.innerWidth - 40;
       setChartWidth(newWidth);
+      setIsMobile(window.innerWidth < 768); // Check for mobile width
     };
 
-    handleResize(); // Initialize chart width on mount
+    handleResize(); // Initialize chart width and mobile state on mount
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -115,6 +82,7 @@ const BarGraph = () => {
             tickLine={false}
             stroke="#9b2c2c"
             strokeWidth={2}
+            tick={isMobile ? false : undefined} // Hide tick labels on mobile
           />
           <Tooltip />
           <Bar dataKey="Projects" fill="#9b2c2c" barSize={27} />

@@ -35,7 +35,7 @@ const Footer = () => {
                       className="mr-4"
                     >
                       <Image
-                        src="./socials/facebook.png"
+                        src="/socials/facebook.png"
                         alt="Facebook"
                         width={30}
                         height={30}
@@ -46,7 +46,7 @@ const Footer = () => {
                       className="mr-4"
                     >
                       <Image
-                        src="./socials/x.png"
+                        src="/socials/x.png"
                         alt="Twitter"
                         width={30}
                         height={30}
@@ -57,7 +57,7 @@ const Footer = () => {
                       className="mr-4"
                     >
                       <Image
-                        src="./socials/youtube.png"
+                        src="/socials/youtube.png"
                         alt="YouTube"
                         width={30}
                         height={30}
@@ -68,7 +68,7 @@ const Footer = () => {
                       className="mr-4"
                     >
                       <Image
-                        src="./socials/tiktok.png"
+                        src="/socials/tiktok.png"
                         alt="TikTok"
                         width={30}
                         height={30}
@@ -76,7 +76,7 @@ const Footer = () => {
                     </a>
                     <a href="https://www.linkedin.com/school/batstateutheneu/">
                       <Image
-                        src="./socials/linkedin.png"
+                        src="/socials/linkedin.png"
                         alt="LinkedIn"
                         width={30}
                         height={30}
@@ -90,11 +90,11 @@ const Footer = () => {
           </div>
           <div className="w-full md:w-1/2 flex justify-end">
             <div className="mr-10">
-              <Image src="./rms.png" alt="Image 1" width={170} height={170} />
+              <Image src="/rms.png" alt="Image 1" width={170} height={170} />
             </div>
             <div className="mr-10">
               <Image
-                src="./logon1.png"
+                src="/logon1.png"
                 alt="Image 32"
                 width={170}
                 height={170}
