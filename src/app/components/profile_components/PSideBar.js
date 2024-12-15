@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
 export default function PSideBar() {
+  const basePath = "/PublicD";
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -52,7 +53,7 @@ export default function PSideBar() {
           {/* Profile Image */}
           <div className="flex justify-left ml-2 my-2 lg:my-6">
             <img
-              src="./RProfile.png"
+              src={`${basePath}/RProfile.png`}
               alt="Profile"
               className={`rounded-full transition-all duration-300 ${
                 isCollapsed ? "h-12 w-12" : " h-14 w-14 lg:h-20 lg:w-20"
