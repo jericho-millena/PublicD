@@ -3,7 +3,7 @@ const Card = ({ user }) => {
 
   return (
     <a
-      href="/PublicD/pages/centers/CenterMain"
+      href="/pages/centers/CenterMain"
       className="items-center bg-white hover:bg-gray-100 relative rounded-lg shadow-md cursor-pointer transition-all"
     >
       <div className=" max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
