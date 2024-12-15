@@ -1,37 +1,37 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProfileList from "@/app/components/profile_components/ProfileList";
-import { user } from "@/app/Data/data";
-import FilterOptions from "@/app/components/FilterOptions";
+import { user } from "@/app/Data/data"; // Assuming `user` data exists here
+import FilterOptions from "@/app/components/profile_components/FilterAuthor";
 
 export default function Profile() {
   const [filteredUsers, setFilteredUsers] = useState(user);
   const [searchQuery, setSearchQuery] = useState(""); // State for the search input
+  const [filters, setFilters] = useState({
+    researchUnit: [], // Initial state for filters (researchUnit)
+  });
 
   // Function to handle filters
-  const handleFilters = (filters) => {
-    console.log("Active Filters:", filters);
+  const handleFilters = (newFilters) => {
+    setFilters(newFilters);
+  };
 
-    // If no filters are applied, reset to the default user list
+  // Function to handle search input
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+  };
+
+  useEffect(() => {
+    // Filter users based on both search query and active filters
     let filtered = user;
 
-    if (
-      filters.publicationYear?.length ||
-      filters.language?.length
-      // Add checks for other filter categories as needed
-    ) {
-      if (filters.publicationYear?.length) {
-        filtered = filtered.filter((u) =>
-          filters.publicationYear.some((year) => u.publicationYear === year)
-        );
-      }
-
-      if (filters.language?.length) {
-        filtered = filtered.filter((u) =>
-          filters.language.some((language) => u.language === language)
-        );
-      }
+    // Apply filter logic for researchUnit and other filters
+    if (filters.researchUnit.length > 0) {
+      filtered = filtered.filter((u) =>
+        filters.researchUnit.includes(u.researchUnit)
+      );
     }
 
     // Apply the search query filter
@@ -42,21 +42,7 @@ export default function Profile() {
     }
 
     setFilteredUsers(filtered);
-  };
-
-  // Function to handle search input
-  const handleSearch = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-
-    // Filter users based on the search query
-    const filtered = user.filter((u) =>
-      u.name.toLowerCase().includes(query.toLowerCase())
-    );
-
-    // Combine search with other filters
-    setFilteredUsers(filtered);
-  };
+  }, [searchQuery, filters]); // Re-filter when searchQuery or filters change
 
   return (
     <div className="p-8">
@@ -108,7 +94,7 @@ export default function Profile() {
         {/* Profile Section */}
         <div className="w-3/4 p-4">
           {/* Grid Layout for Profile Cards */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredUsers.map((user) => (
               <ProfileList key={user.id} user={user} />
             ))}

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 const FilterOptions = ({ onApplyFilters }) => {
   const [filters, setFilters] = useState({
-    researchUnit: [],
+    researchUnit: [], // Keeps track of selected research units
   });
   const [showMore, setShowMore] = useState(false);
 
@@ -19,8 +19,8 @@ const FilterOptions = ({ onApplyFilters }) => {
   const handleCheckboxChange = (value) => {
     setFilters((prevFilters) => {
       const newResearchUnits = prevFilters.researchUnit.includes(value)
-        ? prevFilters.researchUnit.filter((unit) => unit !== value) // Remove if already selected
-        : [...prevFilters.researchUnit, value]; // Add if not selected
+        ? prevFilters.researchUnit.filter((unit) => unit !== value)
+        : [...prevFilters.researchUnit, value];
 
       return {
         ...prevFilters,
@@ -29,12 +29,6 @@ const FilterOptions = ({ onApplyFilters }) => {
     });
   };
 
-  // Toggle "Show More" for sections
-  const handleShowMoreClick = () => {
-    setShowMore(!showMore);
-  };
-
-  // Trigger filter update after state changes
   useEffect(() => {
     onApplyFilters(filters); // Update the parent component with current filters
   }, [filters, onApplyFilters]); // Only call onApplyFilters when filters change
@@ -43,7 +37,9 @@ const FilterOptions = ({ onApplyFilters }) => {
     <div className="p-4">
       {/* Research Unit / Center Section */}
       <div className="mb-6">
-        <h3 className="font-semibold text-lg">Research Unit / Center</h3>
+        <h3 className="font-semibold text-sm sm:text-md lg:text-lg">
+          Research Unit / Center
+        </h3>
         <div className="space-y-2">
           {researchUnits.map((unit) => (
             <div key={unit}>
@@ -55,7 +51,7 @@ const FilterOptions = ({ onApplyFilters }) => {
               />
               <label
                 htmlFor={unit.toLowerCase().replace(/\s+/g, "")}
-                className="ml-2 text-sm"
+                className="ml-2 text-xs md:text-sm"
               >
                 {unit}
               </label>
@@ -63,11 +59,6 @@ const FilterOptions = ({ onApplyFilters }) => {
           ))}
         </div>
       </div>
-
-      {/* Optional: Add a "Show More" functionality */}
-      <button className="text-blue-500 mt-2" onClick={handleShowMoreClick}>
-        {showMore ? "Show Less" : "Show More"}
-      </button>
     </div>
   );
 };
