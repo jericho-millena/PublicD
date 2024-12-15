@@ -7,8 +7,9 @@ import axios from "@/lib/axiosInstance"; // Adjust this path to match your Axios
 
 const BarGraph = () => {
   const [data, setData] = useState([]);
-  const [chartWidth, setChartWidth] = useState(1400);
+  const [chartWidth, setChartWidth] = useState(0);
   const [error, setError] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,14 +40,12 @@ const BarGraph = () => {
     const handleResize = () => {
       const newWidth = window.innerWidth > 1300 ? 1300 : window.innerWidth - 40;
       setChartWidth(newWidth);
+      setIsMobile(window.innerWidth < 768); // Check for mobile width
     };
 
-    handleResize(); // Initialize chart width on mount
+    handleResize(); // Initialize chart width and mobile state on mount
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   if (error || data.length === 0) {
@@ -78,6 +77,7 @@ const BarGraph = () => {
             tickLine={false}
             stroke="#9b2c2c"
             strokeWidth={2}
+            tick={isMobile ? false : undefined} // Hide tick labels on mobile
           />
           <Tooltip />
           <Bar dataKey="Projects" fill="#9b2c2c" barSize={27} />
