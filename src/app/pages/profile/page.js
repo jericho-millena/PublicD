@@ -1,28 +1,31 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import axios from "@/lib/axiosInstance"; // Import Axios
 import ProfileList from "@/app/components/profile_components/ProfileList";
-import FilterOptions from "@/app/components/FilterOptions";
-import axios from "@/lib/axiosInstance";
+import FilterOptions from "@/app/components/profile_components/FilterAuthor";
 
 export default function Profile() {
-  const [users, setUsers] = useState([]);
-  const [filteredUsers, setFilteredUsers] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState([]); // Store all users fetched from API
+  const [filteredUsers, setFilteredUsers] = useState([]); // Store filtered users
+  const [searchQuery, setSearchQuery] = useState(""); // State for the search input
+  const [filters, setFilters] = useState({
+    researchUnit: [], // Initial state for filters (researchUnit)
+  });
+  const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
 
+  // Fetch user data from an API
   useEffect(() => {
-    // Fetch user data from API
     const fetchUsers = async () => {
       try {
         const response = await axios.get("/userList"); // Replace with your API endpoint
         setUsers(response.data); // Set fetched users
         setFilteredUsers(response.data); // Initialize filtered users
-        setLoading(false); // Stop loading
+        setLoading(false); // Loading done
       } catch (err) {
-        setError("Failed to load user data. Please try again later.");
-        setLoading(false); // Stop loading
+        console.error("Error fetching users:", err);
+        setLoading(false);
       }
     };
 
@@ -30,25 +33,25 @@ export default function Profile() {
   }, []);
 
   // Function to handle filters
-  const handleFilters = (filters) => {
+  const handleFilters = (newFilters) => {
+    setFilters(newFilters);
+  };
+
+  // Function to handle search input
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+  };
+
+  // Filter users based on search and filters
+  useEffect(() => {
     let filtered = users;
 
-    if (
-      filters.publicationYear?.length ||
-      filters.language?.length
-      // Add checks for other filter categories as needed
-    ) {
-      if (filters.publicationYear?.length) {
-        filtered = filtered.filter((u) =>
-          filters.publicationYear.some((year) => u.publicationYear === year)
-        );
-      }
-
-      if (filters.language?.length) {
-        filtered = filtered.filter((u) =>
-          filters.language.some((language) => u.language === language)
-        );
-      }
+    // Apply filter logic for researchUnit
+    if (filters.researchUnit.length > 0) {
+      filtered = filtered.filter((u) =>
+        filters.researchUnit.includes(u.researchUnit)
+      );
     }
 
     // Apply the search query filter
@@ -59,29 +62,10 @@ export default function Profile() {
     }
 
     setFilteredUsers(filtered);
-  };
+  }, [searchQuery, filters, users]);
 
-  // Function to handle search input
-  const handleSearch = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-
-    // Filter users based on the search query
-    const filtered = users.filter((u) =>
-      u.name.toLowerCase().includes(query.toLowerCase())
-    );
-
-    // Combine search with other filters
-    setFilteredUsers(filtered);
-  };
-
-  if (loading) {
-    return <p className="text-center text-gray-500">Loading...</p>;
-  }
-
-  if (error) {
-    return <p className="text-center text-red-500">{error}</p>;
-  }
+  if (loading) return <p className="text-center">Loading...</p>;
+  if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
     <div className="p-8">
@@ -133,14 +117,10 @@ export default function Profile() {
         {/* Profile Section */}
         <div className="w-3/4 p-4">
           {/* Grid Layout for Profile Cards */}
-          <div className="grid grid-cols-3 gap-4">
-            {filteredUsers.length > 0 ? (
-              filteredUsers.map((user) => (
-                <ProfileList key={user.id} user={user} />
-              ))
-            ) : (
-              <p className="text-center text-gray-500">No users found.</p>
-            )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredUsers.map((user) => (
+              <ProfileList key={user.id} user={user} />
+            ))}
           </div>
         </div>
       </div>
