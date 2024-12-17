@@ -105,7 +105,7 @@ export default function Profile() {
   return (
     <div className="p-2 lg:p-8">
       {/* Search Bar */}
-      <nav className="bg-white-600 p-4 mb-4">
+      <nav className="bg-white-600 p-4 mb-">
         <form
           className="relative w-full max-w-xl mx-auto"
           onSubmit={(e) => e.preventDefault()}
@@ -143,7 +143,7 @@ export default function Profile() {
       {/* Layout */}
       <div className="flex flex-col lg:flex-row">
         {/* Filter Section */}
-        <div className="w-full lg:w-1/4 mb-4 lg:mb-0">
+        <div className="w-auto lg:w-1/4">
           <FilterOptions onApplyFilters={handleFilterChange} />
         </div>
 

@@ -59,13 +59,13 @@ const Card2 = ({
 
       {/* Content: Title and ResearchInfo */}
       <div className="flex flex-col justify-center flex-grow">
-        <div className="mb-1 text-md md:text-lg lg:text-xl font-bold tracking-tight text-gray-900 text-left">
+        <div className="mb-1 text-md md:text-md lg:text-xl font-bold tracking-tight text-gray-900 text-left">
           {title}
         </div>
 
         {/* Research Info */}
         <p
-          className="text-gray-600 text-xs sm:text-sm md:text-base text-left line-clamp-2 sm:line-clamp-3 md:line-clamp-4"
+          className="text-gray-600 text-xs sm:text-sm md:text-md lg:text-base text-left line-clamp-2 md:line-clamp-2 lg:line-clamp-4"
           style={{
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
@@ -88,7 +88,7 @@ const Card2 = ({
               {sdg.map((goal, index) => (
                 <li
                   key={index}
-                  className="text-white bg-red-700 rounded-lg px-2 py-1 mb-1 mr-1 border border-gray-300 text-xs md:text-sm"
+                  className="text-white bg-red-700 rounded-lg md:px-1 lg:px-2 py-1 mb-1 mr-1 border border-gray-300 text-xs lg:text-base"
                   style={{ whiteSpace: "nowrap" }}
                 >
                   {goal}
