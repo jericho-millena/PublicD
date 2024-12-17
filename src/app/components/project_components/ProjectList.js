@@ -16,7 +16,7 @@ const Card2 = ({
 
   return (
     <a
-      href="/pages/projects/ProjectMain"
+      href="/PublicD/pages/projects/ProjectMain"
       className="flex flex-row items-center bg-white border border-gray-200 rounded-lg h-40 shadow hover:bg-gray-100 p-4 w-full"
     >
       {/* Progress Circle */}
