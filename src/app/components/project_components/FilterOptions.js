@@ -10,6 +10,9 @@ const FilterOptions = ({ onApplyFilters }) => {
     researchUnit: [],
   });
 
+  const [showMore, setShowMore] = useState({}); // Tracks "Show More" state
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Tracks dropdown state
+
   // Data for the filters
   const publicationYears = ["2024", "2023", "2022", "2021", "2020", "2019"];
   const typesOfPaper = [
@@ -57,73 +60,138 @@ const FilterOptions = ({ onApplyFilters }) => {
     });
   };
 
+  const toggleShowMore = (key) => {
+    setShowMore((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     onApplyFilters(filters);
   }, [filters, onApplyFilters]);
 
   return (
-    <div className="p-4 space-y-6">
-      {/* Publication Year Section */}
-      <div>
-        <h3 className="font-semibold text-lg mb-2">Publication Year</h3>
-        {publicationYears.map((year) => (
-          <label key={year} className="flex items-center text-sm mb-1">
-            <input
-              type="checkbox"
-              checked={filters.publicationYear.includes(year)}
-              onChange={() => handleCheckboxChange("publicationYear", year)}
-              className="mr-2"
-            />
-            {year}
-          </label>
-        ))}
+    <div className="p-4">
+      {/* Dropdown Toggle Button for mobile and medium screens */}
+      <div className="block lg:hidden mb-4">
+        <button
+          onClick={toggleDropdown}
+          className="w-full text-left text-white font-semibold bg-red-600 hover:bg-red-800 p-2 rounded-md text-md flex justify-between items-center"
+        >
+          Show Filters
+          {isDropdownOpen ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m4.5 15.75 7.5-7.5 7.5 7.5"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m19.5 8.25-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          )}
+        </button>
+
+        {/* Dropdown Content for mobile and medium screens */}
+        {isDropdownOpen && (
+          <div className="mt-2 bg-white shadow p-4 rounded-md space-y-4">
+            {[
+              {
+                label: "Publication Year",
+                key: "publicationYear",
+                data: publicationYears,
+              },
+              {
+                label: "Type of Paper",
+                key: "typeOfPaper",
+                data: typesOfPaper,
+              },
+              {
+                label: "Sustainable Goals",
+                key: "sdg",
+                data: sustainableGoals,
+              },
+              {
+                label: "Research Unit",
+                key: "researchUnit",
+                data: researchUnits,
+              },
+            ].map(({ label, key, data }) => (
+              <div key={key}>
+                <h3 className="font-semibold text-md mb-2">{label}</h3>
+                {data.slice(0, showMore[key] ? data.length : 3).map((item) => (
+                  <label key={item} className="flex items-center text-sm mb-1">
+                    <input
+                      type="checkbox"
+                      checked={filters[key].includes(item)}
+                      onChange={() => handleCheckboxChange(key, item)}
+                      className="mr-2"
+                    />
+                    {item}
+                  </label>
+                ))}
+                {data.length > 3 && (
+                  <button
+                    onClick={() => toggleShowMore(key)}
+                    className="text-sm text-red-600 mt-1"
+                  >
+                    {showMore[key] ? "Show less" : "Show more"}
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Type of Paper Section */}
-      <div>
-        <h3 className="font-semibold text-lg mb-2">Type of Paper</h3>
-        {typesOfPaper.map((type) => (
-          <label key={type} className="flex items-center text-sm mb-1">
-            <input
-              type="checkbox"
-              checked={filters.typeOfPaper.includes(type)}
-              onChange={() => handleCheckboxChange("typeOfPaper", type)}
-              className="mr-2"
-            />
-            {type}
-          </label>
-        ))}
-      </div>
-
-      {/* Sustainable Goals */}
-      <div>
-        <h3 className="font-semibold text-lg mb-2">Sustainable Goals</h3>
-        {sustainableGoals.map((goal) => (
-          <label key={goal} className="flex items-center text-sm mb-1">
-            <input
-              type="checkbox"
-              checked={filters.sdg.includes(goal)}
-              onChange={() => handleCheckboxChange("sdg", goal)}
-              className="mr-2"
-            />
-            {goal}
-          </label>
-        ))}
-      </div>
-
-      {/* Research Unit */}
-      <div>
-        <h3 className="font-semibold text-lg mb-2">Research Unit</h3>
-        {researchUnits.map((unit) => (
-          <label key={unit} className="flex items-center text-sm mb-1">
-            <input
-              type="checkbox"
-              checked={filters.researchUnit.includes(unit)}
-              onChange={() => handleCheckboxChange("researchUnit", unit)}
-              className="mr-2"
-            />
-            {unit}
-          </label>
+      {/* Full Content for Larger Screens */}
+      <div className="hidden lg:block">
+        {[
+          {
+            label: "Publication Year",
+            key: "publicationYear",
+            data: publicationYears,
+          },
+          { label: "Type of Paper", key: "typeOfPaper", data: typesOfPaper },
+          { label: "Sustainable Goals", key: "sdg", data: sustainableGoals },
+          { label: "Research Unit", key: "researchUnit", data: researchUnits },
+        ].map(({ label, key, data }) => (
+          <div key={key} className="mb-4">
+            <h3 className="font-semibold text-md mb-2">{label}</h3>
+            {data.map((item) => (
+              <label key={item} className="flex items-center text-sm mb-1">
+                <input
+                  type="checkbox"
+                  checked={filters[key].includes(item)}
+                  onChange={() => handleCheckboxChange(key, item)}
+                  className="mr-2"
+                />
+                {item}
+              </label>
+            ))}
+          </div>
         ))}
       </div>
     </div>
