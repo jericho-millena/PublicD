@@ -1,6 +1,6 @@
 import { ChevronDown, MapPin } from "lucide-react";
 import React, { useState } from "react";
-import ShowMoreButton from "../ShowMoreButton"; // Adjust the path as needed
+import ShowMoreButton from "../ShowMoreButton";
 
 const authors = [
   {
@@ -14,7 +14,6 @@ const authors = [
 export default function AuthorsPage() {
   const [showMore, setShowMore] = useState(false);
 
-  // Limit the number of authors displayed if "Show More" is not active
   const displayedAuthors = showMore ? authors : authors.slice(0, 3);
 
   const handleShowMoreToggle = () => {
@@ -41,7 +40,6 @@ export default function AuthorsPage() {
         ))}
       </div>
 
-      {/* Show More Button */}
       <ShowMoreButton showMore={showMore} onClick={handleShowMoreToggle} />
     </div>
   );

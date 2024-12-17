@@ -45,7 +45,7 @@ export default function Profile() {
   }, [searchQuery, filters]); // Re-filter when searchQuery or filters change
 
   return (
-    <div className="p-8">
+    <div className="p-2 lg:p-8">
       <nav className="bg-white-600 p-4">
         <div className="max-w-4xl mx-auto flex justify-center">
           <form
@@ -87,12 +87,12 @@ export default function Profile() {
 
       <div className="flex">
         {/* Filter Section */}
-        <div className="w-1/4">
+        <div className="w-1/4 mr-4">
           <FilterOptions onApplyFilters={handleFilters} />
         </div>
 
         {/* Profile Section */}
-        <div className="w-3/4 p-4">
+        <div className="w-3/4">
           {/* Grid Layout for Profile Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredUsers.map((user) => (
