@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import axios from "@/lib/axiosInstance";
 
 const COLORS = [
   "#FCA5A5", // red-300
@@ -13,22 +13,24 @@ const COLORS = [
 export default function ResearchChart() {
   const [data, setData] = useState([]);
   const [totalResearchOutput, setTotalResearchOutput] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
 
+  // Fetch data from the API
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/research-output"); // Replace with your API endpoint
         setData(response.data);
 
-        // Calculate total research output dynamically
+        // Calculate total research output
         const total = response.data.reduce((acc, curr) => acc + curr.value, 0);
         setTotalResearchOutput(total);
+        setLoading(false);
       } catch (err) {
-        setError("Failed to load chart data");
-      } finally {
+        console.error("Error fetching research data:", err);
+        setError("Failed to load chart data.");
         setLoading(false);
       }
     };
@@ -36,22 +38,17 @@ export default function ResearchChart() {
     fetchData();
   }, []);
 
-  // Handler function for mouse enter on pie segments
+  // Handler for active segment hover
   const onPieEnter = (_, index) => {
     setActiveIndex(index);
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div className="text-red-500">{error}</div>;
 
   return (
-    <div className="flex flex-rows items-center">
-      <ResponsiveContainer width="90%" minWidth={300} height={300}>
+    <div className="flex flex-row items-center mb-8">
+      <ResponsiveContainer width="100%" minWidth={300} height={300}>
         <PieChart>
           <Pie
             activeIndex={activeIndex}
@@ -89,10 +86,10 @@ export default function ResearchChart() {
         {data.map((entry, index) => (
           <div key={index} className="flex items-center mb-1">
             <div
-              className="w-4 h-4 mr-2 my-2"
+              className="w-3 h-3 lg:w-4 lg:h-4 mr-1 my-1 lg:mr-2 lg:my-2"
               style={{ backgroundColor: COLORS[index % COLORS.length] }}
             ></div>
-            <span className="text-lg">{entry.name}</span>
+            <span className="text-sm md:text-md lg:text-lg">{entry.name}</span>
           </div>
         ))}
       </div>

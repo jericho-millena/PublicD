@@ -1,95 +1,93 @@
 import React, { useState, useEffect } from "react";
-import axios from "@/lib/axiosInstance";
+import axios from "axios";
 import ShowMoreButton from "../ShowMoreButton";
 
 const ResearchOutputs = () => {
-  const [researchItems, setResearchItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [researchItems, setResearchItems] = useState([]); // State for fetched items
   const [visibleItems, setVisibleItems] = useState(3);
   const [showMore, setShowMore] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(""); // Search input state
+  const [filteredItems, setFilteredItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch research items from API
-    const fetchResearchItems = async () => {
-      try {
-        const response = await axios.get("/research-contribution");
-        setResearchItems(response.data);
-        setFilteredItems(response.data);
-      } catch (err) {
-        setError("Failed to load research items.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchResearchItems();
-
-    // Load the Altmetric script dynamically
+    // Load Altmetric script dynamically
     const script = document.createElement("script");
     script.src = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js";
     script.async = true;
     document.body.appendChild(script);
 
-    // Cleanup the script when the component unmounts
+    // Cleanup script on unmount
     return () => {
       document.body.removeChild(script);
     };
   }, []);
 
+  // Fetch research items from API
   useEffect(() => {
-    // Filter items based on the search query
-    const query = searchQuery.toLowerCase();
+    const fetchResearchItems = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.example.com/research-items"
+        );
+        setResearchItems(response.data);
+        setFilteredItems(response.data); // Initially show all items
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching research items:", err);
+        setError("Failed to load research outputs.");
+        setLoading(false);
+      }
+    };
+
+    fetchResearchItems();
+  }, []);
+
+  useEffect(() => {
+    // Filter research items based on search query
+    const lowercasedQuery = searchQuery.toLowerCase();
     const filtered = researchItems.filter(
       (item) =>
-        item.title.toLowerCase().includes(query) ||
-        item.authors.toLowerCase().includes(query) ||
-        item.tags.some((tag) => tag.toLowerCase().includes(query))
+        item.title.toLowerCase().includes(lowercasedQuery) ||
+        item.authors.toLowerCase().includes(lowercasedQuery) ||
+        item.tags.some((tag) => tag.toLowerCase().includes(lowercasedQuery))
     );
     setFilteredItems(filtered);
   }, [searchQuery, researchItems]);
-
-  useEffect(() => {
-    if (window._altmetric_embed_init) {
-      window._altmetric_embed_init();
-    }
-  }, [filteredItems]);
 
   const handleShowMore = () => {
     setShowMore(!showMore);
     setVisibleItems(showMore ? 3 : filteredItems.length);
   };
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="text-center mt-4 text-gray-600">Loading...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <p className="text-center text-red-500 mt-4">{error}</p>;
   }
 
   return (
-    <div className="w-full items-start max-w-6xl mx-auto">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold flex-grow">Research outputs</h2>
-        <div className="relative ml-auto">
+    <div className="w-full max-w-4xl mx-auto p-4">
+      {/* Header with Search Bar */}
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
+        <h2 className="text-lg md:text-xl lg:text-2xl font-semibold">
+          Research Outputs
+        </h2>
+        <div className="relative w-full sm:w-auto">
           <input
             type="text"
             placeholder="Search more"
             value={searchQuery}
-            onChange={handleSearchChange}
-            className="pl-4 pr-8 py-2 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 w-full max-w-xs"
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-4 pr-10 py-2 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 w-full sm:w-72"
           />
           <span className="absolute right-3 top-2.5 text-gray-500">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -139,6 +137,13 @@ const ResearchOutputs = () => {
       {/* Show More Button */}
       {filteredItems.length > 3 && (
         <ShowMoreButton showMore={showMore} onClick={handleShowMore} />
+      )}
+
+      {/* No Results Message */}
+      {filteredItems.length === 0 && (
+        <p className="text-center text-gray-500 mt-4">
+          No research outputs match your search query.
+        </p>
       )}
     </div>
   );
