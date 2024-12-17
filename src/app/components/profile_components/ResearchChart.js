@@ -24,8 +24,8 @@ export default function ResearchChart() {
   };
 
   return (
-    <div className="flex flex-rows items-center">
-      <ResponsiveContainer width="90%" minWidth={300} height={300}>
+    <div className="flex flex-row items-center mb-8">
+      <ResponsiveContainer width="100%" minWidth={300} height={300}>
         <PieChart>
           <Pie
             activeIndex={activeIndex}
@@ -63,10 +63,10 @@ export default function ResearchChart() {
         {data.map((entry, index) => (
           <div key={index} className="flex items-center mb-1">
             <div
-              className="w-4 h-4 mr-2 my-2"
+              className="w-3 h-3 lg:w-4 lg:h-4 mr-1 my-1 lg:mr-2 lg:my-2"
               style={{ backgroundColor: COLORS[index % COLORS.length] }}
             ></div>
-            <span className="text-lg">{entry.name}</span>
+            <span className="text-sm md:text-md lg:text-lg">{entry.name}</span>
           </div>
         ))}
       </div>
