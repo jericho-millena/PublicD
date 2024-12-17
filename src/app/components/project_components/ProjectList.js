@@ -1,33 +1,28 @@
 import React from "react";
 
-const Card2 = ({ userId }) => {
-  // Static user data (example)
-  const user = {
-    id: userId,
-    title: "AI in Healthcare",
-    progress: 50.5,
-    researchInfo:
-      "This project focuses on integrating AI technologies into healthcare systems to improve diagnosis accuracy and patient care. It explores machine learning algorithms for predictive health analytics.",
-    sdg: [
-      "Good Health and Well-Being",
-      "Industry, Innovation & Infrastructure",
-    ],
-  };
-
+const Card2 = ({
+  title,
+  progress,
+  typeOfPaper,
+  publicationYear,
+  researchInfo,
+  sdg,
+}) => {
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
 
-  const progressLength = (user.progress / 100) * circumference;
+  const progressLength = (progress / 100) * circumference;
   const remainingLength = circumference - progressLength;
 
   return (
     <a
-      href="/PublicD//pages/projects/ProjectMain"
-      className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-30 h-95 hover:bg-gray-100 relative"
+      href="PublicD/pages/projects/ProjectMain"
+      className="flex flex-row items-center bg-white border border-gray-200 rounded-lg h-40 shadow hover:bg-gray-100 p-4 w-full"
     >
-      <div className="flex-none mr-4">
-        <div className="w-20 h-20 relative">
-          {/* Background circle */}
+      {/* Progress Circle */}
+      <div className="flex-shrink-0 w-20 h-20 flex items-center justify-center mr-4">
+        <div className="relative w-full h-full">
+          {/* Background Circle */}
           <svg className="absolute" width="100%" height="100%">
             <circle
               cx="50%"
@@ -38,7 +33,7 @@ const Card2 = ({ userId }) => {
               strokeWidth="4"
             />
           </svg>
-          {/* Progress arc starting at the top */}
+          {/* Progress Arc */}
           <svg
             className="absolute"
             width="100%"
@@ -55,24 +50,44 @@ const Card2 = ({ userId }) => {
               strokeDasharray={`${progressLength} ${remainingLength}`}
             />
           </svg>
-          <span className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-red-500">
-            {user.progress}%
+          <span className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-red-500 font-semibold text-sm">
+            {progress}%
           </span>
         </div>
       </div>
 
-      <div className="flex-grow">
-        <div className="text-left mb-2">
-          <div className="mb-2 text-xl font-bold tracking-tight text-gray-900">
-            {user.title}
-          </div>
-          <p className="text-gray-600 mb-2 text-xs">{user.researchInfo}</p>
-          <div className="sdg-list">
+      {/* Content: Title and ResearchInfo */}
+      <div className="flex flex-col justify-center flex-grow">
+        <div className="mb-1 text-md md:text-lg lg:text-xl font-bold tracking-tight text-gray-900 text-left">
+          {title}
+        </div>
+
+        {/* Research Info */}
+        <p
+          className="text-gray-600 text-xs sm:text-sm md:text-base text-left line-clamp-2 sm:line-clamp-3 md:line-clamp-4"
+          style={{
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+          }}
+        >
+          {researchInfo}
+        </p>
+
+        {/* Research Unit and Languages */}
+        <div className="text-xs text-gray-600 mt-1">
+          <p>{typeOfPaper}</p>
+          <p>Publication Year: {publicationYear}</p>
+        </div>
+
+        {/* SDG List: Hidden on Mobile */}
+        {sdg && sdg.length > 0 && (
+          <div className="hidden sm:block mt-2">
             <ul className="flex flex-wrap">
-              {user.sdg.map((goal, index) => (
+              {sdg.map((goal, index) => (
                 <li
                   key={index}
-                  className="text-black-600 bg-red-500 rounded-lg px-2 py-1 mb-1 border border-black-300 text-xs"
+                  className="text-white bg-red-700 rounded-lg px-2 py-1 mb-1 mr-1 border border-gray-300 text-xs md:text-sm"
                   style={{ whiteSpace: "nowrap" }}
                 >
                   {goal}
@@ -80,7 +95,7 @@ const Card2 = ({ userId }) => {
               ))}
             </ul>
           </div>
-        </div>
+        )}
       </div>
     </a>
   );
