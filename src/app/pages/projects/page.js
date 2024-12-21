@@ -105,7 +105,7 @@ export default function Profile() {
   return (
     <div className="p-2 lg:p-8">
       {/* Search Bar */}
-      <nav className="bg-white-600 p-4 mb-">
+      <nav className="bg-white-600 p-4">
         <form
           className="relative w-full max-w-xl mx-auto"
           onSubmit={(e) => e.preventDefault()}
