@@ -18,7 +18,7 @@ const Card2 = ({
   return (
     <a
       href="/pages/projects/ProjectMain"
-      className="flex flex-row items-center bg-white border border-gray-200 rounded-lg h-40 shadow hover:bg-gray-100 p-4 w-full"
+      className="flex flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 p-4 space-x-4 w-full max-w-3xl"
     >
       {/* Progress Circle */}
       <div className="flex-shrink-0 w-20 h-20 flex items-center justify-center mr-4">

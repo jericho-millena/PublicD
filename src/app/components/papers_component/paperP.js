@@ -3,139 +3,108 @@ import { GoDownload } from "react-icons/go";
 import { FaEye } from "react-icons/fa";
 import AltmetricBadges from "./AltmetricBadges";
 
-// Static data with only one user
-const users = [
-  {
-    id: 7,
-    title: "AI Driven Cars",
-    progress: 75,
-    researchInfo:
-      "AI in the world of vehicles is a game changer. It is a technology that is set to revolutionize the automotive industry.",
-    sdg: ["No Poverty"],
-    link: "/research/7",
-    downloads: 200,
-    views: 500,
-    doi: "10.1000/xyz123",
-  },
-];
+const PaperP = ({ user }) => {
+  const radius = 30;
+  const circumference = 2 * Math.PI * radius;
+  const progressLength = (user.progress / 100) * circumference;
+  const remainingLength = circumference - progressLength;
 
-const Card2 = () => {
   return (
-    <div>
-      {users.map((user) => {
-        const radius = 30;
-        const circumference = 2 * Math.PI * radius;
-        const progressLength = (user.progress / 100) * circumference;
-        const remainingLength = circumference - progressLength;
+    <a
+      href="/pages/papers/papersMain"
+      className="flex flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 p-4 space-x-4 w-full max-w-3xl"
+    >
+      {/* Progress Circle */}
+      {user.progress !== undefined && (
+        <div className="flex-none">
+          <div className="w-16 h-16 relative">
+            <svg className="absolute w-full h-full">
+              <circle
+                cx="50%"
+                cy="50%"
+                r={radius}
+                fill="none"
+                stroke="#e5e7eb" // Light gray
+                strokeWidth="4"
+              />
+            </svg>
+            <svg
+              className="absolute w-full h-full"
+              style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+            >
+              <circle
+                cx="50%"
+                cy="50%"
+                r={radius}
+                fill="none"
+                stroke="#ef4444" // Red
+                strokeWidth="4"
+                strokeDasharray={`${progressLength} ${remainingLength}`}
+              />
+            </svg>
+            <span className="absolute inset-0 flex items-center justify-center text-red-500 font-bold text-sm">
+              {user.progress}%
+            </span>
+          </div>
+        </div>
+      )}
 
-        return (
-          <a
-            href="/PublicD/pages/papers/papersMain"
-            className="flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 p-4 space-y-4 md:space-y-0 md:space-x-4 w-full max-w-3xl"
-          >
-            {/* Progress Circle */}
-            <div className="flex-none">
-              <div className="w-20 h-20 relative">
-                {/* Background circle */}
-                <svg className="absolute" width="100%" height="100%">
-                  <circle
-                    cx="50%"
-                    cy="50%"
-                    r={radius}
-                    fill="none"
-                    stroke="gray"
-                    strokeWidth="4"
-                  />
-                </svg>
-                {/* Progress arc starting at the top */}
-                <svg
-                  className="absolute"
-                  width="100%"
-                  height="100%"
-                  style={{ transform: "rotate(-90deg)" }}
-                >
-                  <circle
-                    cx="50%"
-                    cy="50%"
-                    r={radius}
-                    fill="none"
-                    stroke="red"
-                    strokeWidth="4"
-                    strokeDasharray={`${progressLength} ${remainingLength}`}
-                  />
-                </svg>
-                <span className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-red-500">
-                  {user.progress}%
-                </span>
-              </div>
-            </div>
+      {/* Content Section */}
+      <div className="flex-grow flex flex-col">
+        <div className="text-lg font-bold tracking-tight text-gray-900">
+          {user.title}
+        </div>
+        <p className="text-gray-600 text-sm line-clamp-2 overflow-hidden">
+          {user.researchInfo}
+        </p>
 
-            {/* Content Section */}
-            <div className="flex-grow flex flex-col space-y-2">
-              {/* Research Title */}
-              <div className="text-lg sm:text-xl font-bold tracking-tight text-gray-900">
-                {user.title}
-              </div>
+        {/* SDGs (Hidden in Responsive States) */}
+        <div className="hidden md:flex flex-wrap mt-2 space-x-2">
+          {user.sdg.map((goal, index) => (
+            <span
+              key={index}
+              className="text-white bg-red-700 rounded-lg px-2 py-1 text-xs"
+            >
+              {goal}
+            </span>
+          ))}
+        </div>
 
-              {/* Research Info */}
-              <p className="text-gray-600 text-sm">{user.researchInfo}</p>
+        <div className="mt-2 text-sm text-gray-700">
+          <span className="block">{user.typeOfPaper}</span>
+          <span className="block">
+            Publication Year: {user.publicationYear}
+          </span>
+        </div>
+      </div>
 
-              {/* SDG Goals, Download Icon, and Views Icon */}
-              <div className="sdg-list mt-2 flex flex-wrap items-center space-y-2 sm:space-y-0">
-                <ul className="flex flex-wrap mb-2">
-                  {user.sdg.map((goal, index) => (
-                    <li
-                      key={index}
-                      className="text-white bg-red-500 rounded-lg px-2 py-1 border border-gray-300 text-xs mr-2 mb-2"
-                    >
-                      {goal}
-                    </li>
-                  ))}
-                </ul>
+      {/* Downloads and Views (Hidden in Responsive States) */}
+      <div className="hidden md:flex flex-col items-center space-y-4">
+        {/* Downloads */}
+        <div className="flex items-center space-x-1">
+          <GoDownload className="text-gray-500 text-sm" />
+          {user.downloads && (
+            <span className="text-sm text-gray-600">{user.downloads}</span>
+          )}
+        </div>
 
-                {/* Download Icon and Count */}
-                <div className="flex items-center space-x-1 ml-4">
-                  <GoDownload className="text-gray-500 text-sm cursor-pointer" />
-                  {user.downloads && (
-                    <span className="text-sm text-gray-600">
-                      {user.downloads}
-                    </span>
-                  )}
-                </div>
+        {/* Views */}
+        <div className="flex items-center space-x-1">
+          <FaEye className="text-gray-500 text-sm" />
+          {user.views && (
+            <span className="text-sm text-gray-600">{user.views}</span>
+          )}
+        </div>
+      </div>
 
-                {/* Views Icon and Count */}
-                <div className="flex items-center space-x-1 ml-4">
-                  <FaEye className="text-gray-500 text-sm cursor-pointer" />
-                  {user.views && (
-                    <span className="text-sm text-gray-600">{user.views}</span>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Image and PlumX Metrics (only for specific IDs) */}
-            {(user.id === 1 || user.id === 4 || user.id === 6) && (
-              <div className="flex-none flex flex-col items-center mt-4 md:mt-0">
-                <img
-                  src={user.image || "/image30.png"}
-                  alt={user.title}
-                  className="w-11 h-14 object-contain"
-                />
-                <p className="text-sm text-gray-500 mt-2">PlumX Metrics</p>
-              </div>
-            )}
-
-            {/* Altmetric Badge */}
-            {user.doi && (
-              <div className="altmetric-badge mt-2">
-                <AltmetricBadges doi={user.doi} />
-              </div>
-            )}
-          </a>
-        );
-      })}
-    </div>
+      {/* Altmetric Badge (Hidden on Mobile) */}
+      {user.doi && (
+        <div className="hidden md:block">
+          <AltmetricBadges doi={user.doi} />
+        </div>
+      )}
+    </a>
   );
 };
 
-export default Card2;
+export default PaperP;
