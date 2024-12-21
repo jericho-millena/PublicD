@@ -1,35 +1,42 @@
-// components/ResearchStatistics.js
 import React from "react";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from "recharts";
 
-const ResearchStatistics = ({ percentage, width = 100, height = 100 }) => (
-  <div style={{ display: "flex", alignItems: "center" }}>
-    {/* Progress Bar */}
-    <div style={{ width: `${width}px`, height: `${height}px`, marginRight: "16px" }}>
-      <CircularProgressbar
-        value={percentage}
-        text={`${percentage}%`}
-        styles={buildStyles({
-          strokeLinecap: "butt", // Apply square line caps
-          pathColor: "red",
-          textColor: "black",
-        })}
-      />
-    </div>
+// Data for the chart
+const data = [
+  { name: "Downloads", value: 152, color: "#ff0000" },
+  { name: "Views", value: 48, color: "#808080" },
+];
 
-    {/* Color Legends */}
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-      <div style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}>
-        <div style={{ width: "15px", height: "15px", backgroundColor: "red", marginRight: "8px" }}></div>
-        <span>Downloads</span>
-      </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <div style={{ width: "15px", height: "15px", backgroundColor: "gray", marginRight: "8px" }}></div>
-        <span>Views</span>
-      </div>
+const ResearchStatistics = () => {
+  return (
+    <div className="flex items-start justify-start w-full h-40">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={data}
+            dataKey="value"
+            cx="50%"
+            cy="50%"
+            innerRadius="50%"
+            outerRadius="80%"
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color} />
+            ))}
+          </Pie>
+          <Legend
+            verticalAlign="middle"
+            align="right"
+            layout="vertical"
+            iconType="rect"
+            formatter={(value, entry) => (
+              <span style={{ color: "#4A4A4A" }}>{value}</span>
+            )}
+          />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
-  </div>
-);
+  );
+};
 
 export default ResearchStatistics;

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const ResearchActivity = () => {
   const allMonths = [
@@ -19,17 +19,33 @@ const ResearchActivity = () => {
   ];
 
   const [startIndex, setStartIndex] = useState(0);
-  const monthsPerRow = 8; // Show 8 months per row
+  const [monthsPerRow, setMonthsPerRow] = useState(6); // Default to 6 for lg screens
+
+  useEffect(() => {
+    const updateMonthsPerRow = () => {
+      if (window.innerWidth >= 1024) {
+        setMonthsPerRow(6); // Large screens
+      } else if (window.innerWidth >= 768) {
+        setMonthsPerRow(3); // Medium screens
+      } else {
+        setMonthsPerRow(2); // Small screens
+      }
+    };
+
+    updateMonthsPerRow();
+    window.addEventListener("resize", updateMonthsPerRow);
+    return () => window.removeEventListener("resize", updateMonthsPerRow);
+  }, []);
 
   const handleNext = () => {
     if (startIndex < allMonths.length - monthsPerRow) {
-      setStartIndex(startIndex + monthsPerRow); // Move by 8 months
+      setStartIndex(startIndex + monthsPerRow); // Move by the current monthsPerRow
     }
   };
 
   const handlePrev = () => {
     if (startIndex > 0) {
-      setStartIndex(startIndex - monthsPerRow); // Move by 8 months
+      setStartIndex(startIndex - monthsPerRow); // Move by the current monthsPerRow
     }
   };
 
@@ -79,7 +95,15 @@ const ResearchActivity = () => {
         </button>
 
         {/* Calendar Grid */}
-        <div className="grid grid-cols-8 gap-12 mt-4">
+        <div
+          className={`grid gap-12 mt-4 ${
+            monthsPerRow === 6
+              ? "grid-cols-6"
+              : monthsPerRow === 3
+              ? "grid-cols-3"
+              : "grid-cols-2"
+          }`}
+        >
           {allMonths
             .slice(startIndex, startIndex + monthsPerRow)
             .map((month) => {
@@ -93,7 +117,7 @@ const ResearchActivity = () => {
                     {grid.flat().map((day, index) => (
                       <div
                         key={index}
-                        className={`w-4 h-4 rounded ${
+                        className={`w-4 h-4 lg:rounded ${
                           day && month.activeDays?.includes(day)
                             ? "bg-red-500"
                             : day
