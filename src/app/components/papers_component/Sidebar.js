@@ -24,61 +24,49 @@ export default function SideBar() {
   return (
     <aside
       id="logo-sidebar"
-      className="flex flex-col md:flex-row top-40 left-0 z-40 w-full md:w-70 h-auto border-b-2 border-gray-200 border-r-2"
+      className="flex flex-col top-40 left-0 z-40 w-full h-auto py-4 lg:border-b-2 border-gray-200 border-r-2"
       aria-label="Sidebar"
     >
-      <div className="h-full p-6 bg-white w-full">
-        <span className="flex items-center py-2 text-3xl mt-4 text-gray-900 rounded-lg border-gray-300">
+      <div className="h-full p-2 lg:p-6 bg-white w-full">
+        <span className="flex items-center py-2 text-xl md:text-2xl lg:text-3xl font-semibold mt-4 text-gray-900 rounded-lg border-gray-300">
           AI Driven Cars
         </span>
-        <span className="flex items-center py-2 text-sm text-slate-800 rounded-lg mt-4">
+        <span className="flex items-center pb-2 text-md text-slate-800 rounded-lg">
           John Doe
         </span>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4 mt-9">
-          <div className="flex items-center justify-center w-full h-28 col-span-2">
-            <Progressbar percentage={percentage} width={100} height={120} />
+        <div className="grid grid-cols-3 gap-8 mb-8 mt-8">
+          {/* Progress Circle */}
+          <div className="flex flex-col items-center justify-center pl-12">
+            <Progressbar percentage={percentage} width={100} height={100} />
           </div>
-          <div className="grid grid-cols-3 gap-4 mb-4 mr-10">
-            <div className="flex items-center w-full h-28 col-span-5">
-              <div className="grid grid-cols-3 gap-20 ml-6">
-                <div className="flex items-center justify-center w-full h-28 col-span-2">
-                  {/* Insert the AltmetricBadge here */}
-                  <AltmetricBadges doi={doi} />
-                </div>
-              </div>
-            </div>
+
+          {/* Altmetric Badge */}
+          <div className="flex flex-col items-center justify-center pl-24">
+            <AltmetricBadges doi={doi} />
           </div>
         </div>
 
         {/* Other sections and components... */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <div className="justify-center w-full h-28 col-span-2">
-            <span className="flex items-center py-2 text-2xl mt-9 text-gray-900 rounded-lg border-gray-300">
-              Research Statistics
-            </span>
-          </div>
+        <div>
+          <span className="flex items-center py-2 text-lg md:text-lg lg:text-2xl mt-9 text-gray-900 rounded-lg border-gray-300">
+            Research Statistics
+          </span>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 mb-4 mt-6 ml-8">
-          <div className="items-center rounded w-full h-28">
-            <ResearchStatistics
-              percentage={percentage}
-              width={90}
-              height={120}
-            />
-          </div>
+        <div className="flex items-start justify-start w-full h-36 pr-12">
+          <ResearchStatistics />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="justify-center w-full h-28 col-span-2">
-            <span className="flex items-center py-2 text-xl mt-9 mb-10 text-gray-900 rounded-lg border-gray-300">
+            <span className="flex items-center py-2 text-lg md:text-lg lg:text-2xl mt-9 mb-10 text-gray-900 rounded-lg border-gray-300">
               Downloads and Views per Month
             </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 lg:my-10">
           <div className="flex items-center justify-center rounded w-full h-60 col-span-2">
             <PapersChart />
           </div>
@@ -117,20 +105,20 @@ export default function SideBar() {
         {/* Download Link and Other Related Files */}
         <div className="grid grid-cols-1 gap-4">
           <div className="flex flex-col justify-center mt-6">
-            <span className="flex items-center py-2 text-2xl text-gray-900 rounded-lg border-gray-300">
+            <span className="flex items-center py-2 text-lg md:text-lg lg:text-2xl text-gray-900 rounded-lg border-gray-300">
               Download Link
             </span>
             <div className="text-m text-black-800">
               <DownloadPDF />{" "}
             </div>
 
-            <span className="flex items-center py-2 text-2xl mt-9 text-gray-900 rounded-lg border-gray-300">
+            <span className="flex items-center py-2 text-lg md:text-lg lg:text-2xl mt-9 text-gray-900 rounded-lg border-gray-300">
               Other related files
             </span>
-            <div className="text-s text-black-800 mt-2">
+            <div className="text-sm text-black-800 mt-2">
               <span className="semi-bold">https://www.figma.com/file/...</span>
             </div>
-            <div className="text-s text-black-800 mt-2">
+            <div className="text-sm text-black-800 mt-2">
               <span className="semi-bold">https://www.figma.com/file/...</span>
             </div>
           </div>
