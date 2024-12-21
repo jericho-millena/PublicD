@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const ScrollingBarChart = () => {
-  // Sample Data for All Months (365 Days)
+  // Sample data for 2023
   const data = [
     ...Array.from({ length: 31 }, (_, i) => ({
       day: i + 1,
@@ -78,11 +78,7 @@ const ScrollingBarChart = () => {
     })),
   ];
 
-  // State for the visible range
-  const [startIndex, setStartIndex] = useState(0);
-  const monthsPerPage = 2;
-
-  // Helper: Group data by months
+  // Month details
   const months = [
     { name: "January", days: 31 },
     { name: "February", days: 28 },
@@ -98,7 +94,28 @@ const ScrollingBarChart = () => {
     { name: "December", days: 31 },
   ];
 
-  // Calculate the start and end indices for the current page
+  const [startIndex, setStartIndex] = useState(0); // Controls current start month
+  const [monthsPerPage, setMonthsPerPage] = useState(2); // Default months to show (responsive)
+
+  // Update `monthsPerPage` based on screen size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setMonthsPerPage(1); // Show 1 month for small screens
+      } else {
+        setMonthsPerPage(2); // Show 2 months for larger screens
+      }
+    };
+
+    handleResize(); // Initial resize check
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Helper function to calculate visible data range
   const calculatePageRange = (startMonthIndex) => {
     let start = 0;
     for (let i = 0; i < startMonthIndex; i++) {
@@ -118,7 +135,7 @@ const ScrollingBarChart = () => {
 
   return (
     <div
-      className="relative border p-4"
+      className="relative border lg:p-4"
       style={{
         width: "100%",
         maxWidth: "1600px",
@@ -141,7 +158,7 @@ const ScrollingBarChart = () => {
         <div style={{ width: "100%", height: "200px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
-              data={currentPageData} // Show data for the current page (2 months)
+              data={currentPageData} // Show current month's data
               margin={{
                 top: 10,
                 right: 30,
@@ -158,13 +175,17 @@ const ScrollingBarChart = () => {
                   fill: "maroon",
                 }}
                 label={{
-                  value: `${months[startIndex]?.name} - ${
-                    months[
-                      Math.min(
-                        startIndex + monthsPerPage - 1,
-                        months.length - 1
-                      )
-                    ]?.name
+                  value: `${months[startIndex]?.name}${
+                    monthsPerPage > 1
+                      ? ` - ${
+                          months[
+                            Math.min(
+                              startIndex + monthsPerPage - 1,
+                              months.length - 1
+                            )
+                          ]?.name
+                        }`
+                      : ""
                   }`,
                   position: "bottom",
                   offset: -10,
