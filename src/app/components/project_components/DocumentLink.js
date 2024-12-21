@@ -2,9 +2,11 @@ import React from "react";
 
 export default function Component() {
   return (
-    <div className="p-6 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-6">
+    <div className="p-6 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-3 lg:space-y-6">
       <div className="space-y-2">
-        <h2 className="text-2xl font-bold text-gray-900">Document Link</h2>
+        <h2 className="text-md md:text-lg lg:text-2xl font-bold text-gray-900">
+          Document Link
+        </h2>
         {/* Fixed: Removed nested <a> tag */}
         <a
           href="https://www.figma.com/file/..."
@@ -30,15 +32,17 @@ export default function Component() {
       </div>
 
       <div className="space-y-3">
-        <h2 className="text-2xl font-bold text-gray-900">Topics</h2>
+        <h2 className="text-md md:text-lg lg:text-2xl font-bold text-gray-900">
+          Topics
+        </h2>
         <div className="flex flex-wrap gap-2">
-          <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-full">
+          <span className="px-3 py-1 bg-red-100 text-red-800 text-xs lg:text-sm font-medium rounded-full">
             Industry, Innovation, & Infrastructure
           </span>
-          <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-full">
+          <span className="px-3 py-1 bg-red-100 text-red-800 text-xs lg:text-sm font-medium rounded-full">
             Algorithms
           </span>
-          <span className="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-full">
+          <span className="px-3 py-1 bg-red-100 text-red-800 text-xs lg:text-sm font-medium rounded-full">
             Design
           </span>
         </div>

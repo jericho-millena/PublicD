@@ -11,29 +11,32 @@ const COLORS = ["#fecaca", "#ef4444", "#7f1d1d"]; // Tailwind-compatible colors
 
 export default function FundingPage() {
   return (
-    
-    <div className="flex w-full mx-14 max-w-6xl p-6">
-      <h1 className="text-2xl font-semibold mb-8">Fundings</h1>
-      <div className="w-full max-w-6xl py-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+    <div className="flex flex-col items-center w-full px-4 md:px-14 lg:px-20 py-6">
+      <div className="w-full py-5 flex flex-col items-center">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 w-full">
           {/* Left side - Total Funding Amount */}
-          <div className="flex flex-col">
-            <span className="text-6xl font-bold text-red-600">500,000</span>
+          <div className="flex flex-col items-center md:items-center">
+            <span className="text-4xl md:text-6xl font-bold text-red-600">
+              500,000
+            </span>
             <div className="flex items-center gap-2 mt-2">
               <span className="text-2xl">₱</span>
-              <span className="text-gray-700">Total Project Fundings</span>
+              <span className="text-gray-700 text-center">
+                Total Project Fundings
+              </span>
             </div>
           </div>
 
           {/* Right side - Pie Chart and Legend */}
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex items-center justify-center w-1/2">
-              <PieChart width={300} height={300}>
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            {/* Pie Chart */}
+            <div className="flex items-center justify-center">
+              <PieChart width={250} height={250}>
                 <Pie
                   data={data}
                   cx="50%"
                   cy="50%"
-                  outerRadius={120}
+                  outerRadius={100}
                   dataKey="value"
                   isAnimationActive={true}
                 >
@@ -48,7 +51,7 @@ export default function FundingPage() {
             </div>
 
             {/* Legend */}
-            <div className="flex flex-col space-y-4 w-1/2">
+            <div className="flex flex-col items-start space-y-3">
               {data.map((entry, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   {/* Color Indicator */}
@@ -59,7 +62,9 @@ export default function FundingPage() {
                   {/* Percentage */}
                   <span className="font-bold text-gray-900">{`${entry.value}%`}</span>
                   {/* Description */}
-                  <span className="text-gray-700">{entry.name}</span>
+                  <span className="text-gray-700 text-sm md:text-base">
+                    {entry.name}
+                  </span>
                 </div>
               ))}
             </div>
@@ -67,6 +72,5 @@ export default function FundingPage() {
         </div>
       </div>
     </div>
-
   );
 }
